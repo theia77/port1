@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Skills XP Dashboard - Sumo The Styleful">
     <meta name="keywords" content="skills, dashboard, data science, civil engineering, portfolio">
-    <title>Skills XP Dashboard | Sumo The Styleful</title>
+    <title>Skills XP Dashboard</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="skills.css"> {/* MODIFIED: CSS filename */}
+    <link rel="stylesheet" href="skills.css">
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
@@ -17,10 +17,10 @@
     
     <div class="container">
         <header class="header">
-            <div class="logo">DS<span>+</span>CE</div>
+            <div class="logo">Sumo</span>Verse</div>
             <nav class="nav">
-                <a href="mainpage.html" class="nav-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a> {/* MODIFIED: Link to mainpage.html */}
-                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a> {/* MODIFIED: Link to auth.html */}
+                <a href="mainpage.html" class="nav-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a> 
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
             </nav>
         </header>
 
@@ -32,18 +32,18 @@
 
             <div class="skills-grid">
                 <!-- Technical Skills Section -->
-                <section class="skills-section" id="technical-skills-display"> {/* MODIFIED ID for clarity */}
+                <section class="skills-section" id="technical-skills-display"> 
                     <h2 class="section-title">Technical Skills</h2>
                     
                     <div class="skill-category" data-category-name="Programming & Data Science">
                         <h3>Programming & Data Science</h3>
-                        {/* Skill items will be dynamically populated by skills.js or be hardcoded if no dynamic loading */}
+                        
                         <div class="skill-item" data-skill-name="Python">
                             <div class="skill-info">
                                 <div class="skill-name">Python</div>
                                 <div class="skill-level">90%</div>
                             </div>
-                            <div class="xp-bar" style="--xp:90%;"></div> {/* This will be target for animation */}
+                            <div class="xp-bar" style="--xp:90%;"></div> 
                             <div class="skill-details">
                                 <p>Advanced data analysis, machine learning, and automation. Expert in NumPy, Pandas, Scikit-learn, and TensorFlow.</p>
                                 <div class="skill-badges">
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         </div>
-                        {/* Add other static skill items here or load dynamically */}
+                        
                          <div class="skill-item" data-skill-name="TensorFlow">
                             <div class="skill-info">
                                 <div class="skill-name">TensorFlow</div>
@@ -121,9 +121,9 @@
                     </div>
                 </section>
 
-                <section class="skills-section" id="code-samples-display"> {/* MODIFIED ID */}
+                <section class="skills-section" id="code-samples-display"> 
                     <h2 class="section-title">Code Samples</h2>
-                    {/* Static or dynamically populated code samples */}
+                    
                     <div class="code-sample">
                         <h3>Python: Bridge Structural Analysis</h3>
                         <pre><code class="language-python">
@@ -140,9 +140,9 @@ import tensorflow as tf
                     </div>
                 </section>
 
-                <section class="skills-section" id="certifications-display"> {/* MODIFIED ID */}
+                <section class="skills-section" id="certifications-display"> 
                     <h2 class="section-title">Certifications & Resources</h2>
-                    {/* Static or dynamically populated certifications and resources */}
+                    
                     <div class="certifications-grid">
                         <div class="certification-item">
                             <div class="certification-icon"><i class="fas fa-certificate"></i></div>
@@ -197,13 +197,13 @@ import tensorflow as tf
         
         <footer class="footer">
             <div class="footer-content">
-                <div class="footer-logo">DS<span>+</span>CE</div>
+                <div class="footer-logo">DS<span>+</span></div>
                 <div class="footer-links">
                     <a href="privacy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
                 </div>
                 <div class="footer-copyright">
-                    &copy; <span class="current-year"></span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
+                    &copy; <span class="current-year"></span> <span id="copyright-name">SumoVerse</span>. All rights reserved.
                 </div>
             </div>
         </footer>
@@ -211,7 +211,7 @@ import tensorflow as tf
 
     <!-- Admin Panel Modal REMOVED from here -->
 
-    <div class="notification" id="notification"> {/* Kept for general notifications if needed by skills.js */}
+    <div class="notification" id="notification">
         <div class="notification-content">
             <i class="fas fa-check-circle"></i>
             <span id="notification-message"></span>
@@ -221,6 +221,6 @@ import tensorflow as tf
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
-    <script src="skills.js"></script> {/* MODIFIED: JS filename */}
+    <script src="skills.js"></script> 
 </body>
 </html>
