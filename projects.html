@@ -9,7 +9,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="projects.css">
+    <link rel="stylesheet" href="projects.css"> {/* Ensure this is named projects.css */}
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
@@ -42,6 +42,7 @@
                 <!-- Static Example Project Cards (Fallback if localStorage is empty or dynamic loading fails) -->
                 <!-- These will be replaced by projects.js if data is found in localStorage -->
 
+                <!-- Project 1: Bridge Health AI -->
                 <div class="quest-card" data-category="ai engineering" data-project-id="bridge-health-ai">
                     <div class="quest-card-header">
                         <span class="quest-difficulty">Advanced</span>
@@ -72,6 +73,7 @@
                     </div>
                 </div>
 
+                <!-- Project 2: Smart City Analytics -->
                 <div class="quest-card" data-category="analytics" data-project-id="smart-city-analytics">
                     <div class="quest-card-header">
                         <span class="quest-difficulty">Intermediate</span>
@@ -102,8 +104,39 @@
                     </div>
                 </div>
                 
-                <!-- Add more static project cards here if desired as fallback -->
-                <div class="quest-card" data-category="engineering ai" data-project-id="structural-ml">
+                <!-- Project 3: Govt Consultancy -->
+                <div class="quest-card" data-category="engineering analytics" data-project-id="govt-consultancy">
+                    <div class="quest-card-header">
+                        <span class="quest-difficulty">Expert</span>
+                        <span class="quest-reward"><i class="fas fa-building"></i> Government</span>
+                    </div>
+                    <div class="quest-card-image">
+                        <img src="project-govt-consultancy.jpg" alt="Government Consultancy">
+                    </div>
+                    <div class="quest-card-content">
+                        <h2 class="quest-title">Govt. Dept. Consultancy</h2>
+                        <p class="quest-description">Infrastructure optimization consultancy for government departments using data-driven methodologies and ROI calculations.</p>
+                        <div class="quest-tags">
+                            <span class="quest-tag">Consultancy</span>
+                            <span class="quest-tag">ROI Analysis</span>
+                            <span class="quest-tag">Infrastructure</span>
+                        </div>
+                        <div class="quest-stats">
+                            <div class="quest-stat">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>2024</span>
+                            </div>
+                            <div class="quest-stat">
+                                <i class="fas fa-file-alt"></i>
+                                <span>White Paper</span>
+                            </div>
+                        </div>
+                        <a href="project-detail-govt-consultancy.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project 4: Structural ML -->
+                <div class="quest-card" data-category="ai engineering" data-project-id="structural-ml">
                     <div class="quest-card-header">
                         <span class="quest-difficulty">Advanced</span>
                         <span class="quest-reward"><i class="fas fa-flask"></i> Research</span>
@@ -133,6 +166,67 @@
                     </div>
                 </div>
 
+                <!-- Project 5: Dashboard Demo -->
+                <div class="quest-card" data-category="analytics" data-project-id="dashboard-demo">
+                    <div class="quest-card-header">
+                        <span class="quest-difficulty">Intermediate</span>
+                        <span class="quest-reward"><i class="fas fa-eye"></i> Demo</span>
+                    </div>
+                    <div class="quest-card-image">
+                        <img src="project-dashboard-demo.jpg" alt="Dashboard Demo">
+                    </div>
+                    <div class="quest-card-content">
+                        <h2 class="quest-title">Dashboard Demo</h2>
+                        <p class="quest-description">Interactive data visualization dashboards built with Tableau and Python for infrastructure monitoring and analysis.</p>
+                        <div class="quest-tags">
+                            <span class="quest-tag">Tableau</span>
+                            <span class="quest-tag">Python</span>
+                            <span class="quest-tag">Data Viz</span>
+                        </div>
+                        <div class="quest-stats">
+                            <div class="quest-stat">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>2022</span>
+                            </div>
+                            <div class="quest-stat">
+                                <i class="fas fa-chart-pie"></i>
+                                <span>8 visualizations</span>
+                            </div>
+                        </div>
+                        <a href="project-detail-dashboard-demo.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- Project 6: Case Study -->
+                <div class="quest-card" data-category="engineering ai" data-project-id="case-study-ml-infra">
+                    <div class="quest-card-header">
+                        <span class="quest-difficulty">Advanced</span>
+                        <span class="quest-reward"><i class="fas fa-book"></i> Case Study</span>
+                    </div>
+                    <div class="quest-card-image">
+                        <img src="project-case-study.jpg" alt="Case Study ML in Infrastructure">
+                    </div>
+                    <div class="quest-card-content">
+                        <h2 class="quest-title">Case Study: ML Models in Infrastructure</h2>
+                        <p class="quest-description">Comprehensive analysis of how machine learning models can improve infrastructure maintenance and reduce costs.</p>
+                        <div class="quest-tags">
+                            <span class="quest-tag">Case Study</span>
+                            <span class="quest-tag">ML Models</span>
+                            <span class="quest-tag">Cost Savings</span>
+                        </div>
+                        <div class="quest-stats">
+                            <div class="quest-stat">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>2024</span>
+                            </div>
+                            <div class="quest-stat">
+                                <i class="fas fa-percentage"></i>
+                                <span>35% savings</span>
+                            </div>
+                        </div>
+                        <a href="project-detail-case-study.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
             </div>
         </main>
         
