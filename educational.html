@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Academic Journey and Educational Qualifications - Sumo The Styleful">
+    <meta name="keywords" content="education, academics, degree, research, portfolio, civil engineering, data science">
+    <title>Academic Journey | Sumo The Styleful</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="education.css">
+</head>
+<body>
+    <div class="particles-background" id="particles-js"></div>
+    <div id="bridge-model"></div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="logo">DS<span>+</span>CE</div>
+            <nav class="nav">
+                <a href="mainpage.html" class="nav-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
+            </nav>
+        </header>
+
+        <main class="education-main">
+            <div class="page-header">
+                <h1 id="education-page-main-title">Academic <span class="highlight" id="education-page-highlight-title">Journey</span></h1>
+                <p class="page-description" id="education-page-description">An overview of my educational qualifications, key projects, and academic contributions.</p>
+            </div>
+
+            <div class="education-grid" id="education-grid-container">
+                <!-- Static Example Education Entry (Fallback) -->
+                <!-- This will be replaced by education.js if data is found in localStorage -->
+                <div class="education-entry-card" data-education-id="masters-cs-static">
+                    <div class="education-entry-header">
+                        <i class="fas fa-graduation-cap entry-icon"></i>
+                        <div class="education-title-group">
+                            <h2 class="degree-title">Master of Science in Structural Engineering</h2>
+                            <p class="university-name">University of Advanced Structures</p>
+                        </div>
+                        <span class="graduation-year">2022</span>
+                    </div>
+                    <div class="education-details">
+                        <p class="gpa-achievements"><strong>GPA:</strong> 3.9/4.0 | <strong>Thesis:</strong> "AI applications in Bridge Health Monitoring"</p>
+                        <p class="education-description">Focused on advanced structural analysis, finite element methods, and the application of machine learning to predict material fatigue.</p>
+                    </div>
+                    
+                    <div class="related-content-section">
+                        <h3><i class="fas fa-project-diagram"></i> Related Projects</h3>
+                        <ul class="related-items-list">
+                            <li>
+                                <a href="#" class="related-item-link">AI-Powered Anomaly Detection in Bridges</a>
+                                <p class="related-item-description">Developed a CNN model using Python and TensorFlow to identify structural anomalies from drone imagery. Published results in a university journal.</p>
+                                <div class="related-item-tags">
+                                    <span class="tag">AI</span><span class="tag">Computer Vision</span><span class="tag">Python</span><span class="tag">TensorFlow</span>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="related-item-link">Seismic Retrofitting Analysis</a>
+                                <p class="related-item-description">Performed non-linear dynamic analysis for seismic retrofitting of a historical building using ETABS.</p>
+                                <div class="related-item-tags">
+                                    <span class="tag">Structural Analysis</span><span class="tag">ETABS</span><span class="tag">Seismic Design</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="related-content-section">
+                        <h3><i class="fas fa-feather-alt"></i> Related Publications/Blogs</h3>
+                        <ul class="related-items-list">
+                            <li>
+                                <a href="#" class="related-item-link" target="_blank" rel="noopener noreferrer">"The Future of Smart Bridges: An AI Perspective" - Tech Structures Blog</a>
+                                <p class="related-item-description">An article discussing the integration of IoT and AI for next-generation bridge management systems.</p>
+                                <div class="related-item-tags">
+                                    <span class="tag">Blog Post</span><span class="tag">AI</span><span class="tag">IoT</span><span class="tag">Infrastructure</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Static Example -->
+
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">DS<span>+</span>CE</div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; <span id="current-year-education">2025</span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="notification-message"></span>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="education.js"></script>
+</body>
+</html>
