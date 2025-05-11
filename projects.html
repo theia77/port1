@@ -9,7 +9,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="projects.css"> {/* MODIFIED: CSS filename */}
+    <link rel="stylesheet" href="projects.css">
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
@@ -19,19 +19,19 @@
         <header class="header">
             <div class="logo">DS<span>+</span>CE</div>
             <nav class="nav">
-                <a href="mainpage.html" class="nav-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a> {/* MODIFIED: Link to mainpage.html */}
-                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a> {/* MODIFIED: Link to auth.html */}
+                <a href="mainpage.html" class="nav-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
             </nav>
         </header>
 
         <main class="quest-main">
             <div class="page-header">
-                <h1 id="projects-page-title">Quest <span class="highlight">Board</span></h1>
+                <h1 id="projects-page-main-title">Quest <span class="highlight" id="projects-page-highlight-title">Board</span></h1>
                 <p class="page-description" id="projects-page-description">Explore my portfolio of projects at the intersection of civil engineering and data science.</p>
             </div>
 
             <div class="quest-filter" id="quest-filter-container">
-                {/* Filter buttons will be dynamically populated by projects.js or hardcoded if no dynamic loading */}
+                <!-- Static filters, will be overridden if dynamic data is loaded -->
                 <button class="filter-btn active" data-filter="all">All Projects</button>
                 <button class="filter-btn" data-filter="ai">AI & Machine Learning</button>
                 <button class="filter-btn" data-filter="analytics">Data Analytics</button>
@@ -39,8 +39,9 @@
             </div>
 
             <div class="quest-grid" id="quest-grid-container">
-                {/* Project cards will be dynamically populated by projects.js or hardcoded if no dynamic loading */}
-                {/* Example Project 1: Bridge Health AI (Content from original paste.txt) */}
+                <!-- Static Example Project Cards (Fallback if localStorage is empty or dynamic loading fails) -->
+                <!-- These will be replaced by projects.js if data is found in localStorage -->
+
                 <div class="quest-card" data-category="ai engineering" data-project-id="bridge-health-ai">
                     <div class="quest-card-header">
                         <span class="quest-difficulty">Advanced</span>
@@ -67,10 +68,10 @@
                                 <span>32 commits</span>
                             </div>
                         </div>
-                        <a href="project-bridge-ai.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="project-detail-bridge-ai.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                {/* Other project cards from original paste.txt would follow a similar structure */}
+
                 <div class="quest-card" data-category="analytics" data-project-id="smart-city-analytics">
                     <div class="quest-card-header">
                         <span class="quest-difficulty">Intermediate</span>
@@ -97,42 +98,12 @@
                                 <span>15 dashboards</span>
                             </div>
                         </div>
-                        <a href="project-smart-city.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="project-detail-smart-city.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                 {/* Project 3: Govt Consultancy */}
-                <div class="quest-card" data-category="engineering analytics" data-project-id="govt-consultancy">
-                    <div class="quest-card-header">
-                        <span class="quest-difficulty">Expert</span>
-                        <span class="quest-reward"><i class="fas fa-building"></i> Government</span>
-                    </div>
-                    <div class="quest-card-image">
-                        <img src="project-govt-consultancy.jpg" alt="Government Consultancy">
-                    </div>
-                    <div class="quest-card-content">
-                        <h2 class="quest-title">Govt. Dept. Consultancy</h2>
-                        <p class="quest-description">Infrastructure optimization consultancy for government departments using data-driven methodologies and ROI calculations.</p>
-                        <div class="quest-tags">
-                            <span class="quest-tag">Consultancy</span>
-                            <span class="quest-tag">ROI Analysis</span>
-                            <span class="quest-tag">Infrastructure</span>
-                        </div>
-                        <div class="quest-stats">
-                            <div class="quest-stat">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>2024</span>
-                            </div>
-                            <div class="quest-stat">
-                                <i class="fas fa-file-alt"></i>
-                                <span>White Paper</span>
-                            </div>
-                        </div>
-                        <a href="project-govt-consultancy.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                {/* Project 4: Structural ML */}
-                <div class="quest-card" data-category="ai engineering" data-project-id="structural-ml">
+                
+                <!-- Add more static project cards here if desired as fallback -->
+                <div class="quest-card" data-category="engineering ai" data-project-id="structural-ml">
                     <div class="quest-card-header">
                         <span class="quest-difficulty">Advanced</span>
                         <span class="quest-reward"><i class="fas fa-flask"></i> Research</span>
@@ -158,10 +129,10 @@
                                 <span>3 ML Models</span>
                             </div>
                         </div>
-                        <a href="project-structural-ml.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                        <a href="project-detail-structural-ml.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                {/* Add other projects from paste.txt here for static display if needed */}
+
             </div>
         </main>
         
@@ -173,15 +144,13 @@
                     <a href="terms.html">Terms of Service</a>
                 </div>
                 <div class="footer-copyright">
-                    &copy; <span id="current-year-projects"></span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
+                    &copy; <span id="current-year-projects">2025</span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
                 </div>
             </div>
         </footer>
     </div>
 
-    <!-- Admin Panel Modal REMOVED from here -->
-
-    <div class="notification" id="notification"> {/* Kept for general notifications if needed by projects.js */}
+    <div class="notification" id="notification">
         <div class="notification-content">
             <i class="fas fa-check-circle"></i>
             <span id="notification-message"></span>
@@ -190,6 +159,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="projects.js"></script> {/* MODIFIED: JS filename */}
+    <script src="projects.js"></script>
 </body>
 </html>
