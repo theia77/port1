@@ -1,0 +1,324 @@
+
+/* Education Page Styles */
+:root {
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary: #10b981;
+    --secondary-dark: #059669;
+    --dark: #0f172a;
+    --darker: #0a0f1c;
+    --light: #f8fafc;
+    --accent: #7c3aed; /* Used for highlights */
+    --accent-alt: #f59e0b; /* A warm color for education theme elements if needed */
+    --gray: #64748b;
+    --light-gray: #e2e8f0;
+    --card-bg: rgba(15, 23, 42, 0.7); /* Slightly transparent dark bg for cards */
+    --card-border: rgba(124, 58, 237, 0.2); /* Accent border */
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--light);
+    background-color: var(--dark);
+    line-height: 1.6;
+}
+
+.particles-background, #bridge-model { /* Shared styles from other pages */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+#bridge-model { opacity: 0.15; }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.header { /* Shared styles */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(248, 250, 252, 0.1);
+}
+
+.logo { /* Shared styles */
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.logo span { color: var(--secondary); }
+
+.nav { display: flex; gap: 1.5rem; } /* Shared styles */
+.nav-link {
+    color: var(--light);
+    text-decoration: none;
+    font-weight: 600;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: var(--transition);
+}
+.nav-link:hover { color: var(--secondary); }
+.admin-login-btn { /* Shared styles */
+    background-color: rgba(124, 58, 237, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+}
+.admin-login-btn:hover { background-color: rgba(124, 58, 237, 0.3); }
+
+/* Education Main Content */
+.education-main {
+    padding: 3rem 0;
+}
+
+.page-header { /* Shared styles */
+    margin-bottom: 3rem;
+    text-align: center;
+}
+.page-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.highlight { color: var(--accent); } /* Shared highlight */
+.page-description {
+    max-width: 700px;
+    margin: 0 auto;
+    color: var(--gray);
+    font-size: 1.1rem;
+}
+
+.education-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Each entry takes full width */
+    gap: 2.5rem;
+}
+
+.education-entry-card {
+    background: var(--card-bg);
+    border-radius: 15px;
+    padding: 2rem 2.5rem;
+    border: 1px solid var(--card-border);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-entry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(var(--accent-rgb, 124, 58, 237), 0.1); /* Use accent color for hover shadow */
+}
+
+.education-entry-header {
+    display: flex;
+    align-items: flex-start; /* Align icon and text block nicely */
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(var(--accent-rgb, 124, 58, 237), 0.2);
+}
+
+.entry-icon {
+    font-size: 2.5rem;
+    color: var(--accent-alt); /* Use a distinct color for education icon */
+    margin-top: 0.25rem; /* Align with text */
+}
+
+.education-title-group {
+    flex-grow: 1;
+}
+
+.degree-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.75rem;
+    color: var(--light);
+    margin-bottom: 0.25rem;
+}
+
+.university-name {
+    font-size: 1.1rem;
+    color: var(--secondary); /* Use secondary color for university */
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.graduation-year {
+    background-color: rgba(var(--accent-alt-rgb, 245, 158, 11), 0.2);
+    color: var(--accent-alt);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.education-details {
+    margin-bottom: 1.5rem;
+}
+
+.gpa-achievements {
+    font-size: 1rem;
+    color: var(--light-gray);
+    margin-bottom: 0.75rem;
+}
+.gpa-achievements strong {
+    font-weight: 600;
+    color: var(--light);
+}
+
+.education-description {
+    font-size: 1rem;
+    color: var(--gray);
+    line-height: 1.7;
+}
+
+.related-content-section {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(var(--light-rgb, 248, 250, 252), 0.1);
+}
+
+.related-content-section h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.related-content-section h3 i {
+    font-size: 1.1em; /* Make icon slightly larger than text */
+}
+
+
+.related-items-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.related-items-list li {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: rgba(var(--darker-rgb, 10, 15, 28), 0.5);
+    border-radius: 8px;
+    border-left: 3px solid var(--secondary);
+}
+
+.related-item-link {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--light);
+    text-decoration: none;
+    transition: var(--transition);
+    display: block;
+    margin-bottom: 0.3rem;
+}
+.related-item-link:hover {
+    color: var(--secondary);
+    text-decoration: underline;
+}
+
+.related-item-description {
+    font-size: 0.95rem;
+    color: var(--gray);
+    margin-bottom: 0.75rem;
+}
+
+.related-item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+.related-item-tags .tag {
+    background-color: rgba(var(--primary-rgb, 37, 99, 235), 0.2);
+    color: var(--light);
+    padding: 0.25rem 0.6rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+}
+
+
+.footer { /* Shared styles */
+    margin-top: 5rem;
+    padding: 3rem 0;
+    border-top: 1px solid rgba(248, 250, 252, 0.1);
+}
+.footer-content, .footer-logo, .footer-links, .footer-copyright { /* Shared styles */
+    text-align: center;
+}
+.footer-content { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+.footer-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; }
+.footer-logo span { color: var(--secondary); }
+.footer-links { display: flex; gap: 2rem; }
+.footer-links a { color: var(--gray); text-decoration: none; transition: var(--transition); }
+.footer-links a:hover { color: var(--light); }
+.footer-copyright { color: var(--gray); font-size: 0.9rem; }
+
+/* Notification Styles (shared) */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--dark);
+    border-left-width: 4px;
+    border-left-style: solid;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+    z-index: 1100;
+}
+.notification.active { transform: translateX(0); }
+.notification-content { display: flex; align-items: center; gap: 0.75rem; }
+.notification-content i { font-size: 1.25rem; }
+
+.notification.success { border-left-color: var(--success); }
+.notification.success i { color: var(--success); }
+.notification.error { border-left-color: var(--danger); }
+.notification.error i { color: var(--danger); }
+.notification.info { border-left-color: var(--primary); } /* Example for info */
+.notification.info i { color: var(--primary); }
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .page-header h1 { font-size: 2.5rem; }
+    .education-entry-card { padding: 1.5rem; }
+    .degree-title { font-size: 1.5rem; }
+    .university-name { font-size: 1rem; }
+    .related-content-section h3 { font-size: 1.2rem; }
+}
+
+@media (max-width: 480px) {
+    .header { flex-direction: column; gap: 1rem; text-align: center; }
+    .nav { width: 100%; justify-content: space-around; }
+    .page-header h1 { font-size: 2rem; }
+    .education-entry-header { flex-direction: column; align-items: stretch; }
+    .graduation-year { align-self: flex-start; margin-top: 0.5rem; }
+    .entry-icon { margin-bottom: 0.5rem; font-size: 2rem; }
+}
+
+/* For RGB variables if not globally defined */
+:root {
+    --accent-rgb: 124, 58, 237;
+    --accent-alt-rgb: 245, 158, 11;
+    --light-rgb: 248, 250, 252;
+    --darker-rgb: 10, 15, 28;
+    --primary-rgb: 37, 99, 235;
+}
