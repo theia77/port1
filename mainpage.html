@@ -9,7 +9,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="mainpage.css"> {/* MODIFIED: CSS filename changed */}
+    <link rel="stylesheet" href="mainpage.css">
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
@@ -20,15 +20,13 @@
             <div class="logo">sumo<span>imps</span></div>
             <nav class="nav">
                 <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
-                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a> {/* MODIFIED: Links to auth.html */}
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
             </nav>
         </header>
 
         <main class="portfolio-main">
             <section class="admin-brief">
-                <div class="admin-avatar">
-                    <img src="profile-image.jpg" alt="Sumo The Styleful" class="profile-img">
-                </div>
+                <!-- Profile picture space (admin-avatar) removed -->
                 <div class="admin-content">
                     <h1><span class="highlight" id="profile-name">sumouli Pramanik</span></h1>
                     <p class="admin-tagline" id="profile-tagline">Civil Engineer | Data Scientist | Infrastructure Consultant</p>
@@ -45,6 +43,7 @@
             </section>
 
             <section class="access-portals">
+                <!-- Projects Showcase -->
                 <div class="flip-card quest-portal">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -67,6 +66,7 @@
                     <a href="projects.html" class="card-link"></a>
                 </div>
 
+                <!-- Skills XP Dashboard -->
                 <div class="flip-card xp-portal">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -95,6 +95,7 @@
                     <a href="skills.html" class="card-link"></a>
                 </div>
 
+                <!-- Contact/Hire Me -->
                 <div class="flip-card contact-portal">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -116,6 +117,29 @@
                     </div>
                     <a href="contact.html" class="card-link"></a>
                 </div>
+
+                <!-- Education Portal - NEW -->
+                <div class="flip-card education-portal">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="portal-icon"><i class="fas fa-user-graduate"></i></div>
+                            <h3 id="education-card-title">Education & Academia</h3>
+                            <div class="education-preview">
+                                <div class="education-tag" id="education-item-1">Degree Name</div>
+                                <div class="education-tag" id="education-item-2">University Name</div>
+                                <div class="education-tag" id="education-item-3">Key Project/GPA</div>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Educational Journey</h3>
+                            <p>Discover academic achievements, research, and qualifications.</p>
+                            <div class="enter-btn">
+                                <span id="education-btn-text">Explore Education</span> <span><i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="education.html" class="card-link"></a>
+                </div>
             </section>
         </main>
         
@@ -134,8 +158,8 @@
     </div>
 
     <div class="admin-panel" id="adminPanel">
-        <!-- Content for admin panel (if it were a modal) would go here. -->
-        <!-- Since navigation is to auth.html, this might be minimal or removed if not used for other popups. -->
+        <!-- Content for admin panel (if it were a modal and loaded here) would go here. -->
+        <!-- This might be mostly handled by auth.html now. -->
     </div>
 
     <div class="notification" id="notification">
@@ -147,6 +171,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="mainpage.js"></script> {/* MODIFIED: JS filename changed */}
+    <script src="mainpage.js"></script>
 </body>
 </html>
