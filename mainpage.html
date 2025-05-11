@@ -1,3 +1,6 @@
+
+              
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,24 +12,25 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="mainpage.css"> {/* Assuming this is your main CSS for this page */}
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
-    <div id="bridge-model"></div>
-
+    <div id="bridge-model"></div> 
+    
     <div class="container">
         <header class="header">
             <div class="logo">sumo<span>imps</span></div>
             <nav class="nav">
-                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
-                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a> {/* Links to your landing page */}
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a> {/* Links to your central admin authentication page */}
             </nav>
         </header>
 
         <main class="portfolio-main">
             <section class="admin-brief">
                 <div class="admin-content">
+                    {/* Dynamically updated or static content */}
                     <h1><span class="highlight" id="profile-name">sumouli Pramanik</span></h1>
                     <p class="admin-tagline" id="profile-tagline">Civil Engineer | Data Scientist | Infrastructure Consultant</p>
                     <div class="admin-description">
@@ -34,24 +38,26 @@
                         <p id="profile-description-2">This portfolio hub showcases my technical capabilities, project achievements, and the intersection of engineering precision with data-driven insights.</p>
                     </div>
                     <div class="social-links">
-                        <a href="#" id="linkedin-url" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" id="github-url" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="#" id="twitter-url" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        {/* Ensure these hrefs are updated dynamically if managed by admin, or set statically */}
+                        <a href="#" id="linkedin-url" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" id="github-url" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        <a href="#" id="twitter-url" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </section>
 
             <section class="access-portals">
-                <!-- Projects Showcase -->
+                <!-- Quest Board/Projects Showcase -->
                 <div class="flip-card quest-portal">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="portal-icon"><i class="fas fa-project-diagram"></i></div>
                             <h3 id="projects-title">Quest Board/Projects</h3>
                             <div class="quest-preview">
-                                <div class="quest-tag" id="project-1">Bridge Health AI</div>
-                                <div class="quest-tag" id="project-2">Smart City Analytics</div>
-                                <div class="quest-tag" id="project-3">Structural ML</div>
+                                {/* These can be static previews or dynamically updated by mainpage.js if needed */}
+                                <div class="quest-tag" id="project-1-preview">Bridge Health AI</div>
+                                <div class="quest-tag" id="project-2-preview">Smart City Analytics</div>
+                                <div class="quest-tag" id="project-3-preview">Structural ML</div>
                             </div>
                         </div>
                         <div class="flip-card-back">
@@ -62,7 +68,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="projects.html" class="card-link"></a>
+                    <a href="projects.html" class="card-link"></a> {/* CORRECTED: Points to projects.html */}
                 </div>
 
                 <!-- Skills XP Dashboard -->
@@ -73,13 +79,13 @@
                             <h3 id="skills-title">Skills XP Dashboard</h3>
                             <div class="xp-preview">
                                 <div class="xp-bar" style="--xp:90%">
-                                    <span id="skill-1-name">Python</span>
+                                    <span id="skill-1-name-preview">Python</span>
                                 </div>
                                 <div class="xp-bar" style="--xp:85%">
-                                    <span id="skill-2-name">AutoCAD</span>
+                                    <span id="skill-2-name-preview">AutoCAD</span>
                                 </div>
                                 <div class="xp-bar" style="--xp:78%">
-                                    <span id="skill-3-name">Machine Learning</span>
+                                    <span id="skill-3-name-preview">Machine Learning</span>
                                 </div>
                             </div>
                         </div>
@@ -91,7 +97,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="skills.html" class="card-link"></a>
+                    <a href="skills.html" class="card-link"></a> {/* CORRECTED: Points to skills.html */}
                 </div>
 
                 <!-- Contact/Hire Me -->
@@ -101,9 +107,9 @@
                             <div class="portal-icon"><i class="fas fa-envelope"></i></div>
                             <h3 id="contact-title">Contact/Hire Me</h3>
                             <div class="contact-options">
-                                <div class="contact-method" id="contact-method-1">Email</div>
-                                <div class="contact-method" id="contact-method-2">Calendly</div>
-                                <div class="contact-method" id="contact-method-3">Consultation</div>
+                                <div class="contact-method" id="contact-method-1-preview">Email</div>
+                                <div class="contact-method" id="contact-method-2-preview">Calendly</div>
+                                <div class="contact-method" id="contact-method-3-preview">Consultation</div>
                             </div>
                         </div>
                         <div class="flip-card-back">
@@ -114,7 +120,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="contact.html" class="card-link"></a>
+                    <a href="contact.html" class="card-link"></a> {/* CORRECTED: Points to contact.html */}
                 </div>
 
                 <!-- Education Portal -->
@@ -124,9 +130,9 @@
                             <div class="portal-icon"><i class="fas fa-user-graduate"></i></div>
                             <h3 id="education-card-title">Education & Academia</h3>
                             <div class="education-preview">
-                                <div class="education-tag" id="education-item-1">Degree Name</div>
-                                <div class="education-tag" id="education-item-2">University Name</div>
-                                <div class="education-tag" id="education-item-3">Key Project/GPA</div>
+                                <div class="education-tag" id="education-item-1-preview">Degree Name</div>
+                                <div class="education-tag" id="education-item-2-preview">University Name</div>
+                                <div class="education-tag" id="education-item-3-preview">Key Project/GPA</div>
                             </div>
                         </div>
                         <div class="flip-card-back">
@@ -137,11 +143,11 @@
                             </div>
                         </div>
                     </div>
-                    <a href="education.html" class="card-link"></a>
+                    <a href="education.html" class="card-link"></a> {/* CORRECTED: Points to education.html */}
                 </div>
             </section>
         </main>
-
+        
         <footer class="footer">
             <div class="footer-content">
                 <div class="footer-logo">Code<span>Struct</span></div>
@@ -150,13 +156,15 @@
                     <a href="terms.html">Terms of Service</a>
                 </div>
                 <div class="footer-copyright">
-                    &copy; <span class="current-year"></span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
+                    &copy; <span class="current-year">2025</span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
                 </div>
             </div>
         </footer>
     </div>
 
     <div class="admin-panel" id="adminPanel">
+        {/* This modal might be deprecated if all admin functions are on auth.html */}
+        {/* Or it could be used for quick edits if mainpage.js populates it from localStorage */}
     </div>
 
     <div class="notification" id="notification">
@@ -168,6 +176,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="mainpage.js"></script>
+    <script src="mainpage.js"></script> {/* Assuming this is your main JS for this page */}
 </body>
 </html>
