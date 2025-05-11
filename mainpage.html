@@ -9,24 +9,22 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css"> <!-- Assuming this page also uses styles.css or a different stylesheet -->
+    <link rel="stylesheet" href="mainpage.css"> {/* MODIFIED: CSS filename changed */}
 </head>
 <body>
-    <div class="particles-background" id="particles-js"></div> <!-- Ensure particles.js is initialized if used here -->
-    <div id="bridge-model"></div> <!-- Ensure this element is handled by your scripts if needed -->
+    <div class="particles-background" id="particles-js"></div>
+    <div id="bridge-model"></div> 
     
     <div class="container">
         <header class="header">
             <div class="logo">sumo<span>imps</span></div>
             <nav class="nav">
-                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a> <!-- Links back to the landing page -->
-                <!-- MODIFIED LINE: href now points to auth.html -->
-                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a> {/* MODIFIED: Links to auth.html */}
             </nav>
         </header>
 
         <main class="portfolio-main">
-            <!-- Admin Brief Section -->
             <section class="admin-brief">
                 <div class="admin-avatar">
                     <img src="profile-image.jpg" alt="Sumo The Styleful" class="profile-img">
@@ -46,9 +44,7 @@
                 </div>
             </section>
 
-            <!-- Access Portals -->
             <section class="access-portals">
-                <!-- Projects Showcase -->
                 <div class="flip-card quest-portal">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -68,10 +64,9 @@
                             </div>
                         </div>
                     </div>
-                    <a href="projects.html" class="card-link"></a> <!-- Links to a projects page -->
+                    <a href="projects.html" class="card-link"></a>
                 </div>
 
-                <!-- Skills XP Dashboard -->
                 <div class="flip-card xp-portal">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -97,10 +92,9 @@
                             </div>
                         </div>
                     </div>
-                    <a href="skills.html" class="card-link"></a> <!-- Links to a skills page -->
+                    <a href="skills.html" class="card-link"></a>
                 </div>
 
-                <!-- Contact/Hire Me -->
                 <div class="flip-card contact-portal">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
@@ -120,7 +114,7 @@
                             </div>
                         </div>
                     </div>
-                    <a href="contact.html" class="card-link"></a> <!-- Links to a contact page -->
+                    <a href="contact.html" class="card-link"></a>
                 </div>
             </section>
         </main>
@@ -139,16 +133,11 @@
         </footer>
     </div>
 
-    <!-- Admin Panel Modal (content omitted for brevity but should be included as per your original file) -->
     <div class="admin-panel" id="adminPanel">
-        <!-- ... Full admin panel HTML ... -->
-        <!-- You might have a login form or other content here if it was a modal. -->
-        <!-- If the 'admin-login-btn' class was previously used to toggle this modal via JavaScript, -->
-        <!-- that JavaScript might need adjustment if you still want modal functionality alongside the link, -->
-        <!-- or it might be removed if navigating to auth.html is the sole desired action. -->
+        <!-- Content for admin panel (if it were a modal) would go here. -->
+        <!-- Since navigation is to auth.html, this might be minimal or removed if not used for other popups. -->
     </div>
 
-    <!-- Notification -->
     <div class="notification" id="notification">
         <div class="notification-content">
             <i class="fas fa-check-circle"></i>
@@ -156,8 +145,8 @@
         </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script> <!-- If needed for this page -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> <!-- If needed for this page -->
-    <script src="script.js"></script> <!-- Main script for this page -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="mainpage.js"></script> {/* MODIFIED: JS filename changed */}
 </body>
 </html>
