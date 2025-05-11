@@ -84,8 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function initializeProjectFiltering() {
-        const filterBtns = document.querySelectorAll('#quest-filter-container .filter-btn'); // Target specific container
-        const questCards = document.querySelectorAll('#quest-grid-container .quest-card'); // Target specific container
+        const filterBtns = document.querySelectorAll('#quest-filter-container .filter-btn');
+        const questCards = document.querySelectorAll('#quest-grid-container .quest-card');
         
         if (filterBtns.length > 0 && questCards.length > 0) {
             filterBtns.forEach(btn => {
@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     const filter = this.getAttribute('data-filter');
                     
                     questCards.forEach(card => {
-                        card.style.display = 'none'; // Hide all first
+                        card.style.display = 'none'; // Hide all first to apply filter correctly
                         if (filter === 'all') {
                             card.style.display = 'flex'; 
                         } else {
@@ -107,11 +107,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     });
                 });
             });
-            // Trigger click on 'all' filter initially if present
-            const allFilterBtn = document.querySelector('#quest-filter-container .filter-btn[data-filter="all"].active');
-            if(allFilterBtn) allFilterBtn.click();
+            // Ensure default 'all' filter is triggered if present and active
+            const activeAllFilter = document.querySelector('#quest-filter-container .filter-btn[data-filter="all"].active');
+            if (activeAllFilter) {
+                activeAllFilter.click(); // Programmatically click to apply the initial filter
+            } else if (filterBtns.length > 0) {
+                filterBtns[0].click(); // Or click the first filter if 'all' is not specifically active
+            }
 
-        } else if (questCards.length > 0) { // If only cards exist (e.g. static content without dynamic filters)
+        } else if (questCards.length > 0) { // Only cards, no filters (should not happen with default static filters)
              questCards.forEach(card => card.style.display = 'flex'); // Show all cards
         }
     }
@@ -122,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showNotification(message, type = 'success') {
-        // ... (showNotification function from previous interaction, ensure it's present)
+        // ... (showNotification function - ensure it's correctly defined as in previous responses)
         const notification = document.getElementById('notification');
         const notificationMessage = document.getElementById('notification-message');
         const icon = notification.querySelector('i');
@@ -131,22 +135,27 @@ document.addEventListener('DOMContentLoaded', function() {
             notificationMessage.textContent = message;
             notification.classList.remove('success', 'error', 'info');
             
+            let iconClass = 'fas fa-check-circle';
+            let borderColor = 'var(--success)'; // Make sure these CSS variables are defined
+            let iconColor = 'var(--success)';
+            let notifClass = 'success';
+
             if (type === 'error') {
-                notification.classList.add('error');
-                icon.className = 'fas fa-exclamation-circle';
-                notification.style.borderColor = 'var(--danger)'; // Ensure --danger is defined in CSS
-                icon.style.color = 'var(--danger)';
+                iconClass = 'fas fa-exclamation-circle';
+                borderColor = 'var(--danger)';
+                iconColor = 'var(--danger)';
+                notifClass = 'error';
             } else if (type === 'info') {
-                notification.classList.add('info'); // Ensure .notification.info CSS is defined
-                icon.className = 'fas fa-info-circle';
-                notification.style.borderColor = 'var(--primary)'; // Example, ensure --primary is defined
-                icon.style.color = 'var(--primary)';
-            } else { // Default to success
-                notification.classList.add('success');
-                icon.className = 'fas fa-check-circle';
-                notification.style.borderColor = 'var(--success)'; // Ensure --success is defined
-                icon.style.color = 'var(--success)';
+                iconClass = 'fas fa-info-circle';
+                borderColor = 'var(--primary)';
+                iconColor = 'var(--primary)';
+                notifClass = 'info';
             }
+            
+            notification.classList.add(notifClass);
+            icon.className = iconClass;
+            notification.style.borderColor = borderColor;
+            icon.style.color = iconColor;
             
             notification.classList.add('active');
             
@@ -163,108 +172,114 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (!questGridContainer || !questFilterContainer) {
             console.error("Required containers for projects or filters not found.");
-            initializeProjectFiltering(); // Still try to init for any static content
+            initializeProjectFiltering(); // Fallback for any existing static content
             return;
         }
+
+        let useDynamicData = false;
 
         if (projectsDataString) {
             try {
                 const projectsData = JSON.parse(projectsDataString);
 
-                // Update Page Title and Description
-                const pageMainTitleEl = document.getElementById('projects-page-main-title'); // Target the H1
-                const pageHighlightTitleEl = document.getElementById('projects-page-highlight-title'); // Target the span
-                if (pageMainTitleEl && projectsData.pageSettings && projectsData.pageSettings.title) {
-                    const titleParts = projectsData.pageSettings.title.split(' ');
-                    if (titleParts.length > 1) {
-                        pageHighlightTitleEl.textContent = titleParts.pop(); // Last word for highlight
-                        pageMainTitleEl.firstChild.nodeValue = titleParts.join(' ') + ' '; // The rest before span
+                if (projectsData && projectsData.pageSettings && projectsData.projects) {
+                    useDynamicData = true; // Flag that we will use dynamic data
+
+                    // Update Page Title and Description
+                    const pageMainTitleEl = document.getElementById('projects-page-main-title');
+                    const pageHighlightTitleEl = document.getElementById('projects-page-highlight-title');
+                    if (pageMainTitleEl && pageHighlightTitleEl && projectsData.pageSettings.title) {
+                        const title = projectsData.pageSettings.title;
+                        const lastSpaceIndex = title.lastIndexOf(' ');
+                        if (lastSpaceIndex > -1 && lastSpaceIndex < title.length -1) { // Ensure space is not last char
+                            pageMainTitleEl.firstChild.nodeValue = title.substring(0, lastSpaceIndex + 1);
+                            pageHighlightTitleEl.textContent = title.substring(lastSpaceIndex + 1);
+                        } else {
+                            pageMainTitleEl.firstChild.nodeValue = title;
+                            pageHighlightTitleEl.textContent = ""; // Or a default if title is one word
+                        }
+                    }
+                    const pageDescEl = document.getElementById('projects-page-description');
+                    if (pageDescEl && projectsData.pageSettings.description) {
+                        pageDescEl.textContent = projectsData.pageSettings.description;
+                    }
+
+                    // Populate Filter Buttons
+                    if (projectsData.pageSettings.filters && projectsData.pageSettings.filters.length > 0) {
+                        questFilterContainer.innerHTML = ''; // Clear static filters for dynamic ones
+                        projectsData.pageSettings.filters.forEach((filter) => {
+                            const button = document.createElement('button');
+                            button.className = 'filter-btn';
+                            // Make 'all' filter active by default if it's the first one from dynamic data
+                            if (filter.dataFilter === "all" && questFilterContainer.children.length === 0) {
+                                button.classList.add('active');
+                            }
+                            button.dataset.filter = filter.dataFilter;
+                            button.textContent = filter.label;
+                            questFilterContainer.appendChild(button);
+                        });
                     } else {
-                        pageMainTitleEl.firstChild.nodeValue = projectsData.pageSettings.title;
-                        pageHighlightTitleEl.textContent = ""; // Or some default if title is one word
+                        // If no dynamic filters, ensure at least 'All Projects' static filter is there or add it
+                        if (!questFilterContainer.querySelector('[data-filter="all"]')) {
+                             questFilterContainer.innerHTML = '<button class="filter-btn active" data-filter="all">All Projects</button>';
+                        }
                     }
-                }
-                const pageDescEl = document.getElementById('projects-page-description');
-                if (pageDescEl && projectsData.pageSettings && projectsData.pageSettings.description) {
-                    pageDescEl.textContent = projectsData.pageSettings.description;
-                }
 
-                // Populate Filter Buttons
-                if (projectsData.pageSettings && projectsData.pageSettings.filters && projectsData.pageSettings.filters.length > 0) {
-                    questFilterContainer.innerHTML = ''; // Clear existing static filters
-                    projectsData.pageSettings.filters.forEach((filter, index) => {
-                        const button = document.createElement('button');
-                        button.className = 'filter-btn';
-                        if (index === 0 && filter.dataFilter === "all") button.classList.add('active');
-                        button.dataset.filter = filter.dataFilter;
-                        button.textContent = filter.label;
-                        questFilterContainer.appendChild(button);
-                    });
-                } else {
-                     // If no filters in localStorage, keep static ones or default to 'All Projects'
-                    if (!questFilterContainer.querySelector('[data-filter="all"]')) {
-                        questFilterContainer.innerHTML = '<button class="filter-btn active" data-filter="all">All Projects</button>';
-                    }
-                }
+                    // Populate Project Cards if there are projects
+                    if (projectsData.projects.length > 0) {
+                        questGridContainer.innerHTML = ''; // Clear static projects for dynamic ones
+                        projectsData.projects.forEach(project => {
+                            const card = document.createElement('div');
+                            card.className = 'quest-card';
+                            card.dataset.category = (project.categories || []).join(' ');
+                            card.dataset.projectId = project.id || project.title.toLowerCase().replace(/\s+/g, '-');
 
-                // Populate Project Cards
-                if (projectsData.projects && projectsData.projects.length > 0) {
-                    questGridContainer.innerHTML = ''; // Clear existing static projects
-                    projectsData.projects.forEach(project => {
-                        const card = document.createElement('div');
-                        card.className = 'quest-card';
-                        card.dataset.category = (project.categories || []).join(' ');
-                        card.dataset.projectId = project.id || project.title.toLowerCase().replace(/\s+/g, '-');
-
-                        card.innerHTML = `
-                            <div class="quest-card-header">
-                                <span class="quest-difficulty">${project.difficulty || 'N/A'}</span>
-                                <span class="quest-reward"><i class="fas ${project.rewardIcon || 'fa-award'}"></i> ${project.rewardText || 'Info'}</span>
-                            </div>
-                            <div class="quest-card-image">
-                                <img src="${project.imageUrl || 'placeholder-project.jpg'}" alt="${project.title || 'Project Image'}">
-                            </div>
-                            <div class="quest-card-content">
-                                <h2 class="quest-title">${project.title || 'Untitled Project'}</h2>
-                                <p class="quest-description">${project.description || 'No description available.'}</p>
-                                <div class="quest-tags">
-                                    ${(project.tags || []).map(tag => `<span class="quest-tag">${tag}</span>`).join('')}
+                            card.innerHTML = `
+                                <div class="quest-card-header">
+                                    <span class="quest-difficulty">${project.difficulty || 'N/A'}</span>
+                                    <span class="quest-reward"><i class="fas ${project.rewardIcon || 'fa-award'}"></i> ${project.rewardText || 'Info'}</span>
                                 </div>
-                                <div class="quest-stats">
-                                    <div class="quest-stat">
-                                        <i class="fas fa-calendar-alt"></i>
-                                        <span>${project.year || 'N/A'}</span>
-                                    </div>
-                                    <div class="quest-stat">
-                                        <i class="fas ${project.statsIcon || 'fa-info-circle'}"></i>
-                                        <span>${project.statsText || 'N/A'}</span>
-                                    </div>
+                                <div class="quest-card-image">
+                                    <img src="${project.imageUrl || 'placeholder-project.jpg'}" alt="${project.title || 'Project Image'}">
                                 </div>
-                                <a href="${project.projectUrl || '#'}" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
-                            </div>
-                        `;
-                        questGridContainer.appendChild(card);
-                    });
-                    // showNotification("Projects loaded from saved data.", "success");
-                } else {
-                    // No projects in localStorage, static HTML (if any) will be displayed.
-                    // If questGridContainer was cleared and no projects in localStorage, it will be empty.
-                    // You might want to show a message if it's empty.
-                    if(questGridContainer.children.length === 0){
-                        questGridContainer.innerHTML = '<p style="text-align:center; grid-column: 1 / -1;">No projects to display at the moment.</p>';
+                                <div class="quest-card-content">
+                                    <h2 class="quest-title">${project.title || 'Untitled Project'}</h2>
+                                    <p class="quest-description">${project.description || 'No description available.'}</p>
+                                    <div class="quest-tags">
+                                        ${(project.tags || []).map(tag => `<span class="quest-tag">${tag}</span>`).join('')}
+                                    </div>
+                                    <div class="quest-stats">
+                                        <div class="quest-stat">
+                                            <i class="fas fa-calendar-alt"></i>
+                                            <span>${project.year || 'N/A'}</span>
+                                        </div>
+                                        <div class="quest-stat">
+                                            <i class="fas ${project.statsIcon || 'fa-info-circle'}"></i>
+                                            <span>${project.statsText || 'N/A'}</span>
+                                        </div>
+                                    </div>
+                                    <a href="${project.projectUrl || '#'}" class="quest-btn" target="_blank" rel="noopener noreferrer">View Project <i class="fas fa-arrow-right"></i></a>
+                                </div>
+                            `;
+                            questGridContainer.appendChild(card);
+                        });
+                    } else {
+                        // Dynamic data exists but no projects are listed.
+                        questGridContainer.innerHTML = '<p style="text-align:center; grid-column: 1 / -1; color: var(--light-gray);">No projects have been added yet. The admin can add projects via the admin panel.</p>';
                     }
-                    // showNotification("No projects found in saved data. Displaying static content or empty.", "info");
+                } else {
+                     // Data found in localStorage but has incorrect structure
+                    console.warn("Projects data in localStorage has an unexpected structure.");
                 }
             } catch (e) {
                 console.error("Error parsing projects data from localStorage:", e);
-                showNotification("Error loading projects data. Displaying defaults.", "error");
-                // Fallback to static content if parsing fails
+                // showNotification("Error loading projects data. Displaying defaults.", "error");
+                // Fallback: static content will be used as `useDynamicData` remains false.
             }
-        } else {
-            // No data in localStorage, static HTML content in projects.html will be used.
-            // showNotification("Displaying default projects content.", "info");
         }
-        // Initialize filtering for whatever content is now present (static or dynamic)
+        
+        // If dynamic data was not used (or failed to load properly), the static HTML content remains.
+        // Initialize filtering for whatever content is currently in the DOM.
         initializeProjectFiltering();
     }
     
