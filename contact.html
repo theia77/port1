@@ -1,0 +1,179 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Sumo The Styleful - Civil Engineer and Data Scientist">
+    <meta name="keywords" content="contact, civil engineering, data science, portfolio">
+    <title>Contact Me | Sumo The Styleful</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="contact.css"> {/* MODIFIED: CSS filename */}
+</head>
+<body>
+    <div class="particles-background" id="particles-js"></div>
+    <div id="bridge-model"></div>
+
+    <div class="container">
+        <header class="header">
+            <div class="logo">DS<span>+</span>CE</div>
+            <nav class="nav">
+                <a href="mainpage.html" class="nav-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a> {/* MODIFIED: Link to mainpage.html */}
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a> {/* MODIFIED: Link to auth.html */}
+            </nav>
+        </header>
+
+        <main class="contact-main">
+            <div class="page-header">
+                <h1>Get in <span class="highlight" id="contact-page-title">Touch</span></h1>
+                <p class="page-description" id="contact-page-description">Let's connect and discuss how my expertise in civil engineering and data science can benefit your next project.</p>
+            </div>
+
+            <div class="contact-grid">
+                <!-- Contact Form Section -->
+                <section class="contact-section" id="contact-form-section">
+                    <h2 class="section-title">Send a Message</h2>
+
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="6" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </section>
+
+                <!-- Connect Section -->
+                <section class="contact-section" id="connect-options-section">
+                    <h2 class="section-title">Connect With Me</h2>
+
+                    <div class="connect-options">
+                        <div class="connect-option" id="calendly-connect-option">
+                            <div class="connect-icon"><i class="fas fa-calendar-check"></i></div>
+                            <div class="connect-content">
+                                <h3>Schedule a Meeting</h3>
+                                <p>Book a time slot that works for you using my Calendly.</p>
+                                <a href="https://calendly.com/yourusername" id="calendly-link" class="connect-link" target="_blank">Book a Meeting <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="connect-option" id="email-connect-option">
+                            <div class="connect-icon"><i class="fas fa-envelope"></i></div>
+                            <div class="connect-content">
+                                <h3>Email Me Directly</h3>
+                                <p>For direct inquiries, feel free to send an email.</p>
+                                <a href="mailto:your.email@example.com" id="email-display-link" class="connect-link">your.email@example.com</a>
+                            </div>
+                        </div>
+
+                        <div class="connect-option" id="phone-connect-option">
+                            <div class="connect-icon"><i class="fas fa-phone"></i></div>
+                            <div class="connect-content">
+                                <h3>Call Me</h3>
+                                <p>Available for calls during business hours.</p>
+                                <a href="tel:+1234567890" id="phone-display-link" class="connect-link">+1 (234) 567-890</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Social Profiles Section -->
+                <section class="contact-section" id="social-profiles-section">
+                    <h2 class="section-title">Social Profiles</h2>
+
+                    <div class="social-grid">
+                        <a href="https://github.com/yourusername" id="github-social-card" class="social-card" target="_blank">
+                            <div class="social-icon github-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="social-info">
+                                <h3>GitHub</h3>
+                                <p>View my code repositories and contributions</p>
+                                <span class="social-username" id="github-username-display">@yourusername</span>
+                            </div>
+                        </a>
+
+                        <a href="https://linkedin.com/in/yourprofile" id="linkedin-social-card" class="social-card" target="_blank">
+                            <div class="social-icon linkedin-icon">
+                                <i class="fab fa-linkedin-in"></i>
+                            </div>
+                            <div class="social-info">
+                                <h3>LinkedIn</h3>
+                                <p>Connect professionally and view my experience</p>
+                                <span class="social-username" id="linkedin-username-display">Sumo The Styleful</span>
+                            </div>
+                        </a>
+
+                        <a href="https://twitter.com/yourhandle" id="twitter-social-card" class="social-card" target="_blank">
+                            <div class="social-icon twitter-icon">
+                                <i class="fab fa-twitter"></i>
+                            </div>
+                            <div class="social-info">
+                                <h3>Twitter</h3>
+                                <p>Follow me for updates and insights</p>
+                                <span class="social-username" id="twitter-username-display">@yourhandle</span>
+                            </div>
+                        </a>
+
+                        <a href="https://medium.com/@yourusername" id="medium-social-card" class="social-card" target="_blank">
+                            <div class="social-icon medium-icon">
+                                <i class="fab fa-medium-m"></i>
+                            </div>
+                            <div class="social-info">
+                                <h3>Medium</h3>
+                                <p>Read my articles and publications</p>
+                                <span class="social-username" id="medium-username-display">@yourusername</span>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">DS<span>+</span>CE</div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; <span class="current-year"></span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Admin Panel Modal REMOVED from here -->
+
+    <div class="notification" id="notification"> {/* Kept for general notifications if needed by contact.js */}
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="notification-message"></span>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="contact.js"></script> {/* MODIFIED: JS filename */}
+</body>
+</html>
+
