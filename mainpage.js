@@ -57,12 +57,12 @@ document.addEventListener('DOMContentLoaded', function() {
             rightTower.position.set(3, 1.5, 0);
             scene.add(rightTower);
             
-            const cableGeometry = new THREE.CylinderGeometry(0.03, 0.03, 7, 8); // height might be too large if mainCable.rotation.z = Math.PI / 2;
+            const cableGeometry = new THREE.CylinderGeometry(0.03, 0.03, 7, 8); 
             const cableMaterial = new THREE.MeshBasicMaterial({ color: 0x10b981, wireframe: true, transparent: true, opacity: 0.7 });
             
             const mainCable = new THREE.Mesh(cableGeometry, cableMaterial);
-            mainCable.rotation.z = Math.PI / 2; // Rotates it to be horizontal
-            mainCable.position.set(0, 3, 0); // Adjusted y position if it's a top horizontal cable
+            mainCable.rotation.z = Math.PI / 2; 
+            mainCable.position.set(0, 3, 0); 
             scene.add(mainCable);
             
             return { deck, leftTower, rightTower, mainCable };
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function() {
             bridge.deck.rotation.y += 0.005;
             bridge.leftTower.rotation.y += 0.007;
             bridge.rightTower.rotation.y += 0.007;
-            bridge.mainCable.rotation.x += 0.003; // If it's horizontal, maybe rotate on Y or Z?
+            bridge.mainCable.rotation.x += 0.003; 
             
             const time = Date.now() * 0.001;
             bridge.deck.position.y = Math.sin(time) * 0.1;
@@ -104,16 +104,12 @@ document.addEventListener('DOMContentLoaded', function() {
         
         xpBars.forEach(bar => {
             const barTop = bar.getBoundingClientRect().top;
-            const barBottom = bar.getBoundingClientRect().bottom; // Not used, but good for context
-            
             // Check if the top of the bar is within 85% of the viewport height from the top
-            // and also ensure the bar is somewhat visible from the top (barBottom > 0 is implicitly true if barTop < windowHeight)
-            if (barTop < windowHeight * 0.85 && barTop > -bar.offsetHeight) { // -bar.offsetHeight ensures it has entered from top
+            // and also ensure the bar is somewhat visible from the top
+            if (barTop < windowHeight * 0.85 && barTop > -bar.offsetHeight) { 
                 bar.classList.add('animated');
-                 // The CSS will handle the width animation based on --xp variable
             } else {
-                // Optionally remove 'animated' if you want the animation to reset when scrolled out of view
-                // bar.classList.remove('animated'); 
+                // bar.classList.remove('animated'); // Optional: reset animation
             }
         });
     };
@@ -123,48 +119,37 @@ document.addEventListener('DOMContentLoaded', function() {
         currentYearElement.textContent = new Date().getFullYear();
     }
 
-    // Admin Panel Functionality
+    // Admin Panel Functionality (mostly relevant if admin panel is a modal on this page)
     const adminPanel = document.getElementById('adminPanel');
-    const adminLoginBtn = document.querySelector('.admin-login-btn'); // Button that links to auth.html
-    const closeAdminPanelBtn = document.querySelector('.close-admin-panel'); // Assuming this is part of a modal
-    const adminLoginSection = document.getElementById('adminLogin');
-    const adminEditSection = document.getElementById('adminEdit');
-    const adminLoginForm = document.getElementById('adminLoginForm');
-    const adminTabs = document.querySelectorAll('.admin-tab');
-    const adminTabContents = document.querySelectorAll('.admin-tab-content');
-    const loginError = document.getElementById('login-error');
+    // const adminLoginBtn = document.querySelector('.admin-login-btn'); // Link to auth.html handles this
+    const closeAdminPanelBtn = document.querySelector('.close-admin-panel'); 
+    const adminLoginSection = document.getElementById('adminLogin'); // Assumes these IDs are in adminPanel
+    const adminEditSection = document.getElementById('adminEdit');   // Assumes these IDs are in adminPanel
+    const adminLoginForm = document.getElementById('adminLoginForm'); // Assumes these IDs are in adminPanel
+    const adminTabs = document.querySelectorAll('.admin-tab');       // Assumes these elements are in adminPanel
+    const adminTabContents = document.querySelectorAll('.admin-tab-content'); // Assumes these are in adminPanel
+    const loginError = document.getElementById('login-error');       // Assumes this ID is in adminPanel
     
-    const profileForm = document.getElementById('profileForm');
-    const skillsForm = document.getElementById('skillsForm');
-    const projectsForm = document.getElementById('projectsForm');
-    const contactForm = document.getElementById('contactForm');
+    const profileForm = document.getElementById('profileForm');     // Assumes these forms are in adminPanel
+    const skillsForm = document.getElementById('skillsForm');       // Assumes these forms are in adminPanel
+    const projectsForm = document.getElementById('projectsForm');   // Assumes these forms are in adminPanel
+    const contactForm = document.getElementById('contactForm');     // Assumes these forms are in adminPanel
     
-    // MODIFIED: The 'admin-login-btn' is an <a> tag linking to auth.html.
-    // The previous JavaScript that prevented default navigation and opened a modal is removed/commented out.
-    // The link will now navigate directly to auth.html.
-    /*
-    if (adminLoginBtn) {
-        adminLoginBtn.addEventListener('click', (e) => {
-            e.preventDefault(); // This line PREVENTED navigation
-            if(adminPanel) adminPanel.classList.add('active'); // This line opened the modal
-        });
-    }
-    */
-    
-    // If 'adminPanel' is still used for other modal purposes (e.g., directly from auth.html or other triggers)
-    // the close button logic can remain.
+    // The adminLoginBtn functionality is handled by its href="auth.html".
+    // The JavaScript to preventDefault and show a modal for adminLoginBtn was removed in the previous step.
+
     if (closeAdminPanelBtn && adminPanel) {
         closeAdminPanelBtn.addEventListener('click', () => {
             adminPanel.classList.remove('active');
         });
     }
     
-    // The rest of the admin panel JS (login, tabs, form submissions) would typically reside
-    // on auth.html or be loaded dynamically if the admin panel is part of mainpage.html.
-    // If auth.html is a separate page, these listeners might not find their elements here.
-    // For this structure, assuming they are on auth.html or a shared script loaded there.
+    // The following admin panel JS (login, tabs, forms) assumes that the adminPanel HTML
+    // (with all its forms and elements) is present on this page (mainpage.html).
+    // If auth.html is a completely separate page handling the admin interface,
+    // this JS would belong there or in a script loaded by auth.html.
 
-    if (adminLoginForm) { // This code would typically be on auth.html
+    if (adminLoginForm) { 
         adminLoginForm.addEventListener('submit', function(e) {
             e.preventDefault();
             const usernameInput = document.getElementById('username');
@@ -174,10 +159,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const username = usernameInput.value;
             const password = passwordInput.value;
             
-            if (username === 'admin' && password === 'password123') { // Example credentials
+            // IMPORTANT: Replace with actual secure authentication
+            if (username === 'admin' && password === 'password123') { 
                 if(adminLoginSection) adminLoginSection.style.display = 'none';
                 if(adminEditSection) adminEditSection.classList.add('active');
-                loadContentIntoForms(); // This function would also need its target elements present
+                loadContentIntoForms(); 
             } else {
                 if(loginError) {
                     loginError.textContent = 'Invalid username or password. (Hint: admin/password123)';
@@ -190,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    if (adminTabs.length > 0) { // Check if adminTabs exist
+    if (adminTabs.length > 0) { 
         adminTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 adminTabs.forEach(t => t.classList.remove('active'));
@@ -198,7 +184,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 adminTabContents.forEach(content => content.classList.remove('active'));
                 const tabContentId = tab.getAttribute('data-tab');
-                const activeContent = document.querySelector(`[data-tab-content="${tabContentId}"]`);
+                const activeContent = document.querySelector(`.admin-tab-content[data-tab-content="${tabContentId}"]`);
                 if(activeContent) activeContent.classList.add('active');
             });
         });
@@ -206,36 +192,45 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.querySelectorAll('input[type="range"]').forEach(range => {
         const valueDisplay = range.nextElementSibling;
-        if (valueDisplay && valueDisplay.classList.contains('range-value')) { // Check if valueDisplay exists and is correct
+        if (valueDisplay && valueDisplay.classList.contains('range-value')) { 
             range.addEventListener('input', () => {
                 valueDisplay.textContent = `${range.value}%`;
             });
-            valueDisplay.textContent = `${range.value}%`; // Initialize display
+            valueDisplay.textContent = `${range.value}%`; 
         }
     });
     
-    // Functions like loadContentIntoForms and form submissions assume the relevant HTML
-    // elements are present on the page where this script is running.
-    // If auth.html is separate, these functions and their calls should be on auth.html.
-
     function loadContentIntoForms() {
-        // Ensure elements exist before trying to access their properties
-        const profileNameEl = document.getElementById('profile-name');
-        const editNameEl = document.getElementById('edit-name');
-        if (profileNameEl && editNameEl) editNameEl.value = profileNameEl.textContent;
+        // This function loads content FROM the main page INTO admin panel forms.
+        // It assumes the admin panel forms exist in the DOM when called.
+        const getElementText = (id) => document.getElementById(id)?.textContent || '';
+        const getElementAttr = (id, attr) => document.getElementById(id)?.getAttribute(attr) || '';
+        const setInputValue = (id, value) => {
+            const el = document.getElementById(id);
+            if (el) el.value = value;
+        };
 
-        // ... (Repeat for all other elements, always checking for existence first)
-        // Example for one more:
-        const profileTaglineEl = document.getElementById('profile-tagline');
-        const editTaglineEl = document.getElementById('edit-tagline');
-        if (profileTaglineEl && editTaglineEl) editTaglineEl.value = profileTaglineEl.textContent;
+        setInputValue('edit-name', getElementText('profile-name'));
+        setInputValue('edit-tagline', getElementText('profile-tagline'));
+        setInputValue('edit-description-1', getElementText('profile-description-1'));
+        setInputValue('edit-description-2', getElementText('profile-description-2'));
+        setInputValue('edit-linkedin', getElementAttr('linkedin-url', 'href'));
+        setInputValue('edit-github', getElementAttr('github-url', 'href'));
+        setInputValue('edit-twitter', getElementAttr('twitter-url', 'href'));
 
-        // (Continue for all form fields listed in the original script)
+        setInputValue('edit-skills-title', getElementText('skills-title'));
+        setInputValue('edit-skill-1', getElementText('skill-1-name'));
+        // ... and so on for other skills, projects, contact form fields if they exist in admin panel
+        // Example for one skill value (assuming an input 'edit-skill-1-value' exists in admin panel)
+        // const skill1Bar = document.querySelector('#skills-xp-dashboard .xp-bar:nth-child(1)');
+        // if (skill1Bar) setInputValue('edit-skill-1-value', skill1Bar.style.getPropertyValue('--xp').replace('%',''));
+
+        // Note: Education card content loading not added here, as admin form fields for it aren't defined yet.
     }
     
-    const profileImageInput = document.getElementById('edit-profile-image');
-    const imagePreview = document.getElementById('image-preview');
-    const previewContainer = document.querySelector('.preview-container');
+    const profileImageInput = document.getElementById('edit-profile-image'); // In admin panel
+    const imagePreview = document.getElementById('image-preview');           // In admin panel
+    const previewContainer = document.querySelector('.admin-panel .preview-container'); //Scoped to admin panel
     
     if (profileImageInput && imagePreview && previewContainer) {
         profileImageInput.addEventListener('change', function() {
@@ -250,24 +245,34 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Form submission handlers - these would typically be on auth.html if that's where the forms live
     if (profileForm) {
         profileForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Update logic here, ensuring elements exist
-            // Example:
-            const editNameVal = document.getElementById('edit-name')?.value;
-            const profileNameDisplay = document.getElementById('profile-name');
-            if(editNameVal && profileNameDisplay) profileNameDisplay.textContent = editNameVal;
-            // ... (rest of the form fields) ...
+            // Update main page elements from admin form values
+            const setText = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
+            const setAttr = (id, attr, value) => { const el = document.getElementById(id); if (el) el.setAttribute(attr, value); };
+            
+            setText('profile-name', document.getElementById('edit-name')?.value);
+            setText('profile-tagline', document.getElementById('edit-tagline')?.value);
+            // ... (rest of the profile form fields to update main page display) ...
+
+            // The profile image display on mainpage.html was removed.
+            // The following line would try to update a non-existent element on mainpage.html if .profile-img was the display.
+            // if (profileImageInput && profileImageInput.files && profileImageInput.files[0] && imagePreview) {
+            //     const mainPageProfileImg = document.querySelector('.profile-img'); // This element is removed
+            //     if (mainPageProfileImg) mainPageProfileImg.src = imagePreview.src;
+            // }
             showNotification('Profile updated successfully!');
         });
     }
     
+    // Similar submit handlers for skillsForm, projectsForm, contactForm
+    // ... (These would update their respective sections on the main page from admin panel inputs)
+
     if (skillsForm) {
         skillsForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Update logic
+            // Update skills display on main page from skillsForm inputs
             showNotification('Skills updated successfully!');
         });
     }
@@ -275,7 +280,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (projectsForm) {
         projectsForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Update logic
+            // Update projects display on main page
             showNotification('Projects updated successfully!');
         });
     }
@@ -283,7 +288,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Update logic
+            // Update contact display on main page
             showNotification('Contact information updated successfully!');
         });
     }
@@ -303,9 +308,8 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', animateXPBars);
     animateXPBars(); // Initial check
     
-    // Close modal if clicked outside (if adminPanel is used as a modal)
     window.addEventListener('click', (e) => {
-        if (adminPanel && e.target === adminPanel) {
+        if (adminPanel && e.target === adminPanel) { // If admin panel is a modal on this page
             adminPanel.classList.remove('active');
         }
     });
