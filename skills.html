@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Skills XP Dashboard - Sumo The Styleful">
+    <meta name="keywords" content="skills, dashboard, data science, civil engineering, portfolio">
+    <title>Skills XP Dashboard | Sumo The Styleful</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="skills.css"> {/* MODIFIED: CSS filename */}
+</head>
+<body>
+    <div class="particles-background" id="particles-js"></div>
+    <div id="bridge-model"></div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="logo">DS<span>+</span>CE</div>
+            <nav class="nav">
+                <a href="mainpage.html" class="nav-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a> {/* MODIFIED: Link to mainpage.html */}
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a> {/* MODIFIED: Link to auth.html */}
+            </nav>
+        </header>
+
+        <main class="skills-main">
+            <div class="page-header">
+                <h1>Skills <span class="highlight">XP Dashboard</span></h1>
+                <p class="page-description">A comprehensive overview of my technical expertise and proficiency levels across various domains.</p>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Technical Skills Section -->
+                <section class="skills-section" id="technical-skills-display"> {/* MODIFIED ID for clarity */}
+                    <h2 class="section-title">Technical Skills</h2>
+                    
+                    <div class="skill-category" data-category-name="Programming & Data Science">
+                        <h3>Programming & Data Science</h3>
+                        {/* Skill items will be dynamically populated by skills.js or be hardcoded if no dynamic loading */}
+                        <div class="skill-item" data-skill-name="Python">
+                            <div class="skill-info">
+                                <div class="skill-name">Python</div>
+                                <div class="skill-level">90%</div>
+                            </div>
+                            <div class="xp-bar" style="--xp:90%;"></div> {/* This will be target for animation */}
+                            <div class="skill-details">
+                                <p>Advanced data analysis, machine learning, and automation. Expert in NumPy, Pandas, Scikit-learn, and TensorFlow.</p>
+                                <div class="skill-badges">
+                                    <span class="badge">Data Analysis</span>
+                                    <span class="badge">Machine Learning</span>
+                                    <span class="badge">API Development</span>
+                                </div>
+                            </div>
+                        </div>
+                        {/* Add other static skill items here or load dynamically */}
+                         <div class="skill-item" data-skill-name="TensorFlow">
+                            <div class="skill-info">
+                                <div class="skill-name">TensorFlow</div>
+                                <div class="skill-level">80%</div>
+                            </div>
+                            <div class="xp-bar" style="--xp:80%;"></div>
+                            <div class="skill-details">
+                                <p>Deep learning model development and deployment. Experience with neural networks for image recognition and time series forecasting.</p>
+                                <div class="skill-badges">
+                                    <span class="badge">Neural Networks</span>
+                                    <span class="badge">Computer Vision</span>
+                                    <span class="badge">Model Deployment</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill-name="SQL">
+                            <div class="skill-info">
+                                <div class="skill-name">SQL</div>
+                                <div class="skill-level">85%</div>
+                            </div>
+                            <div class="xp-bar" style="--xp:85%;"></div>
+                            <div class="skill-details">
+                                <p>Database design, complex queries, and data manipulation. Proficient in PostgreSQL and MySQL.</p>
+                                <div class="skill-badges">
+                                    <span class="badge">Database Design</span>
+                                    <span class="badge">Query Optimization</span>
+                                    <span class="badge">Data Modeling</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category" data-category-name="Engineering Software">
+                        <h3>Engineering Software</h3>
+                        <div class="skill-item" data-skill-name="AutoCAD">
+                            <div class="skill-info">
+                                <div class="skill-name">AutoCAD</div>
+                                <div class="skill-level">85%</div>
+                            </div>
+                            <div class="xp-bar" style="--xp:85%;"></div>
+                            <div class="skill-details">
+                                <p>2D and 3D technical drawing, modeling, and documentation for civil engineering projects.</p>
+                                <div class="skill-badges">
+                                    <span class="badge">2D Drafting</span>
+                                    <span class="badge">3D Modeling</span>
+                                    <span class="badge">Technical Documentation</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="skill-item" data-skill-name="STAAD.Pro">
+                            <div class="skill-info">
+                                <div class="skill-name">STAAD.Pro</div>
+                                <div class="skill-level">75%</div>
+                            </div>
+                            <div class="xp-bar" style="--xp:75%;"></div>
+                            <div class="skill-details">
+                                <p>Structural analysis and design software for buildings, bridges, and infrastructure projects.</p>
+                                <div class="skill-badges">
+                                    <span class="badge">Structural Analysis</span>
+                                    <span class="badge">Load Calculation</span>
+                                    <span class="badge">Design Optimization</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="skills-section" id="code-samples-display"> {/* MODIFIED ID */}
+                    <h2 class="section-title">Code Samples</h2>
+                    {/* Static or dynamically populated code samples */}
+                    <div class="code-sample">
+                        <h3>Python: Bridge Structural Analysis</h3>
+                        <pre><code class="language-python">
+import numpy as np
+# ... (rest of your Python code sample) ...
+                        </code></pre>
+                    </div>
+                     <div class="code-sample">
+                        <h3>TensorFlow: Crack Detection Model</h3>
+                        <pre><code class="language-python">
+import tensorflow as tf
+# ... (rest of your TensorFlow code sample) ...
+                        </code></pre>
+                    </div>
+                </section>
+
+                <section class="skills-section" id="certifications-display"> {/* MODIFIED ID */}
+                    <h2 class="section-title">Certifications & Resources</h2>
+                    {/* Static or dynamically populated certifications and resources */}
+                    <div class="certifications-grid">
+                        <div class="certification-item">
+                            <div class="certification-icon"><i class="fas fa-certificate"></i></div>
+                            <div class="certification-content">
+                                <h3>TensorFlow Developer Certificate</h3>
+                                <p class="certification-issuer">Google</p>
+                                <p class="certification-date">Issued: March 2024</p>
+                                <a href="#" class="certification-link">View Certificate</a>
+                            </div>
+                        </div>
+                         <div class="certification-item">
+                            <div class="certification-icon"><i class="fas fa-certificate"></i></div>
+                            <div class="certification-content">
+                                <h3>Professional Civil Engineer</h3>
+                                <p class="certification-issuer">State Board of Engineering</p>
+                                <p class="certification-date">Issued: January 2023</p>
+                                <a href="#" class="certification-link">View License</a>
+                            </div>
+                        </div>
+                         <div class="certification-item">
+                            <div class="certification-icon"><i class="fas fa-certificate"></i></div>
+                            <div class="certification-content">
+                                <h3>Data Science Professional</h3>
+                                <p class="certification-issuer">IBM</p>
+                                <p class="certification-date">Issued: November 2023</p>
+                                <a href="#" class="certification-link">View Certificate</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="resources-list">
+                        <h3>Learning Resources</h3>
+                        <div class="resource-item">
+                            <div class="resource-icon"><i class="fas fa-file-pdf"></i></div>
+                            <div class="resource-content">
+                                <h4>Machine Learning for Infrastructure Guide</h4>
+                                <p>Comprehensive guide on applying ML to infrastructure problems.</p>
+                                <a href="#" class="resource-link">Download PDF</a>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon"><i class="fas fa-link"></i></div>
+                            <div class="resource-content">
+                                <h4>GitHub Repository: Bridge Analysis Tools</h4>
+                                <p>Collection of Python tools for structural analysis of bridges.</p>
+                                <a href="#" class="resource-link">View Repository</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">DS<span>+</span>CE</div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; <span class="current-year"></span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Admin Panel Modal REMOVED from here -->
+
+    <div class="notification" id="notification"> {/* Kept for general notifications if needed by skills.js */}
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="notification-message"></span>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+    <script src="skills.js"></script> {/* MODIFIED: JS filename */}
+</body>
+</html>
