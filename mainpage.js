@@ -141,7 +141,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         educationPageData.educationEntries.forEach(entry => {
                             const card = document.createElement('div');
                             card.className = 'education-entry-card';
-                            card.dataset.educationId = entry.id || entry.degree.toLowerCase().replace(/\s+/g, '-');
+                            // Use a unique ID for each entry, if available from admin data
+                            card.dataset.educationId = entry.id || entry.degree.toLowerCase().replace(/\s+/g, '-').substring(0,50);
 
                             let relatedProjectsHTML = '';
                             if (entry.relatedProjects && entry.relatedProjects.length > 0) {
@@ -199,30 +200,30 @@ document.addEventListener('DOMContentLoaded', function() {
                             `;
                             educationGridContainer.appendChild(card);
                         });
-                    } else if (educationGridContainer.children.length > 0 && useDynamicData) { 
-                        // Dynamic data source was used, but it has no entries. Clear static and show message.
+                    } else if (useDynamicData && educationGridContainer.children.length > 0) { 
+                        // Dynamic data source was confirmed, but it has no entries. Clear static and show message.
                         educationGridContainer.innerHTML = '<p style="text-align:center; grid-column: 1 / -1; color: var(--light-gray);">No educational qualifications have been added yet. The admin can add entries via the admin panel.</p>';
                     }
                     // If useDynamicData is true, and educationPageData.educationEntries.length was 0, the above 'else if' handles it.
-                    // If useDynamicData is false, static content remains.
+                    // If useDynamicData remains false, static content (if any) remains.
                 } else {
                     // Data found in localStorage but has an unexpected structure. Static content will be used.
-                    console.warn("Education data in localStorage has an unexpected structure.");
+                    console.warn("Education data in localStorage has an unexpected structure. Static content will be displayed if present.");
                 }
             } catch (e) {
                 console.error("Error parsing education data from localStorage:", e);
-                // `useDynamicData` remains false, static content will be used.
+                // `useDynamicData` remains false, static content (if any) will be used.
             }
         }
 
-        // If dynamic data was not successfully used (or localStorage was empty), the static HTML content (if any) remains.
-        // If the grid container has no children (either because static was cleared and no dynamic data, or it started empty)
-        // and we didn't use dynamic data successfully, show a default message.
+        // If dynamic data was not successfully used (or localStorage was empty), 
+        // and the grid container still has no children (meaning static fallback was also empty or cleared),
+        // show a default message.
         if (!useDynamicData && educationGridContainer.children.length === 0) {
-             educationGridContainer.innerHTML = '<p style="text-align:center; grid-column: 1 / -1; color: var(--light-gray);">No educational information available at the moment.</p>';
+             educationGridContainer.innerHTML = '<p style="text-align:center; grid-column: 1 / -1; color: var(--light-gray);">No educational information available at the moment. Please check back later or contact the administrator.</p>';
         }
         
-        // No specific filtering needed for education page like projects, so no initializeFiltering() call.
+        // No specific filtering like on projects page, so no initializeFiltering() call needed here.
     }
     
     // Load the data on page start
