@@ -13,7 +13,7 @@
     --light-gray: #e2e8f0;
     --danger: #ef4444;
     --success: #22c55e;
-    --warning: #f59e0b;
+    --warning: #f59e0b; /* Added for Education card */
     --transition: all 0.3s ease;
 }
 
@@ -154,37 +154,20 @@ body {
     display: none; /* Remove underline from button-like link */
 }
 
-/* Admin Brief Section */
+/* Admin Brief Section - Modified */
 .admin-brief {
     display: flex;
-    gap: 3rem;
+    justify-content: center; /* Center the admin-content */
     align-items: center;
+    text-align: center; /* Center text within admin-content */
     margin: 5rem 0;
     animation: fadeIn 1s ease-out 0.8s both;
 }
 
-.admin-avatar {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, var(--primary), var(--accent));
-    flex-shrink: 0;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
-    border: 4px solid rgba(248, 250, 252, 0.1);
-    position: relative;
-    animation: avatarPulse 4s infinite alternate, rotateIn 1.5s ease-out;
-}
+/* .admin-avatar and .profile-img styles removed as the element is gone */
 
-.profile-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.admin-avatar:hover .profile-img {
-    transform: scale(1.1);
+.admin-content {
+    max-width: 700px; /* Optional: constrain width */
 }
 
 .admin-content h1 {
@@ -196,12 +179,12 @@ body {
     animation: slideInRight 0.8s ease-out;
 }
 
-.highlight { /* This is a general highlight, ensure it doesn't conflict if used elsewhere with different styles */
+.highlight { 
     color: var(--secondary);
     position: relative;
     animation: glowText 3s infinite alternate;
 }
-.admin-content .highlight::after { /* More specific for admin content if needed */
+.admin-content .highlight::after { 
     content: '';
     position: absolute;
     width: 100%;
@@ -223,7 +206,9 @@ body {
 
 .admin-description p {
     margin: 1rem 0;
-    max-width: 600px;
+    max-width: 600px; /* Already had max-width, good */
+    margin-left: auto; /* For centering block elements if parent is text-align: center */
+    margin-right: auto;
     line-height: 1.8;
     font-size: 1.05rem;
     opacity: 0;
@@ -240,6 +225,7 @@ body {
 
 .social-links {
     display: flex;
+    justify-content: center; /* Ensure social links are centered */
     gap: 1.25rem;
     margin-top: 1.5rem;
     animation: slideInUp 0.8s ease-out 1.8s both;
@@ -277,7 +263,7 @@ body {
 /* Flip Card Styles */
 .access-portals {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Adjusted minmax slightly for potentially 4 cards */
     gap: 2rem;
     margin: 5rem 0;
     perspective: 1000px;
@@ -286,26 +272,20 @@ body {
 .flip-card {
     background-color: transparent;
     width: 100%;
-    height: 400px;
+    height: 400px; /* Or adjust if content varies significantly */
     position: relative;
     perspective: 1000px;
     border-radius: 15px;
     animation: cardEntrance 0.8s ease-out forwards;
-    animation-delay: calc(var(--card-index) * 0.1s);
+    animation-delay: calc(var(--card-index) * 0.15s); /* Slightly adjusted delay for smoother staggering */
     opacity: 0;
 }
 
-.flip-card:nth-child(1) {
-    --card-index: 1;
-}
+.flip-card:nth-child(1) { --card-index: 1; }
+.flip-card:nth-child(2) { --card-index: 2; }
+.flip-card:nth-child(3) { --card-index: 3; }
+.flip-card:nth-child(4) { --card-index: 4; } /* For the new Education card */
 
-.flip-card:nth-child(2) {
-    --card-index: 2;
-}
-
-.flip-card:nth-child(3) {
-    --card-index: 3;
-}
 .flip-card-inner {
     position: relative;
     width: 100%;
@@ -331,6 +311,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center; /* Center content vertically and horizontally */
 }
 
 .flip-card-front {
@@ -345,35 +326,18 @@ body {
     backdrop-filter: blur(10px);
     color: var(--light);
     transform: rotateY(180deg);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-.flip-card.quest-portal .flip-card-front {
-    border-color: var(--accent);
 }
 
-.flip-card.xp-portal .flip-card-front {
-    border-color: var(--primary);
-}
+.flip-card.quest-portal .flip-card-front { border-color: var(--accent); }
+.flip-card.xp-portal .flip-card-front { border-color: var(--primary); }
+.flip-card.contact-portal .flip-card-front { border-color: var(--secondary); }
+.flip-card.education-portal .flip-card-front { border-color: var(--warning); } /* New Education Card */
 
-.flip-card.contact-portal .flip-card-front {
-    border-color: var(--secondary);
-}
+.flip-card.quest-portal .flip-card-back { background: linear-gradient(135deg, rgba(124, 58, 237, 0.9), rgba(79, 37, 150, 0.9)); }
+.flip-card.xp-portal .flip-card-back { background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(29, 78, 216, 0.9)); }
+.flip-card.contact-portal .flip-card-back { background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.9)); }
+.flip-card.education-portal .flip-card-back { background: linear-gradient(135deg, rgba(245, 158, 11, 0.9), rgba(217, 119, 6, 0.9)); } /* New Education Card */
 
-.flip-card.quest-portal .flip-card-back {
-    background: linear-gradient(135deg, rgba(124, 58, 237, 0.9), rgba(79, 37, 150, 0.9));
-}
-
-.flip-card.xp-portal .flip-card-back {
-    background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(29, 78, 216, 0.9));
-}
-
-.flip-card.contact-portal .flip-card-back {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.9));
-}
 
 .flip-card-back h3 {
     font-family: 'Space Grotesk', sans-serif;
@@ -387,24 +351,24 @@ body {
     max-width: 80%;
 }
 
-.card-link { /* This allows the entire card to be clickable if an <a> tag wraps content */
+.card-link { 
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 10; /* Ensure it's above other card content for clickability */
+    z-index: 10; 
 }
 
 .portal-icon {
     font-size: 2.5rem;
     margin-bottom: 1.75rem;
-    color: var(--secondary); /* Default color, can be overridden per card type */
+    /* Default color can be var(--light) or specific to card if not overridden */
 }
-
 .flip-card.quest-portal .portal-icon { color: var(--accent); }
 .flip-card.xp-portal .portal-icon { color: var(--primary); }
 .flip-card.contact-portal .portal-icon { color: var(--secondary); }
+.flip-card.education-portal .portal-icon { color: var(--warning); } /* New Education Card */
 
 
 .flip-card-front h3 {
@@ -416,7 +380,8 @@ body {
 
 /* XP Bars */
 .xp-preview {
-    margin-bottom: 1.5rem; /* Or adjust as needed */
+    width: 100%; /* Ensure preview containers take full width for alignment */
+    margin-bottom: 1.5rem; 
 }
 
 .xp-bar {
@@ -435,14 +400,14 @@ body {
     top: 0;
     left: 0;
     height: 100%;
-    width: var(--xp, 0%); /* Default to 0% if --xp is not set */
+    width: var(--xp, 0%); 
     background: linear-gradient(90deg, var(--primary), var(--accent));
     border-radius: 15px;
     transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.xp-bar.animated::before { /* Assuming 'animated' class triggers the animation */
-    /* width: var(--xp); This is already set, transition handles the animation */
+.xp-bar.animated::before { 
+    /* Animation is handled by the transition on width */
 }
 
 
@@ -453,20 +418,21 @@ body {
     transform: translateY(-50%);
     font-size: 0.9rem;
     font-weight: 600;
-    z-index: 1; /* Ensure text is above the ::before pseudo-element */
+    z-index: 1; 
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Quest Tags */
-.quest-preview {
+/* Quest Tags & Similar Preview Tags */
+.quest-preview, .contact-options, .education-preview {
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
-    margin-bottom: 1.5rem; /* Or adjust as needed */
+    justify-content: center; /* Center tags */
+    margin-bottom: 1.5rem; 
+    width: 100%; /* Ensure preview containers take full width */
 }
 
-.quest-tag {
-    background: rgba(124, 58, 237, 0.2);
+.quest-tag, .contact-method, .education-tag {
     color: var(--light);
     padding: 0.5rem 1rem;
     border-radius: 50px;
@@ -475,53 +441,43 @@ body {
     transition: var(--transition);
 }
 
-.quest-portal:hover .quest-tag { /* Changed to target .quest-portal for specificity */
-    background: rgba(124, 58, 237, 0.3);
-}
+.quest-tag { background: rgba(124, 58, 237, 0.2); }
+.quest-portal:hover .quest-tag { background: rgba(124, 58, 237, 0.3); }
 
-/* Contact Methods */
-.contact-options {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem; /* Or adjust as needed */
-}
+.contact-method { background: rgba(16, 185, 129, 0.2); }
+.contact-portal:hover .contact-method { background: rgba(16, 185, 129, 0.3); }
 
-.contact-method {
-    background: rgba(16, 185, 129, 0.2);
-    color: var(--light);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: var(--transition);
-}
+.education-tag { background: rgba(245, 158, 11, 0.2); } /* New Education Tag */
+.education-portal:hover .education-tag { background: rgba(245, 158, 11, 0.3); } /* New Education Tag */
 
-.contact-portal:hover .contact-method { /* Changed to target .contact-portal for specificity */
-    background: rgba(16, 185, 129, 0.3);
-}
 
 /* Enter Button */
 .enter-btn {
-    margin-top: 2rem; /* Or adjust as needed */
-    display: inline-flex; /* Changed from block to inline-flex for better alignment */
+    margin-top: auto; /* Pushes button to bottom if card content is shorter */
+    padding-top: 1rem; /* Add some space above if pushed to bottom */
+    display: inline-flex; 
     align-items: center;
     gap: 0.5rem;
     font-weight: 600;
-    color: var(--secondary); /* Default color for the button text */
+    color: var(--light); /* Default color for button text on back of card */
     transition: var(--transition);
-    cursor: pointer; /* Indicates it's clickable */
+    cursor: pointer; 
+}
+.flip-card.quest-portal .enter-btn { color: var(--accent-dark); } /* Darker shade for better contrast on its specific gradient */
+.flip-card.xp-portal .enter-btn { color: var(--primary-dark); }
+.flip-card.contact-portal .enter-btn { color: var(--secondary-dark); }
+.flip-card.education-portal .enter-btn { color: #c27803; } /* Darker yellow/orange for education card */
+
+
+.enter-btn:hover {
+    opacity: 0.8; /* General hover effect */
 }
 
-.enter-btn span {
+.enter-btn span:last-child i { /* Target the icon for animation */
     transition: transform 0.3s;
 }
 
-.flip-card:hover .enter-btn { /* Style for button on card hover */
-    color: var(--light); /* Example: change text color */
-}
-
-.flip-card:hover .enter-btn span { /* Animate arrow or icon */
+.flip-card:hover .enter-btn span:last-child i { 
     transform: translateX(8px);
 }
 
@@ -570,7 +526,7 @@ body {
     font-size: 0.9rem;
 }
 
-/* Admin Panel Styles (Modal - might be deprecated if auth.html is a separate page) */
+/* Admin Panel Styles (Modal - potentially for auth.html) */
 .admin-panel {
     position: fixed;
     top: 0;
@@ -579,14 +535,14 @@ body {
     height: 100%;
     background-color: rgba(10, 15, 28, 0.9);
     z-index: 1000;
-    display: none; /* Hidden by default */
+    display: none; 
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(5px);
 }
 
 .admin-panel.active {
-    display: flex; /* Shown when active class is added */
+    display: flex; 
 }
 
 .admin-panel-content {
@@ -633,11 +589,11 @@ body {
 }
 
 .admin-edit-section {
-    display: none; /* Hidden by default */
+    display: none; 
 }
 
 .admin-edit-section.active {
-    display: block; /* Shown when active */
+    display: block; 
 }
 
 .admin-login-section h3,
@@ -679,13 +635,13 @@ body {
 }
 
 .form-group input[type="range"] {
-    padding: 0; /* Reset padding for range inputs */
-    height: 6px; /* Or your desired height */
-    background: rgba(37, 99, 235, 0.2); /* Track color */
+    padding: 0; 
+    height: 6px; 
+    background: rgba(37, 99, 235, 0.2); 
     border: none;
     border-radius: 3px;
-    appearance: none; /* Remove default appearance */
-    -webkit-appearance: none; /* For Safari/Chrome */
+    appearance: none; 
+    -webkit-appearance: none; 
 }
 
 .form-group input[type="range"]::-webkit-slider-thumb {
@@ -694,7 +650,7 @@ body {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: var(--accent); /* Thumb color */
+    background: var(--accent); 
     cursor: pointer;
 }
 
@@ -702,9 +658,9 @@ body {
     width: 16px;
     height: 16px;
     border-radius: 50%;
-    background: var(--accent); /* Thumb color */
+    background: var(--accent); 
     cursor: pointer;
-    border: none; /* Firefox might need border reset */
+    border: none; 
 }
 
 .range-value {
@@ -716,7 +672,7 @@ body {
 
 .preview-container {
     margin-top: 1rem;
-    display: none; /* Hidden by default */
+    display: none; 
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -725,10 +681,10 @@ body {
 }
 
 .preview-container.active {
-    display: block; /* Shown when active */
+    display: block; 
 }
 
-#image-preview {
+#image-preview { /* This ID was for the avatar preview in admin panel */
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -757,7 +713,7 @@ body {
     margin-bottom: 2rem;
     border-bottom: 1px solid rgba(248, 250, 252, 0.1);
     padding-bottom: 1rem;
-    overflow-x: auto; /* Allows horizontal scrolling on small screens */
+    overflow-x: auto; 
 }
 
 .admin-tab {
@@ -768,7 +724,7 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition);
-    white-space: nowrap; /* Prevents tabs from wrapping */
+    white-space: nowrap; 
 }
 
 .admin-tab.active {
@@ -780,24 +736,24 @@ body {
     position: absolute;
     width: 100%;
     height: 2px;
-    bottom: -1rem; /* Positioned relative to the padding-bottom of .admin-tabs */
+    bottom: -1rem; 
     left: 0;
     background-color: var(--accent);
 }
 
 .admin-tab-content {
-    display: none; /* Hidden by default */
+    display: none; 
 }
 
 .admin-tab-content.active {
-    display: block; /* Shown when active */
+    display: block; 
 }
 
 .error-message {
     color: var(--danger);
     margin-top: 1rem;
     font-size: 0.9rem;
-    display: none; /* Hidden by default */
+    display: none; 
 }
 
 /* Notification */
@@ -810,13 +766,13 @@ body {
     padding: 1rem 1.5rem;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transform: translateX(120%); /* Start off-screen */
+    transform: translateX(120%); 
     transition: transform 0.3s ease;
-    z-index: 1100; /* Ensure it's above other content */
+    z-index: 1100; 
 }
 
 .notification.active {
-    transform: translateX(0); /* Slide in */
+    transform: translateX(0); 
 }
 
 .notification-content {
@@ -838,7 +794,7 @@ body {
 
 @keyframes fadeInSlow {
     from { opacity: 0; }
-    to { opacity: 0.15; } /* Matches #bridge-model opacity */
+    to { opacity: 0.15; } 
 }
 
 @keyframes slideInDown {
@@ -846,7 +802,7 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
-@keyframes slideInRight { /* This was -50px, check if that's the desired direction */
+@keyframes slideInRight { 
     from { transform: translateX(-50px); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
@@ -872,15 +828,12 @@ body {
     50% { color: var(--accent); }
     100% { color: var(--secondary); }
 }
-@keyframes iconPulse { /* For nav icons */
+@keyframes iconPulse { 
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.2); }
 }
 
-@keyframes avatarPulse {
-    0% { box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3); } /* Using var(--primary) for consistency */
-    100% { box-shadow: 0 10px 30px rgba(37, 99, 235, 0.6); }
-}
+/* @keyframes avatarPulse removed as avatar is gone */
 
 @keyframes rotateIn {
     from { transform: rotate(-10deg) scale(0.8); opacity: 0; }
@@ -888,11 +841,11 @@ body {
 }
 
 @keyframes glowText {
-    0% { text-shadow: 0 0 5px rgba(16, 185, 129, 0.1); } /* Using var(--secondary) color */
+    0% { text-shadow: 0 0 5px rgba(16, 185, 129, 0.1); } 
     100% { text-shadow: 0 0 15px rgba(16, 185, 129, 0.5); }
 }
 
-/* Not used: @keyframes highlightReveal */
+/* @keyframes highlightReveal removed as it was unused */
 
 @keyframes cardEntrance {
     from { opacity: 0; transform: scale(0.8) translateY(50px); }
@@ -902,15 +855,12 @@ body {
 /* Responsive */
 @media (max-width: 768px) {
     .admin-brief {
-        flex-direction: column;
+        /* flex-direction: column; /* Not needed if only one child */
         text-align: center;
         margin: 3rem 0;
     }
     
-    .admin-avatar {
-        width: 150px;
-        height: 150px;
-    }
+    /* .admin-avatar styles removed */
     
     .admin-content h1 {
         font-size: 2.25rem;
@@ -921,19 +871,19 @@ body {
     }
     
     .access-portals {
-        grid-template-columns: 1fr; /* Stack cards on smaller screens */
+        grid-template-columns: 1fr; 
     }
     
-    .admin-panel-content { /* If modal is used */
+    .admin-panel-content { 
         width: 95%;
         max-height: 95vh;
     }
     
-    .admin-tabs { /* If modal is used */
+    .admin-tabs { 
         padding-bottom: 0.75rem;
     }
     
-    .admin-tab { /* If modal is used */
+    .admin-tab { 
         padding: 0.5rem 0.75rem;
         font-size: 0.9rem;
     }
@@ -948,25 +898,26 @@ body {
     
     .nav {
         width: 100%;
-        justify-content: space-around; /* Space out nav links more evenly */
+        justify-content: space-around; 
     }
     
     .flip-card {
-        height: auto; /* Allow height to adjust to content, or set a new fixed height */
-        min-height: 400px; /* Ensure a minimum height */
+        /* height: 450px; /* Consider 'auto' or min-height if content varies */
+        min-height: 400px; 
+        height: auto;
     }
     .flip-card-front, .flip-card-back {
-        padding: 1.5rem; /* Reduce padding on small screens */
+        padding: 1.5rem; 
     }
     
-    .admin-panel-header { /* If modal is used */
+    .admin-panel-header { 
         padding: 1rem;
         flex-direction: column;
         gap: 1rem;
         text-align: center;
     }
     
-    .admin-login-section, /* If modal is used */
+    .admin-login-section, 
     .admin-edit-section {
         padding: 1.5rem;
     }
