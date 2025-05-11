@@ -265,3 +265,4 @@ function initBridgeModel() {
         renderer.setSize(window.innerWidth, window.innerHeight);
     });
 }
+
