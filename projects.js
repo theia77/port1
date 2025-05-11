@@ -1,8 +1,8 @@
-// projects.js (formerly quest-script.js)
+// projects.js
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize particles.js
     if (typeof particlesJS !== 'undefined') {
-        particlesJS('particles-js', { /* ... particles.js config from original script ... */ 
+        particlesJS('particles-js', { /* ... particles.js config ... */ 
             particles: {
                 number: { value: 60, density: { enable: true, value_area: 900 } },
                 color: { value: "#3b82f6" },
@@ -30,17 +30,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize 3D bridge model
     const bridgeContainer = document.getElementById('bridge-model');
-    if (bridgeContainer && typeof THREE !== 'undefined') { // Check for THREE definition
+    if (bridgeContainer && typeof THREE !== 'undefined') {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 5;
-        
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
         bridgeContainer.appendChild(renderer.domElement);
-
-        const createBridge = () => { /* ... createBridge function from original script ... */ 
+        const createBridge = () => { /* ... createBridge function ... */ 
             const deckGeometry = new THREE.BoxGeometry(10, 0.4, 2);
             const deckMaterial = new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true, transparent: true, opacity: 0.7 });
             const deck = new THREE.Mesh(deckGeometry, deckMaterial);
@@ -67,8 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
         directionalLight.position.set(0, 10, 5);
         scene.add(directionalLight);
-
-        function animate() { /* ... animate function from original script ... */ 
+        function animate() { /* ... animate function ... */ 
             requestAnimationFrame(animate);
             bridge.deck.rotation.y += 0.005;
             bridge.leftTower.rotation.y += 0.007;
@@ -79,18 +76,16 @@ document.addEventListener('DOMContentLoaded', function() {
             renderer.render(scene, camera);
         }
         animate();
-
-        window.addEventListener('resize', () => { /* ... resize handler from original script ... */
+        window.addEventListener('resize', () => { /* ... resize handler ... */
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
     }
 
-    // Project Filtering (kept from original script)
     function initializeProjectFiltering() {
-        const filterBtns = document.querySelectorAll('.quest-filter .filter-btn');
-        const questCards = document.querySelectorAll('.quest-grid .quest-card');
+        const filterBtns = document.querySelectorAll('#quest-filter-container .filter-btn'); // Target specific container
+        const questCards = document.querySelectorAll('#quest-grid-container .quest-card'); // Target specific container
         
         if (filterBtns.length > 0 && questCards.length > 0) {
             filterBtns.forEach(btn => {
@@ -100,39 +95,34 @@ document.addEventListener('DOMContentLoaded', function() {
                     const filter = this.getAttribute('data-filter');
                     
                     questCards.forEach(card => {
+                        card.style.display = 'none'; // Hide all first
                         if (filter === 'all') {
-                            card.style.display = 'flex'; // Or 'block' depending on your CSS for cards
+                            card.style.display = 'flex'; 
                         } else {
                             const categories = (card.getAttribute('data-category') || '').split(' ');
                             if (categories.includes(filter)) {
                                 card.style.display = 'flex';
-                            } else {
-                                card.style.display = 'none';
                             }
                         }
                     });
                 });
             });
+            // Trigger click on 'all' filter initially if present
+            const allFilterBtn = document.querySelector('#quest-filter-container .filter-btn[data-filter="all"].active');
+            if(allFilterBtn) allFilterBtn.click();
+
+        } else if (questCards.length > 0) { // If only cards exist (e.g. static content without dynamic filters)
+             questCards.forEach(card => card.style.display = 'flex'); // Show all cards
         }
     }
     
-    // Set current year in footer
     const currentYearElement = document.getElementById('current-year-projects');
     if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
-    } else { // Fallback if the ID isn't specific
-        const genericCurrentYear = document.querySelector('.footer-copyright .current-year');
-        if(genericCurrentYear) genericCurrentYear.textContent = new Date().getFullYear();
     }
 
-
-    // --- Admin Panel related JavaScript REMOVED from here ---
-    // All functionality for login, tabs, editing/adding projects, and page settings
-    // that was previously in this file (targeting a local admin panel on projects.html)
-    // is removed. This functionality should now reside in auth.html and its JS.
-
-    // Show notification function (kept for potential dynamic loading feedback)
     function showNotification(message, type = 'success') {
+        // ... (showNotification function from previous interaction, ensure it's present)
         const notification = document.getElementById('notification');
         const notificationMessage = document.getElementById('notification-message');
         const icon = notification.querySelector('i');
@@ -144,17 +134,17 @@ document.addEventListener('DOMContentLoaded', function() {
             if (type === 'error') {
                 notification.classList.add('error');
                 icon.className = 'fas fa-exclamation-circle';
-                notification.style.borderColor = 'var(--danger)';
+                notification.style.borderColor = 'var(--danger)'; // Ensure --danger is defined in CSS
                 icon.style.color = 'var(--danger)';
             } else if (type === 'info') {
-                notification.classList.add('info');
+                notification.classList.add('info'); // Ensure .notification.info CSS is defined
                 icon.className = 'fas fa-info-circle';
-                notification.style.borderColor = 'var(--primary)';
+                notification.style.borderColor = 'var(--primary)'; // Example, ensure --primary is defined
                 icon.style.color = 'var(--primary)';
             } else { // Default to success
                 notification.classList.add('success');
                 icon.className = 'fas fa-check-circle';
-                notification.style.borderColor = 'var(--success)';
+                notification.style.borderColor = 'var(--success)'; // Ensure --success is defined
                 icon.style.color = 'var(--success)';
             }
             
@@ -166,92 +156,117 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Function to dynamically load projects and filters (example structure)
     function loadProjectsDisplayData() {
-        const projectsData = JSON.parse(localStorage.getItem('projectsPageData'));
-        if (projectsData) {
-            const questGridContainer = document.getElementById('quest-grid-container');
-            const questFilterContainer = document.getElementById('quest-filter-container');
+        const projectsDataString = localStorage.getItem('projectsPageData');
+        const questGridContainer = document.getElementById('quest-grid-container');
+        const questFilterContainer = document.getElementById('quest-filter-container');
 
-            // Update Page Title and Description
-            const pageTitleEl = document.getElementById('projects-page-title');
-            if (pageTitleEl && projectsData.pageSettings && projectsData.pageSettings.title) {
-                 // Ensure the <span> within h1 is targeted if 'Board' should be highlighted
-                const highlightSpan = pageTitleEl.querySelector('.highlight');
-                if (highlightSpan) {
-                    pageTitleEl.innerHTML = `${projectsData.pageSettings.title.replace('Board', '')}<span class="highlight">Board</span>`;
-                } else {
-                    pageTitleEl.textContent = projectsData.pageSettings.title;
-                }
-            }
-            const pageDescEl = document.getElementById('projects-page-description');
-            if (pageDescEl && projectsData.pageSettings && projectsData.pageSettings.description) {
-                pageDescEl.textContent = projectsData.pageSettings.description;
-            }
-
-            // Populate Filter Buttons
-            if (questFilterContainer && projectsData.pageSettings && projectsData.pageSettings.filters) {
-                questFilterContainer.innerHTML = ''; // Clear existing static filters
-                projectsData.pageSettings.filters.forEach((filter, index) => {
-                    const button = document.createElement('button');
-                    button.className = 'filter-btn';
-                    if (index === 0 && filter.dataFilter === "all") button.classList.add('active'); // Make 'all' active by default
-                    button.dataset.filter = filter.dataFilter;
-                    button.textContent = filter.label;
-                    questFilterContainer.appendChild(button);
-                });
-            }
-
-            // Populate Project Cards
-            if (questGridContainer && projectsData.projects) {
-                questGridContainer.innerHTML = ''; // Clear existing static projects
-                projectsData.projects.forEach(project => {
-                    const card = document.createElement('div');
-                    card.className = 'quest-card';
-                    card.dataset.category = project.categories.join(' '); // Assuming categories is an array
-                    card.dataset.projectId = project.id || project.title.toLowerCase().replace(/\s+/g, '-'); // Unique ID
-
-                    card.innerHTML = `
-                        <div class="quest-card-header">
-                            <span class="quest-difficulty">${project.difficulty || 'N/A'}</span>
-                            <span class="quest-reward"><i class="fas ${project.rewardIcon || 'fa-award'}"></i> ${project.rewardText || 'Info'}</span>
-                        </div>
-                        <div class="quest-card-image">
-                            <img src="${project.imageUrl || 'placeholder-project.jpg'}" alt="${project.title}">
-                        </div>
-                        <div class="quest-card-content">
-                            <h2 class="quest-title">${project.title}</h2>
-                            <p class="quest-description">${project.description}</p>
-                            <div class="quest-tags">
-                                ${(project.tags || []).map(tag => `<span class="quest-tag">${tag}</span>`).join('')}
-                            </div>
-                            <div class="quest-stats">
-                                <div class="quest-stat">
-                                    <i class="fas fa-calendar-alt"></i>
-                                    <span>${project.year || 'N/A'}</span>
-                                </div>
-                                <div class="quest-stat">
-                                    <i class="fas ${project.statsIcon || 'fa-info-circle'}"></i>
-                                    <span>${project.statsText || 'N/A'}</span>
-                                </div>
-                            </div>
-                            <a href="${project.projectUrl || '#'}" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    `;
-                    questGridContainer.appendChild(card);
-                });
-            }
-            // Re-initialize filtering after dynamic content is loaded
-            initializeProjectFiltering(); 
-            // showNotification("Projects data loaded dynamically.", "info");
-        } else {
-            // If no data in localStorage, the static HTML content will be shown.
-            // Initialize filtering for static content.
-            initializeProjectFiltering();
-            // showNotification("Displaying static projects content.", "info");
+        if (!questGridContainer || !questFilterContainer) {
+            console.error("Required containers for projects or filters not found.");
+            initializeProjectFiltering(); // Still try to init for any static content
+            return;
         }
+
+        if (projectsDataString) {
+            try {
+                const projectsData = JSON.parse(projectsDataString);
+
+                // Update Page Title and Description
+                const pageMainTitleEl = document.getElementById('projects-page-main-title'); // Target the H1
+                const pageHighlightTitleEl = document.getElementById('projects-page-highlight-title'); // Target the span
+                if (pageMainTitleEl && projectsData.pageSettings && projectsData.pageSettings.title) {
+                    const titleParts = projectsData.pageSettings.title.split(' ');
+                    if (titleParts.length > 1) {
+                        pageHighlightTitleEl.textContent = titleParts.pop(); // Last word for highlight
+                        pageMainTitleEl.firstChild.nodeValue = titleParts.join(' ') + ' '; // The rest before span
+                    } else {
+                        pageMainTitleEl.firstChild.nodeValue = projectsData.pageSettings.title;
+                        pageHighlightTitleEl.textContent = ""; // Or some default if title is one word
+                    }
+                }
+                const pageDescEl = document.getElementById('projects-page-description');
+                if (pageDescEl && projectsData.pageSettings && projectsData.pageSettings.description) {
+                    pageDescEl.textContent = projectsData.pageSettings.description;
+                }
+
+                // Populate Filter Buttons
+                if (projectsData.pageSettings && projectsData.pageSettings.filters && projectsData.pageSettings.filters.length > 0) {
+                    questFilterContainer.innerHTML = ''; // Clear existing static filters
+                    projectsData.pageSettings.filters.forEach((filter, index) => {
+                        const button = document.createElement('button');
+                        button.className = 'filter-btn';
+                        if (index === 0 && filter.dataFilter === "all") button.classList.add('active');
+                        button.dataset.filter = filter.dataFilter;
+                        button.textContent = filter.label;
+                        questFilterContainer.appendChild(button);
+                    });
+                } else {
+                     // If no filters in localStorage, keep static ones or default to 'All Projects'
+                    if (!questFilterContainer.querySelector('[data-filter="all"]')) {
+                        questFilterContainer.innerHTML = '<button class="filter-btn active" data-filter="all">All Projects</button>';
+                    }
+                }
+
+                // Populate Project Cards
+                if (projectsData.projects && projectsData.projects.length > 0) {
+                    questGridContainer.innerHTML = ''; // Clear existing static projects
+                    projectsData.projects.forEach(project => {
+                        const card = document.createElement('div');
+                        card.className = 'quest-card';
+                        card.dataset.category = (project.categories || []).join(' ');
+                        card.dataset.projectId = project.id || project.title.toLowerCase().replace(/\s+/g, '-');
+
+                        card.innerHTML = `
+                            <div class="quest-card-header">
+                                <span class="quest-difficulty">${project.difficulty || 'N/A'}</span>
+                                <span class="quest-reward"><i class="fas ${project.rewardIcon || 'fa-award'}"></i> ${project.rewardText || 'Info'}</span>
+                            </div>
+                            <div class="quest-card-image">
+                                <img src="${project.imageUrl || 'placeholder-project.jpg'}" alt="${project.title || 'Project Image'}">
+                            </div>
+                            <div class="quest-card-content">
+                                <h2 class="quest-title">${project.title || 'Untitled Project'}</h2>
+                                <p class="quest-description">${project.description || 'No description available.'}</p>
+                                <div class="quest-tags">
+                                    ${(project.tags || []).map(tag => `<span class="quest-tag">${tag}</span>`).join('')}
+                                </div>
+                                <div class="quest-stats">
+                                    <div class="quest-stat">
+                                        <i class="fas fa-calendar-alt"></i>
+                                        <span>${project.year || 'N/A'}</span>
+                                    </div>
+                                    <div class="quest-stat">
+                                        <i class="fas ${project.statsIcon || 'fa-info-circle'}"></i>
+                                        <span>${project.statsText || 'N/A'}</span>
+                                    </div>
+                                </div>
+                                <a href="${project.projectUrl || '#'}" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
+                            </div>
+                        `;
+                        questGridContainer.appendChild(card);
+                    });
+                    // showNotification("Projects loaded from saved data.", "success");
+                } else {
+                    // No projects in localStorage, static HTML (if any) will be displayed.
+                    // If questGridContainer was cleared and no projects in localStorage, it will be empty.
+                    // You might want to show a message if it's empty.
+                    if(questGridContainer.children.length === 0){
+                        questGridContainer.innerHTML = '<p style="text-align:center; grid-column: 1 / -1;">No projects to display at the moment.</p>';
+                    }
+                    // showNotification("No projects found in saved data. Displaying static content or empty.", "info");
+                }
+            } catch (e) {
+                console.error("Error parsing projects data from localStorage:", e);
+                showNotification("Error loading projects data. Displaying defaults.", "error");
+                // Fallback to static content if parsing fails
+            }
+        } else {
+            // No data in localStorage, static HTML content in projects.html will be used.
+            // showNotification("Displaying default projects content.", "info");
+        }
+        // Initialize filtering for whatever content is now present (static or dynamic)
+        initializeProjectFiltering();
     }
     
-    // Call it to load data dynamically if you implement it:
     loadProjectsDisplayData();
 });
