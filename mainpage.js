@@ -1,316 +1,230 @@
-// mainpage.js (for mainpage.html - Portfolio Hub)
+// education.js
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize particles.js
     if (typeof particlesJS !== 'undefined') {
-        particlesJS('particles-js', {
+        particlesJS('particles-js', { 
             particles: {
                 number: { value: 60, density: { enable: true, value_area: 900 } },
-                color: { value: "#3b82f6" },
-                shape: { type: "circle", stroke: { width: 0, color: "#000000" }},
-                opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }},
-                size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1, sync: false }},
+                color: { value: "#3b82f6" }, // Example color, consistent with other pages
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
                 line_linked: { enable: true, distance: 150, color: "#7c3aed", opacity: 0.3, width: 1 },
-                move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out", bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 }}
+                move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out" }
             },
             interactivity: {
                 detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" },
-                    resize: true
-                },
-                modes: {
-                    repulse: { distance: 100, duration: 0.4 },
-                    push: { particles_nb: 4 }
-                }
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
             },
             retina_detect: true
         });
     }
 
-    // Initialize 3D bridge model
+    // Initialize 3D bridge model (if you want it on this page too)
     const bridgeContainer = document.getElementById('bridge-model');
     if (bridgeContainer && typeof THREE !== 'undefined') {
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
         camera.position.z = 5;
-        
         const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
         bridgeContainer.appendChild(renderer.domElement);
-
-        const createBridge = () => {
+        const createBridge = () => { 
             const deckGeometry = new THREE.BoxGeometry(10, 0.4, 2);
             const deckMaterial = new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true, transparent: true, opacity: 0.7 });
             const deck = new THREE.Mesh(deckGeometry, deckMaterial);
             scene.add(deck);
-            
             const towerGeometry = new THREE.BoxGeometry(0.4, 3, 0.4);
             const towerMaterial = new THREE.MeshBasicMaterial({ color: 0x7c3aed, wireframe: true, transparent: true, opacity: 0.7 });
-            
-            const leftTower = new THREE.Mesh(towerGeometry, towerMaterial);
-            leftTower.position.set(-3, 1.5, 0);
-            scene.add(leftTower);
-            
-            const rightTower = new THREE.Mesh(towerGeometry, towerMaterial);
-            rightTower.position.set(3, 1.5, 0);
-            scene.add(rightTower);
-            
-            const cableGeometry = new THREE.CylinderGeometry(0.03, 0.03, 7, 8); 
+            const leftTower = new THREE.Mesh(towerGeometry, towerMaterial); leftTower.position.set(-3, 1.5, 0); scene.add(leftTower);
+            const rightTower = new THREE.Mesh(towerGeometry, towerMaterial); rightTower.position.set(3, 1.5, 0); scene.add(rightTower);
+            const cableGeometry = new THREE.CylinderGeometry(0.03, 0.03, 7, 8);
             const cableMaterial = new THREE.MeshBasicMaterial({ color: 0x10b981, wireframe: true, transparent: true, opacity: 0.7 });
-            
-            const mainCable = new THREE.Mesh(cableGeometry, cableMaterial);
-            mainCable.rotation.z = Math.PI / 2; 
-            mainCable.position.set(0, 3, 0); 
-            scene.add(mainCable);
-            
+            const mainCable = new THREE.Mesh(cableGeometry, cableMaterial); mainCable.rotation.z = Math.PI / 2; mainCable.position.y = 3; scene.add(mainCable);
             return { deck, leftTower, rightTower, mainCable };
         };
-        
         const bridge = createBridge();
-        
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        directionalLight.position.set(0, 10, 5);
-        scene.add(directionalLight);
-
-        function animate() {
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5); scene.add(ambientLight);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8); directionalLight.position.set(0, 10, 5); scene.add(directionalLight);
+        function animate() { 
             requestAnimationFrame(animate);
-            
-            bridge.deck.rotation.y += 0.005;
-            bridge.leftTower.rotation.y += 0.007;
-            bridge.rightTower.rotation.y += 0.007;
-            bridge.mainCable.rotation.x += 0.003; 
-            
-            const time = Date.now() * 0.001;
-            bridge.deck.position.y = Math.sin(time) * 0.1;
-            
+            bridge.deck.rotation.y += 0.005; bridge.leftTower.rotation.y += 0.007; bridge.rightTower.rotation.y += 0.007; bridge.mainCable.rotation.x += 0.003;
+            const time = Date.now() * 0.001; bridge.deck.position.y = Math.sin(time) * 0.1;
             renderer.render(scene, camera);
         }
         animate();
-
         window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
+            camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight);
         });
     }
-
-    const animateXPBars = () => {
-        const xpBars = document.querySelectorAll('.xp-bar');
-        const windowHeight = window.innerHeight;
-        
-        xpBars.forEach(bar => {
-            const barTop = bar.getBoundingClientRect().top;
-            // Check if the top of the bar is within 85% of the viewport height from the top
-            // and also ensure the bar is somewhat visible from the top
-            if (barTop < windowHeight * 0.85 && barTop > -bar.offsetHeight) { 
-                bar.classList.add('animated');
-            } else {
-                // bar.classList.remove('animated'); // Optional: reset animation
-            }
-        });
-    };
-
-    const currentYearElement = document.querySelector('.current-year');
+    
+    // Set current year in footer
+    const currentYearElement = document.getElementById('current-year-education');
     if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
     }
 
-    // Admin Panel Functionality (mostly relevant if admin panel is a modal on this page)
-    const adminPanel = document.getElementById('adminPanel');
-    // const adminLoginBtn = document.querySelector('.admin-login-btn'); // Link to auth.html handles this
-    const closeAdminPanelBtn = document.querySelector('.close-admin-panel'); 
-    const adminLoginSection = document.getElementById('adminLogin'); // Assumes these IDs are in adminPanel
-    const adminEditSection = document.getElementById('adminEdit');   // Assumes these IDs are in adminPanel
-    const adminLoginForm = document.getElementById('adminLoginForm'); // Assumes these IDs are in adminPanel
-    const adminTabs = document.querySelectorAll('.admin-tab');       // Assumes these elements are in adminPanel
-    const adminTabContents = document.querySelectorAll('.admin-tab-content'); // Assumes these are in adminPanel
-    const loginError = document.getElementById('login-error');       // Assumes this ID is in adminPanel
-    
-    const profileForm = document.getElementById('profileForm');     // Assumes these forms are in adminPanel
-    const skillsForm = document.getElementById('skillsForm');       // Assumes these forms are in adminPanel
-    const projectsForm = document.getElementById('projectsForm');   // Assumes these forms are in adminPanel
-    const contactForm = document.getElementById('contactForm');     // Assumes these forms are in adminPanel
-    
-    // The adminLoginBtn functionality is handled by its href="auth.html".
-    // The JavaScript to preventDefault and show a modal for adminLoginBtn was removed in the previous step.
-
-    if (closeAdminPanelBtn && adminPanel) {
-        closeAdminPanelBtn.addEventListener('click', () => {
-            adminPanel.classList.remove('active');
-        });
-    }
-    
-    // The following admin panel JS (login, tabs, forms) assumes that the adminPanel HTML
-    // (with all its forms and elements) is present on this page (mainpage.html).
-    // If auth.html is a completely separate page handling the admin interface,
-    // this JS would belong there or in a script loaded by auth.html.
-
-    if (adminLoginForm) { 
-        adminLoginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const usernameInput = document.getElementById('username');
-            const passwordInput = document.getElementById('password');
-            if (!usernameInput || !passwordInput) return;
-
-            const username = usernameInput.value;
-            const password = passwordInput.value;
-            
-            // IMPORTANT: Replace with actual secure authentication
-            if (username === 'admin' && password === 'password123') { 
-                if(adminLoginSection) adminLoginSection.style.display = 'none';
-                if(adminEditSection) adminEditSection.classList.add('active');
-                loadContentIntoForms(); 
-            } else {
-                if(loginError) {
-                    loginError.textContent = 'Invalid username or password. (Hint: admin/password123)';
-                    loginError.style.display = 'block';
-                    setTimeout(() => {
-                        loginError.style.display = 'none';
-                    }, 3000);
-                }
-            }
-        });
-    }
-    
-    if (adminTabs.length > 0) { 
-        adminTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                adminTabs.forEach(t => t.classList.remove('active'));
-                tab.classList.add('active');
-                
-                adminTabContents.forEach(content => content.classList.remove('active'));
-                const tabContentId = tab.getAttribute('data-tab');
-                const activeContent = document.querySelector(`.admin-tab-content[data-tab-content="${tabContentId}"]`);
-                if(activeContent) activeContent.classList.add('active');
-            });
-        });
-    }
-    
-    document.querySelectorAll('input[type="range"]').forEach(range => {
-        const valueDisplay = range.nextElementSibling;
-        if (valueDisplay && valueDisplay.classList.contains('range-value')) { 
-            range.addEventListener('input', () => {
-                valueDisplay.textContent = `${range.value}%`;
-            });
-            valueDisplay.textContent = `${range.value}%`; 
-        }
-    });
-    
-    function loadContentIntoForms() {
-        // This function loads content FROM the main page INTO admin panel forms.
-        // It assumes the admin panel forms exist in the DOM when called.
-        const getElementText = (id) => document.getElementById(id)?.textContent || '';
-        const getElementAttr = (id, attr) => document.getElementById(id)?.getAttribute(attr) || '';
-        const setInputValue = (id, value) => {
-            const el = document.getElementById(id);
-            if (el) el.value = value;
-        };
-
-        setInputValue('edit-name', getElementText('profile-name'));
-        setInputValue('edit-tagline', getElementText('profile-tagline'));
-        setInputValue('edit-description-1', getElementText('profile-description-1'));
-        setInputValue('edit-description-2', getElementText('profile-description-2'));
-        setInputValue('edit-linkedin', getElementAttr('linkedin-url', 'href'));
-        setInputValue('edit-github', getElementAttr('github-url', 'href'));
-        setInputValue('edit-twitter', getElementAttr('twitter-url', 'href'));
-
-        setInputValue('edit-skills-title', getElementText('skills-title'));
-        setInputValue('edit-skill-1', getElementText('skill-1-name'));
-        // ... and so on for other skills, projects, contact form fields if they exist in admin panel
-        // Example for one skill value (assuming an input 'edit-skill-1-value' exists in admin panel)
-        // const skill1Bar = document.querySelector('#skills-xp-dashboard .xp-bar:nth-child(1)');
-        // if (skill1Bar) setInputValue('edit-skill-1-value', skill1Bar.style.getPropertyValue('--xp').replace('%',''));
-
-        // Note: Education card content loading not added here, as admin form fields for it aren't defined yet.
-    }
-    
-    const profileImageInput = document.getElementById('edit-profile-image'); // In admin panel
-    const imagePreview = document.getElementById('image-preview');           // In admin panel
-    const previewContainer = document.querySelector('.admin-panel .preview-container'); //Scoped to admin panel
-    
-    if (profileImageInput && imagePreview && previewContainer) {
-        profileImageInput.addEventListener('change', function() {
-            if (this.files && this.files[0]) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    imagePreview.src = e.target.result;
-                    previewContainer.classList.add('active');
-                };
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
-    }
-    
-    if (profileForm) {
-        profileForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Update main page elements from admin form values
-            const setText = (id, value) => { const el = document.getElementById(id); if (el) el.textContent = value; };
-            const setAttr = (id, attr, value) => { const el = document.getElementById(id); if (el) el.setAttribute(attr, value); };
-            
-            setText('profile-name', document.getElementById('edit-name')?.value);
-            setText('profile-tagline', document.getElementById('edit-tagline')?.value);
-            // ... (rest of the profile form fields to update main page display) ...
-
-            // The profile image display on mainpage.html was removed.
-            // The following line would try to update a non-existent element on mainpage.html if .profile-img was the display.
-            // if (profileImageInput && profileImageInput.files && profileImageInput.files[0] && imagePreview) {
-            //     const mainPageProfileImg = document.querySelector('.profile-img'); // This element is removed
-            //     if (mainPageProfileImg) mainPageProfileImg.src = imagePreview.src;
-            // }
-            showNotification('Profile updated successfully!');
-        });
-    }
-    
-    // Similar submit handlers for skillsForm, projectsForm, contactForm
-    // ... (These would update their respective sections on the main page from admin panel inputs)
-
-    if (skillsForm) {
-        skillsForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Update skills display on main page from skillsForm inputs
-            showNotification('Skills updated successfully!');
-        });
-    }
-    
-    if (projectsForm) {
-        projectsForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Update projects display on main page
-            showNotification('Projects updated successfully!');
-        });
-    }
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            // Update contact display on main page
-            showNotification('Contact information updated successfully!');
-        });
-    }
-    
-    function showNotification(message) {
+    // Show notification function
+    function showNotification(message, type = 'success') {
         const notification = document.getElementById('notification');
         const notificationMessage = document.getElementById('notification-message');
-        if(notification && notificationMessage) {
+        const icon = notification.querySelector('i');
+        
+        if (notification && notificationMessage && icon) {
             notificationMessage.textContent = message;
-            notification.classList.add('active');
+            notification.className = 'notification active'; // Reset classes then add active
+            
+            let iconClass = 'fas fa-check-circle';
+            let notifClass = 'success'; // For CSS styling based on var(--success) etc.
+
+            if (type === 'error') {
+                notifClass = 'error';
+                iconClass = 'fas fa-exclamation-circle';
+            } else if (type === 'info') {
+                notifClass = 'info';
+                iconClass = 'fas fa-info-circle';
+            }
+            
+            notification.classList.add(notifClass); // This adds .success, .error, or .info
+            icon.className = iconClass;
+            
             setTimeout(() => {
                 notification.classList.remove('active');
             }, 3000);
         }
     }
-    
-    window.addEventListener('scroll', animateXPBars);
-    animateXPBars(); // Initial check
-    
-    window.addEventListener('click', (e) => {
-        if (adminPanel && e.target === adminPanel) { // If admin panel is a modal on this page
-            adminPanel.classList.remove('active');
+
+    // Function to dynamically load education entries
+    function loadEducationDisplayData() {
+        const educationDataString = localStorage.getItem('educationPageData'); // Key used in auth.js
+        const educationGridContainer = document.getElementById('education-grid-container');
+
+        if (!educationGridContainer) {
+            console.error("Education grid container not found in education.html.");
+            return;
         }
-    });
+
+        let useDynamicData = false;
+
+        if (educationDataString) {
+            try {
+                const educationPageData = JSON.parse(educationDataString);
+
+                if (educationPageData && educationPageData.educationEntries && Array.isArray(educationPageData.educationEntries)) {
+                    
+                    // Update Page Title and Description (if these are part of educationPageData.pageSettings)
+                    const pageMainTitleEl = document.getElementById('education-page-main-title');
+                    const pageHighlightTitleEl = document.getElementById('education-page-highlight-title');
+                    if (educationPageData.pageSettings && educationPageData.pageSettings.title) {
+                        const title = educationPageData.pageSettings.title;
+                        const lastSpaceIndex = title.lastIndexOf(' ');
+                        if (pageMainTitleEl && pageHighlightTitleEl && lastSpaceIndex > -1 && lastSpaceIndex < title.length -1) {
+                            pageMainTitleEl.firstChild.nodeValue = title.substring(0, lastSpaceIndex + 1);
+                            pageHighlightTitleEl.textContent = title.substring(lastSpaceIndex + 1);
+                        } else if (pageMainTitleEl) {
+                            pageMainTitleEl.firstChild.nodeValue = title;
+                            if(pageHighlightTitleEl) pageHighlightTitleEl.textContent = ""; // Clear highlight if one word
+                        }
+                    }
+                    const pageDescEl = document.getElementById('education-page-description');
+                    if (pageDescEl && educationPageData.pageSettings && educationPageData.pageSettings.description) {
+                        pageDescEl.textContent = educationPageData.pageSettings.description;
+                    }
+
+                    // Populate Education Entries if there are any
+                    if (educationPageData.educationEntries.length > 0) {
+                        useDynamicData = true;
+                        educationGridContainer.innerHTML = ''; // Clear static fallback content
+
+                        educationPageData.educationEntries.forEach(entry => {
+                            const card = document.createElement('div');
+                            card.className = 'education-entry-card';
+                            card.dataset.educationId = entry.id || entry.degree.toLowerCase().replace(/\s+/g, '-');
+
+                            let relatedProjectsHTML = '';
+                            if (entry.relatedProjects && entry.relatedProjects.length > 0) {
+                                relatedProjectsHTML = `
+                                    <div class="related-content-section">
+                                        <h3><i class="fas fa-project-diagram"></i> Related Projects</h3>
+                                        <ul class="related-items-list">
+                                            ${entry.relatedProjects.map(proj => `
+                                                <li>
+                                                    <a href="${proj.url || '#'}" class="related-item-link" ${proj.url ? 'target="_blank" rel="noopener noreferrer"' : ''}>${proj.title || 'Untitled Project'}</a>
+                                                    <p class="related-item-description">${proj.description || ''}</p>
+                                                    <div class="related-item-tags">
+                                                        ${(proj.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                                                    </div>
+                                                </li>
+                                            `).join('')}
+                                        </ul>
+                                    </div>`;
+                            }
+
+                            let relatedBlogsHTML = '';
+                            if (entry.relatedBlogs && entry.relatedBlogs.length > 0) {
+                                relatedBlogsHTML = `
+                                    <div class="related-content-section">
+                                        <h3><i class="fas fa-feather-alt"></i> Related Publications/Blogs</h3>
+                                        <ul class="related-items-list">
+                                            ${entry.relatedBlogs.map(blog => `
+                                                <li>
+                                                    <a href="${blog.url || '#'}" class="related-item-link" ${blog.url ? 'target="_blank" rel="noopener noreferrer"' : ''}>${blog.title || 'Untitled Publication'}</a>
+                                                    <p class="related-item-description">${blog.description || ''}</p>
+                                                    <div class="related-item-tags">
+                                                         ${(blog.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                                                    </div>
+                                                </li>
+                                            `).join('')}
+                                        </ul>
+                                    </div>`;
+                            }
+
+                            card.innerHTML = `
+                                <div class="education-entry-header">
+                                    <i class="fas fa-graduation-cap entry-icon"></i>
+                                    <div class="education-title-group">
+                                        <h2 class="degree-title">${entry.degree || 'N/A'}</h2>
+                                        <p class="university-name">${entry.university || 'N/A'}</p>
+                                    </div>
+                                    <span class="graduation-year">${entry.year || 'N/A'}</span>
+                                </div>
+                                <div class="education-details">
+                                    <p class="gpa-achievements">${entry.gpaAchievements || ''}</p>
+                                    <p class="education-description">${entry.description || ''}</p>
+                                </div>
+                                ${relatedProjectsHTML}
+                                ${relatedBlogsHTML}
+                            `;
+                            educationGridContainer.appendChild(card);
+                        });
+                    } else if (educationGridContainer.children.length > 0 && useDynamicData) { 
+                        // Dynamic data source was used, but it has no entries. Clear static and show message.
+                        educationGridContainer.innerHTML = '<p style="text-align:center; grid-column: 1 / -1; color: var(--light-gray);">No educational qualifications have been added yet. The admin can add entries via the admin panel.</p>';
+                    }
+                    // If useDynamicData is true, and educationPageData.educationEntries.length was 0, the above 'else if' handles it.
+                    // If useDynamicData is false, static content remains.
+                } else {
+                    // Data found in localStorage but has an unexpected structure. Static content will be used.
+                    console.warn("Education data in localStorage has an unexpected structure.");
+                }
+            } catch (e) {
+                console.error("Error parsing education data from localStorage:", e);
+                // `useDynamicData` remains false, static content will be used.
+            }
+        }
+
+        // If dynamic data was not successfully used (or localStorage was empty), the static HTML content (if any) remains.
+        // If the grid container has no children (either because static was cleared and no dynamic data, or it started empty)
+        // and we didn't use dynamic data successfully, show a default message.
+        if (!useDynamicData && educationGridContainer.children.length === 0) {
+             educationGridContainer.innerHTML = '<p style="text-align:center; grid-column: 1 / -1; color: var(--light-gray);">No educational information available at the moment.</p>';
+        }
+        
+        // No specific filtering needed for education page like projects, so no initializeFiltering() call.
+    }
+    
+    // Load the data on page start
+    loadEducationDisplayData();
 });
