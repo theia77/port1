@@ -3,120 +3,141 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio Hub - Yashita Namdeo, exploring web development and data science.">
-    <meta name="keywords" content="yashita namdeo, web development, data science, portfolio, computer science, student">
-    <title>Yashita Namdeo | Portfolio</title>
+    <meta name="description" content="CodeStruct - Civil Engineer and Data Scientist specializing in infrastructure innovation and data-driven solutions">
+    <meta name="keywords" content="civil engineering, data science, infrastructure, portfolio, machine learning">
+    <title>CodeStruct | Portfolio Hub</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="mainpage.css"> {/* MODIFIED: CSS filename changed */}
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
-    {/* <div id="bridge-model"></div>  Consider removing or simplifying if it affects performance/style */}
-
-    <!-- Left Social Sidebar -->
-    <aside class="left-sidebar">
-        <ul id="social-sidebar-links">
-            <li><a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
-            <li><a href="https://instagram.com/yourhandle" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a></li>
-            <li><a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-        </ul>
-    </aside>
-
-    <!-- Right Email Sidebar -->
-    <aside class="right-sidebar">
-        <div class="email-link-wrapper">
-            <a href="mailto:yashita.namdeo2000@gmail.com" class="email-link">yashita.namdeo2000@gmail.com</a>
-        </div>
-    </aside>
-
+    <div id="bridge-model"></div> 
+    
     <div class="container">
-        <header class="header" id="mainHeader">
-            <div class="logo">
-                <a href="#admin-brief">YN</a> {/* Simple Y logo, links to top of main content */}
-            </div>
+        <header class="header">
+            <div class="logo">sumo<span>imps</span></div>
             <nav class="nav">
-                {/* Updated Navigation Links - Removed "Home" as this is the main hub */}
-                {/* The image shows "About", "Experience", "Projects", "Contact", "Resume" */}
-                {/* Mapping to our existing structure: */}
-                {/* "About" could be the admin-brief section itself or a new subpage */}
-                {/* "Experience" - not built yet, could be a placeholder or link to skills for now */}
-                <a href="#admin-brief" class="nav-link">01. About</a> {/* Scrolls to intro section */}
-                <a href="skills.html" class="nav-link">02. Experience</a> {/* Using Skills page for "Experience" */}
-                <a href="projects.html" class="nav-link">03. Projects</a>
-                <a href="contact.html" class="nav-link">04. Contact</a>
-                {/* Consider adding a "Resume" link if you have a resume.pdf or a resume page */}
-                <a href="resume.pdf" class="nav-link resume-link-btn" target="_blank" rel="noopener noreferrer">Resume</a>
-                <a href="auth.html" class="nav-link admin-login-btn" title="Admin Login"><i class="fas fa-user-shield"></i></a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a> {/* MODIFIED: Links to auth.html */}
             </nav>
-            <button class="mobile-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-                <span class="hamburger-icon"></span>
-            </button>
         </header>
 
         <main class="portfolio-main">
-            <section class="admin-brief" id="admin-brief"> {/* Added ID for "About" link */}
+            <section class="admin-brief">
+                <div class="admin-avatar">
+                    <img src="profile-image.jpg" alt="Sumo The Styleful" class="profile-img">
+                </div>
                 <div class="admin-content">
-                    <p class="intro-greeting">Hello, my name is</p>
-                    <h1><span id="profile-name">Yashita Namdeo.</span></h1> {/* Used highlight-name for specific styling */}
-                    <p class="admin-tagline main-tagline" id="profile-tagline">I love exploring new things!</p>
+                    <h1><span class="highlight" id="profile-name">sumouli Pramanik</span></h1>
+                    <p class="admin-tagline" id="profile-tagline">Civil Engineer | Data Scientist | Infrastructure Consultant</p>
                     <div class="admin-description">
-                        <p id="profile-description-1">I'm a Final Year Computer Science Engineering Student at SVVV, Indore. Primarily interested in Web Development and Data Science.</p>
-                        <p id="profile-description-2">I enjoy learning new skills and implementing them in real life!</p>
+                        <p id="profile-description-1">I transform raw data into resilient infrastructure. With dual expertise in civil engineering and machine learning, I build bridges between physical construction and digital innovation.</p>
+                        <p id="profile-description-2">This portfolio hub showcases my technical capabilities, project achievements, and the intersection of engineering precision with data-driven insights.</p>
                     </div>
-                    <a href="contact.html" class="cta-button-intro" id="get-in-touch-intro">Get In Touch</a>
-                    {/* Social links in the text flow are removed, using sidebar instead */}
+                    <div class="social-links">
+                        <a href="#" id="linkedin-url" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" id="github-url" class="social-icon"><i class="fab fa-github"></i></a>
+                        <a href="#" id="twitter-url" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
             </section>
 
-            {/* The "access-portals" (flip cards) can remain as gateways to subpages, */}
-            {/* or you can remove them if the header navigation is sufficient. */}
-            {/* For now, keeping them as they provide visual entry points. */}
-            <section class="access-portals" id="work-section">
-                <h2 class="section-title-portals"><span>01.</span> My Recent Work</h2>
-                <div class="portals-grid">
-                    <div class="flip-card quest-portal">
-                        {/* ... (Project card content as before) ... */}
-                         <a href="projects.html" class="card-link"></a>
+            <section class="access-portals">
+                <div class="flip-card quest-portal">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="portal-icon"><i class="fas fa-project-diagram"></i></div>
+                            <h3 id="projects-title">Quest Board/Projects</h3>
+                            <div class="quest-preview">
+                                <div class="quest-tag" id="project-1">Bridge Health AI</div>
+                                <div class="quest-tag" id="project-2">Smart City Analytics</div>
+                                <div class="quest-tag" id="project-3">Structural ML</div>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Project Details</h3>
+                            <p>Explore innovative engineering projects combining civil engineering with data science.</p>
+                            <div class="enter-btn">
+                                <span id="projects-btn-text">View Projects</span> <span><i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flip-card xp-portal">
-                        {/* ... (Skills card content as before) ... */}
-                         <a href="skills.html" class="card-link"></a>
+                    <a href="projects.html" class="card-link"></a>
+                </div>
+
+                <div class="flip-card xp-portal">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="portal-icon"><i class="fas fa-chart-bar"></i></div>
+                            <h3 id="skills-title">Skills XP Dashboard</h3>
+                            <div class="xp-preview">
+                                <div class="xp-bar" style="--xp:90%">
+                                    <span id="skill-1-name">Python</span>
+                                </div>
+                                <div class="xp-bar" style="--xp:85%">
+                                    <span id="skill-2-name">AutoCAD</span>
+                                </div>
+                                <div class="xp-bar" style="--xp:78%">
+                                    <span id="skill-3-name">Machine Learning</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Skill Proficiency</h3>
+                            <p>Detailed breakdown of technical skills and expertise levels in various domains.</p>
+                            <div class="enter-btn">
+                                <span id="skills-btn-text">Explore Skills</span> <span><i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flip-card education-portal">
-                        {/* ... (Education card content as before) ... */}
-                        <a href="education.html" class="card-link"></a>
+                    <a href="skills.html" class="card-link"></a>
+                </div>
+
+                <div class="flip-card contact-portal">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="portal-icon"><i class="fas fa-envelope"></i></div>
+                            <h3 id="contact-title">Contact/Hire Me</h3>
+                            <div class="contact-options">
+                                <div class="contact-method" id="contact-method-1">Email</div>
+                                <div class="contact-method" id="contact-method-2">Calendly</div>
+                                <div class="contact-method" id="contact-method-3">Consultation</div>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Get In Touch</h3>
+                            <p>Reach out for collaborations, consultations, or project inquiries.</p>
+                            <div class="enter-btn">
+                                <span id="contact-btn-text">Get in Touch</span> <span><i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flip-card contact-portal">
-                        {/* ... (Contact card content as before) ... */}
-                        <a href="contact.html" class="card-link"></a>
-                    </div>
+                    <a href="contact.html" class="card-link"></a>
                 </div>
             </section>
         </main>
-
+        
         <footer class="footer">
             <div class="footer-content">
-                <p class="footer-credit">
-                    Designed & Built by Yashita Namdeo<br>
-                    Inspired by Brittany Chiang's portfolio design.
-                </p>
-                <div class="footer-socials" id="footer-social-links">
-                     <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
-                     <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                     <a href="https://instagram.com/yourhandle" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a>
-                     <a href="https://twitter.com/yourhandle" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a>
+                <div class="footer-logo">Code<span>Struct</span></div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
                 </div>
                 <div class="footer-copyright">
-                    &copy; <span class="current-year">2025</span> Yashita Namdeo.
+                    &copy; <span class="current-year"></span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
                 </div>
             </div>
         </footer>
     </div>
 
-    <div class="admin-panel" id="adminPanelMainPage"></div>
+    <div class="admin-panel" id="adminPanel">
+        <!-- Content for admin panel (if it were a modal) would go here. -->
+        <!-- Since navigation is to auth.html, this might be minimal or removed if not used for other popups. -->
+    </div>
+
     <div class="notification" id="notification">
         <div class="notification-content">
             <i class="fas fa-check-circle"></i>
@@ -126,6 +147,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="mainpage.js"></script>
+    <script src="mainpage.js"></script> {/* MODIFIED: JS filename changed */}
 </body>
 </html>
