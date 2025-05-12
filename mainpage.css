@@ -1,20 +1,36 @@
 /* mainpage.css */
 :root {
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --secondary: #10b981; /* Greenish color from image for highlights */
-    --secondary-dark: #059669;
-    --dark: #0a192f; /* Dark navy blue from image background */
-    --darker: #020c1b; /* Even darker for accents */
-    --light: #ccd6f6; /* Light blue/gray for text from image */
-    --lightest: #e6f1ff; /* Lighter for main headings */
-    --accent: #64ffda; /* Accent color (teal/mint) from image for buttons, highlights */
-    --accent-dark: #52d1b7;
-    --gray: #8892b0; /* Slate gray for less prominent text */
-    --light-gray: #a8b2d1;
-    --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1); /* Smooth transition */
-    --font-sans: 'Inter', sans-serif;
-    --font-mono: 'Space Grotesk', monospace; /* Using Space Grotesk as mono for consistency */
+    --dark-navy: #0a192f;    /* Main background from image */
+    --navy: #112240;         /* Lighter navy for elements like cards */
+    --light-navy: #233554;   /* Even lighter for borders or accents */
+    --slate: #8892b0;        /* For general text, p tags */
+    --light-slate: #a8b2d1;  /* For slightly more prominent text */
+    --lightest-slate: #ccd6f6;/* For headings */
+    --white: #e6f1ff;        /* Almost white */
+    --green: #64ffda;        /* Accent color (teal/mint) */
+    --green-tint: rgba(100, 255, 218, 0.1); /* For button hover */
+
+    --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
+    --font-mono: 'Space Grotesk', 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+
+    --fz-xxs: 0.75rem; /* 12px */
+    --fz-xs: 0.8125rem; /* 13px */
+    --fz-sm: 0.875rem; /* 14px */
+    --fz-md: 1rem;    /* 16px */
+    --fz-lg: 1.125rem; /* 18px */
+    --fz-xl: 1.25rem; /* 20px */
+    --fz-xxl: 1.375rem; /* 22px */
+    --fz-heading-sm: 1.75rem; /* 28px */
+    --fz-heading-md: clamp(2rem, 5vw, 3rem); /* Responsive Heading */
+    --fz-heading-lg: clamp(2.5rem, 6vw, 4rem); /* Main Name Heading */
+    --fz-heading-xl: clamp(3rem, 8vw, 5rem); /* Biggest Tagline */
+
+    --border-radius: 4px;
+    --nav-height: 100px;
+    --nav-scroll-height: 70px;
+    --tab-height: 42px;
+    --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --transition: all 0.25s var(--easing);
 }
 
 * {
@@ -23,31 +39,33 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    margin: 0;
     font-family: var(--font-sans);
-    color: var(--light);
-    background-color: var(--dark);
+    color: var(--slate);
+    background-color: var(--dark-navy);
     line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-.particles-background, #bridge-model {
+.particles-background { /* Kept subtle */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -2; /* Behind everything */
 }
-#bridge-model { opacity: 0.1; } /* Reduced opacity for subtle background */
 
 .container {
-    max-width: 1100px; /* Common portfolio width */
+    max-width: 1600px; /* Allow wider content like image */
     margin: 0 auto;
-    padding: 0 2rem; /* Default padding */
+    padding: 0 150px; /* Wider side padding */
 }
 
 /* Header Styles */
@@ -55,426 +73,396 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem 0; /* Adjusted padding */
-    position: fixed; /* Fixed header like in many portfolios */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(10, 25, 47, 0.85); /* Semi-transparent dark blue */
+    height: var(--nav-height);
+    padding: 0 50px; /* Padding for header content */
+    background-color: rgba(10, 25, 47, 0.85); /* var(--dark-navy) with opacity */
     backdrop-filter: blur(10px);
-    z-index: 100;
+    z-index: 11; /* High z-index */
     transition: var(--transition);
-    box-shadow: 0 2px 10px rgba(2, 12, 27, 0.7);
-    padding-left: 2rem; /* Align with container */
-    padding-right: 2rem; /* Align with container */
+    box-shadow: 0 2px 10px rgba(2, 12, 27, 0.3); /* Subtle shadow */
+}
+/* Add class with JS for scrolled header style */
+.header.scrolled {
+    height: var(--nav-scroll-height);
+    box-shadow: 0 5px 15px rgba(2,12,27,0.5);
 }
 
-.logo {
-    font-family: var(--font-mono);
-    font-size: 1.8rem; /* Slightly smaller */
+
+.logo a {
+    font-family: var(--font-mono); /* As per image 'Y' style */
+    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--accent); /* Accent color for logo */
-    /* If using an image logo: */
-    /* img { height: 40px; width: auto; } */
-    border: 2px solid var(--accent);
-    padding: 0.3rem 0.6rem;
+    color: var(--green);
+    text-decoration: none;
+    border: 2px solid var(--green);
+    padding: 0.4rem 0.7rem; /* Make it squarish */
     line-height: 1;
+    transition: var(--transition);
 }
-
+.logo a:hover {
+    background-color: var(--green-tint);
+}
 
 .nav {
     display: flex;
     align-items: center;
-    gap: 1rem; /* Spacing between nav items */
+    gap: 5px; /* Minimal gap, padding will handle spacing */
 }
 
 .nav-link {
-    color: var(--light);
+    color: var(--lightest-slate);
     text-decoration: none;
-    font-family: var(--font-mono); /* Mono font for nav links like image */
-    font-size: 0.9rem; /* Typical nav link size */
-    padding: 0.5rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs); /* 13px, as per common portfolio styles */
+    padding: 10px 15px;
     transition: var(--transition);
-    position: relative;
+    counter-increment: item 1; /* For numbering */
+}
+.nav-link::before { /* Numbering "01." etc. */
+    content: '0' counter(item) '.';
+    margin-right: 5px;
+    color: var(--green);
+    font-size: var(--fz-xs);
 }
 .nav-link:hover {
-    color: var(--accent);
+    color: var(--green);
 }
-.nav-link i { /* Icon styling if kept */
-    margin-right: 0.3em;
+.nav-link i { margin-right: 0.3em; } /* For admin icon */
+
+.resume-link-btn {
+    color: var(--green);
+    border: 1px solid var(--green);
+    padding: 0.6rem 1.2rem; /* Slightly larger than other nav links */
+    border-radius: var(--border-radius);
+    font-size: var(--fz-xs);
+    margin-left: 15px;
+}
+.resume-link-btn:hover {
+    background-color: var(--green-tint);
+}
+.admin-login-btn {
+    color: var(--slate); /* Less prominent */
+    margin-left: 15px;
+    padding: 0.6rem 0.8rem;
+}
+.admin-login-btn i { color: var(--slate); font-size: 1.1rem; }
+.admin-login-btn:hover, .admin-login-btn:hover i { color: var(--green); }
+
+
+/* Mobile Nav Toggle */
+.mobile-nav-toggle {
+    display: none; /* Hidden by default, shown in media query */
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 12; /* Above header background */
+}
+.hamburger-icon {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--green);
+    position: relative;
+    transition: var(--transition);
+}
+.hamburger-icon::before, .hamburger-icon::after {
+    content: '';
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--green);
+    position: absolute;
+    left: 0;
+    transition: var(--transition);
+}
+.hamburger-icon::before { top: -7px; }
+.hamburger-icon::after { top: 7px; }
+
+/* Active state for mobile nav toggle (X icon) */
+.mobile-nav-toggle[aria-expanded="true"] .hamburger-icon {
+    background-color: transparent; /* Middle line disappears */
+}
+.mobile-nav-toggle[aria-expanded="true"] .hamburger-icon::before {
+    transform: translateY(7px) rotate(45deg);
+}
+.mobile-nav-toggle[aria-expanded="true"] .hamburger-icon::after {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Style for numbered nav links like "01. Projects" */
-.nav-link::before {
-    /* content: "0" counter(nav-item) ". "; /* For automatic numbering if desired */
-    /* counter-increment: nav-item; */
-    /* color: var(--accent); */
-    /* margin-right: 0.3em; */
-    /* font-size: 0.85em; */
-}
 
-.admin-login-btn, .resume-link-btn { /* Style for special buttons in nav */
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    font-size: 0.85rem;
-    margin-left: 1rem; /* Space it out */
-}
-.admin-login-btn:hover, .resume-link-btn:hover {
-    background-color: rgba(100, 255, 218, 0.1);
-    color: var(--accent);
-}
-.admin-login-btn i { margin-right: 0.5em; }
-
-/* Main Content & Admin Brief */
+/* Main Content & Hero (Admin Brief) Section */
 .portfolio-main {
-    padding-top: 100px; /* Account for fixed header */
+    padding-top: var(--nav-height); /* Space for fixed header */
 }
 
 .admin-brief {
     display: flex;
-    justify-content: flex-start; /* Align to left */
-    align-items: center; /* Vertically center if height is constrained */
-    min-height: calc(80vh - 100px); /* Take up most of viewport height minus header */
-    padding: 4rem 0; /* More padding */
-    text-align: left; /* Align text to left */
+    justify-content: center; /* Center content horizontally */
+    flex-direction: column;  /* Stack vertically for this setup */
+    align-items: flex-start; /* Align text to left */
+    min-height: calc(100vh - var(--nav-height)); /* Full viewport height minus nav */
+    padding: 0; /* Use container padding */
+    max-width: 1000px; /* Max width for hero content */
+    margin: 0 auto; /* Center the max-width block */
 }
 
 .admin-content {
-    max-width: 700px;
+    /* max-width: 700px; Removed to use admin-brief's max-width */
 }
 
 .intro-greeting {
-    color: var(--accent);
+    color: var(--green);
     font-family: var(--font-mono);
-    font-size: 1rem; /* md in Tailwind */
-    margin-bottom: 0.75rem; /* Adjusted margin */
+    font-size: var(--fz-md); /* 16px */
+    margin-bottom: 20px;
+    line-height: 1;
 }
 
-.admin-content h1 {
-    font-family: var(--font-sans); /* Sans-serif for main name */
-    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size for name */
+.admin-content h1 { /* For "Yashita Namdeo." */
+    color: var(--lightest-slate);
+    font-family: var(--font-sans);
     font-weight: 700; /* Bold */
-    color: var(--lightest);
-    margin-bottom: 0.5rem; /* Reduced margin */
+    font-size: var(--fz-heading-lg);
+    margin: 0 0 10px;
     line-height: 1.1;
 }
-.highlight-name { /* For the name itself, not a general highlight */
-    /* No specific style needed if inheriting from h1, unless you want different color */
-}
 
-.admin-tagline.main-tagline {
+.admin-tagline.main-tagline { /* For "I love exploring new things!" */
+    color: var(--slate); /* Slightly less prominent */
     font-family: var(--font-sans);
-    font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive for tagline */
-    font-weight: 600; /* Bold but slightly less than name */
-    color: var(--light-gray); /* Slightly less prominent color */
-    margin-bottom: 1.5rem; /* Space after tagline */
-    line-height: 1.2;
+    font-weight: 700; /* Still bold */
+    font-size: var(--fz-heading-lg); /* Same size as name */
+    margin: 0 0 25px;
+    line-height: 1.1;
 }
 
 .admin-description p {
-    color: var(--gray);
-    font-size: 1rem; /* Standard paragraph size */
-    max-width: 550px; /* Constrain width for readability */
-    margin-bottom: 1rem;
-    line-height: 1.7;
+    color: var(--slate);
+    font-size: var(--fz-lg); /* 18px for better readability */
+    max-width: 540px;
+    margin-bottom: 15px;
+    line-height: 1.5;
 }
-.admin-description p:last-child {
-    margin-bottom: 2rem; /* More space before button/socials */
-}
+.admin-description p:last-child { margin-bottom: 0; }
 
-.cta-button-intro { /* Style for "Get In Touch" button */
+.cta-button-intro {
     display: inline-block;
-    color: var(--accent);
+    color: var(--green);
     background-color: transparent;
-    border: 1px solid var(--accent);
-    padding: 0.9rem 1.75rem;
-    border-radius: 4px;
+    border: 1px solid var(--green);
+    padding: 1.25rem 1.75rem;
+    border-radius: var(--border-radius);
     font-family: var(--font-mono);
-    font-size: 0.9rem;
+    font-size: var(--fz-sm); /* 14px */
     text-decoration: none;
     transition: var(--transition);
-    margin-top: 1rem; /* Space above button */
+    margin-top: 50px;
 }
 .cta-button-intro:hover {
-    background-color: rgba(100, 255, 218, 0.1);
+    background-color: var(--green-tint);
 }
 
-.social-links.main-social-links { /* Main social links, distinct from card socials */
-    display: flex;
-    gap: 1.5rem; /* Increased gap */
-    margin-top: 2.5rem; /* More space */
-    /* For fixed sidebar style (more advanced CSS needed): */
-    /* position: fixed; left: 2rem; bottom: 2rem; flex-direction: column; */
+/* Fixed Sidebars */
+.left-sidebar, .right-sidebar {
+    width: 40px;
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    color: var(--slate);
+    display: none; /* Hidden by default, shown on larger screens */
 }
-.social-links.main-social-links .social-icon {
-    color: var(--light-gray);
-    font-size: 1.3rem; /* Larger icons */
+@media (min-width: 768px) { /* Show sidebars on tablet and up */
+    .left-sidebar, .right-sidebar {
+        display: block;
+    }
+}
+
+.left-sidebar { left: 40px; right: auto; }
+.right-sidebar { right: 40px; left: auto; }
+
+.left-sidebar ul, .right-sidebar .email-link-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+/* Line after content */
+.left-sidebar ul::after, .right-sidebar .email-link-wrapper::after {
+    content: "";
+    display: block;
+    width: 1px;
+    height: 90px;
+    margin: 20px auto 0; /* Line after the content */
+    background-color: var(--slate);
+}
+
+#social-sidebar-links li { padding: 10px 0; }
+#social-sidebar-links a {
+    display: inline-block;
+    font-size: var(--fz-xl); /* 20px */
+    color: inherit;
     transition: var(--transition);
 }
-.social-links.main-social-links .social-icon:hover {
-    color: var(--accent);
+#social-sidebar-links a:hover {
+    color: var(--green);
     transform: translateY(-3px);
 }
 
-/* Access Portals Section */
+.right-sidebar .email-link {
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs); /* 13px */
+    letter-spacing: 0.1em;
+    writing-mode: vertical-rl;
+    margin: 20px auto; /* This is the link itself */
+    padding: 10px;
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition);
+}
+.right-sidebar .email-link:hover {
+    color: var(--green);
+    transform: translateY(-3px); /* Careful with transform on vertical text */
+}
+
+
+/* Access Portals Section (Optional, if kept) */
 .access-portals {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
-    gap: 1.5rem; /* Gap between cards */
-    margin: 6rem 0; /* More vertical margin */
-    perspective: 1000px;
+    padding: 100px 0; /* Add significant padding if it's a new section */
+    /* Rest of the styles for .access-portals, .flip-card etc. can be similar to before */
+    /* or simplified if not using flip cards anymore */
 }
 .section-title-portals {
-    grid-column: 1 / -1; /* Span full width if grid has multiple columns */
     text-align: center;
     font-family: var(--font-mono);
-    font-size: 1.5rem;
-    color: var(--lightest);
-    margin-bottom: 2.5rem;
+    font-size: var(--fz-heading-sm);
+    color: var(--lightest-slate);
+    margin-bottom: 40px;
     position: relative;
 }
-.section-title-portals::after { /* Underline effect */
-    content: "";
-    display: block;
-    width: 60px;
-    height: 2px;
-    background: var(--accent);
-    margin: 0.5rem auto 0;
+.section-title-portals span { /* For number like "01." */
+    color: var(--green);
+    font-size: var(--fz-md);
+    margin-right: 10px;
 }
-
-
-/* Flip Card Styles (largely same as before, minor thematic tweaks if needed) */
-.flip-card {
-    background-color: transparent;
-    width: 100%;
-    min-height: 380px; /* Ensure cards have enough height */
-    position: relative;
-    perspective: 1000px;
-    border-radius: 8px; /* Slightly less rounded */
-    animation: cardEntrance 0.8s ease-out forwards;
-    animation-delay: calc(var(--card-index) * 0.1s);
-    opacity: 0;
-    border: 1px solid rgba(var(--accent-rgb, 100, 255, 218), 0.1); /* Subtle border */
+.portals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
 }
-/* ... (rest of .flip-card, .flip-card-inner, .flip-card-front, .flip-card-back styles) ... */
-/* Ensure --card-index is set if using staggered animation */
-.flip-card:nth-child(1) { --card-index: 1; }
-.flip-card:nth-child(2) { --card-index: 2; }
-.flip-card:nth-child(3) { --card-index: 3; }
-.flip-card:nth-child(4) { --card-index: 4; }
-
-.flip-card-front, .flip-card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    border-radius: 8px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: var(--darker); /* Use darker for card background */
-    box-shadow: 0 4px 15px rgba(2,12,27,0.5);
-}
-
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-}
-
-.flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.7s;
-    transform-style: preserve-3d;
-    border-radius: 8px;
-}
-
-.portal-icon {
-    font-size: 2.2rem;
-    margin-bottom: 1.25rem;
-    color: var(--accent); /* Consistent accent for icons */
-}
-
-.flip-card-front h3 {
-    font-family: var(--font-sans);
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--lightest);
-}
-
-.quest-preview, .xp-preview, .contact-options, .education-preview {
-    display: flex;
-    flex-direction: column; /* Stack preview items vertically */
-    gap: 0.5rem;
-    width: 80%;
-    margin: 0 auto;
-}
-
-.quest-tag, .contact-method, .education-tag, .xp-bar span {
-    font-size: 0.85rem;
-    color: var(--gray);
-}
-.xp-bar {
-    height: 8px; /* Slimmer XP bar */
-    background: rgba(100, 255, 218, 0.1);
-    border-radius: 4px;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 0.5rem;
-}
-.xp-bar::before {
-    content: '';
-    position: absolute; top: 0; left: 0; height: 100%;
-    width: var(--xp, 0%);
-    background: var(--accent);
-    border-radius: 4px;
-    transition: width 1s ease-out;
-}
-.xp-bar span {
-    position: absolute; left: 8px; top: -16px; /* Position above bar */
-    color: var(--light-gray);
-    font-size: 0.8rem;
-}
-
-
-.flip-card-back h3 {
-    font-family: var(--font-sans);
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 0.75rem;
-    color: var(--lightest);
-}
-.flip-card-back p {
-    font-size: 0.95rem;
-    color: var(--light-gray);
-    margin-bottom: 1.5rem;
-    max-width: 90%;
-}
-.enter-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 500;
-    font-family: var(--font-mono);
-    color: var(--accent);
-    transition: var(--transition);
-    padding: 0.6rem 1.2rem;
-    border: 1px solid var(--accent);
-    border-radius: 4px;
-    font-size: 0.9rem;
-}
-.enter-btn:hover {
-    background-color: rgba(100, 255, 218, 0.1);
-}
-.enter-btn i { transition: transform 0.2s ease-out; }
-.enter-btn:hover i { transform: translateX(5px); }
+/* Styles for .flip-card, .quest-portal etc. from previous CSS can be used here */
+/* If removing flip cards, style new "work item" cards here */
 
 
 /* Footer Styles */
 .footer {
-    margin-top: 6rem;
-    padding: 2.5rem 0;
-    border-top: 1px solid rgba(var(--light-rgb, 204, 214, 246), 0.1);
     text-align: center;
+    padding: 25px 0;
+    margin-top: 50px;
 }
-.footer-logo {
+.footer-credit {
     font-family: var(--font-mono);
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 1rem;
+    font-size: var(--fz-xs);
+    color: var(--slate);
+    line-height: 1.5;
+    margin-bottom: 10px;
 }
-.footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-bottom: 1rem;
+.footer-socials {
+    margin-bottom: 10px;
 }
-.footer-links a {
-    color: var(--gray);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-family: var(--font-mono);
+.footer-socials a {
+    color: var(--slate);
+    font-size: var(--fz-xl);
+    margin: 0 10px;
     transition: var(--transition);
 }
-.footer-links a:hover { color: var(--accent); }
+.footer-socials a:hover {
+    color: var(--green);
+    transform: translateY(-2px);
+}
 .footer-copyright {
-    color: var(--gray);
-    font-size: 0.8rem;
     font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+    color: var(--gray);
 }
-.footer-copyright .current-year, .footer-copyright #copyright-name {
-    color: var(--light-gray);
-}
+.footer-copyright .current-year { color: var(--light-slate); }
 
 
-/* Notification & Admin Panel Modal (if used on this page) */
-/* ... (existing styles for .notification and .admin-panel from previous interactions) ... */
+/* Notification Styles */
 .notification {
-    position: fixed;
-    bottom: 20px; /* Changed from top */
-    right: 20px;
-    background-color: var(--darker); /* Use darker for notification */
-    border-left: 4px solid var(--accent);
-    padding: 1rem 1.5rem;
-    border-radius: 6px;
+    /* ... (styles from previous response, ensure vars like --darker, --accent are used) ... */
+    position: fixed; bottom: 20px; right: 20px;
+    background-color: var(--light-navy); /* Use a theme color */
+    color: var(--lightest-slate);
+    padding: 1rem 1.5rem; border-radius: var(--border-radius);
     box-shadow: 0 5px 15px rgba(2,12,27,0.7);
-    transform: translateX(120%);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index: 1100;
-    opacity: 0;
+    transform: translateX(120%); opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease; z-index: 1100;
 }
-.notification.active {
-    transform: translateX(0);
-    opacity: 1;
-}
+.notification.active { transform: translateX(0); opacity: 1; }
 .notification-content { display: flex; align-items: center; gap: 0.75rem; }
-.notification-content i { font-size: 1.25rem; color: var(--accent); }
-.notification.success { border-left-color: var(--success); /* Define --success if not already */ }
-.notification.success i { color: var(--success); }
-.notification.error { border-left-color: var(--danger); /* Define --danger */ }
-.notification.error i { color: var(--danger); }
-.notification.info { border-left-color: var(--primary); }
-.notification.info i { color: var(--primary); }
+.notification-content i { font-size: 1.25rem; }
+.notification.success { border-left: 4px solid var(--green); }
+.notification.success i { color: var(--green); }
+.notification.error { border-left: 4px solid var(--danger, #e57373); } /* Define --danger if not present */
+.notification.error i { color: var(--danger, #e57373); }
+.notification.info { border-left: 4px solid var(--primary, #64b5f6); } /* Define --primary */
+.notification.info i { color: var(--primary, #64b5f6); }
 
 
-/* Animations (cardEntrance can be kept) */
-@keyframes cardEntrance {
-    from { opacity: 0; transform: translateY(40px) scale(0.95); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
+/* Responsive Adjustments for Header and Main Container */
+@media (max-width: 1080px) {
+    .container { padding: 0 100px; }
+    .header { padding: 0 40px; }
+    .left-sidebar { left: 20px; }
+    .right-sidebar { right: 20px; }
 }
 
-/* Responsive Adjustments */
 @media (max-width: 768px) {
-    .container { padding: 0 1.5rem; }
-    .header { padding-left: 1.5rem; padding-right: 1.5rem; }
-    .nav { gap: 0.5rem; } /* Reduce gap for smaller screens */
-    .nav-link { font-size: 0.8rem; padding: 0.4rem 0.5rem; }
-    .admin-login-btn, .resume-link-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
-    
-    .admin-brief { padding: 3rem 0; min-height: auto; }
-    .admin-content h1 { font-size: clamp(2rem, 8vw, 3.5rem); }
-    .admin-tagline.main-tagline { font-size: clamp(1.5rem, 6vw, 2.8rem); }
-    .admin-description p { font-size: 0.95rem; }
+    .container { padding: 0 50px; }
+    .header { padding: 0 25px; height: var(--nav-scroll-height); } /* Header always scrolled height on mobile */
+    .nav {
+        display: none; /* Hide desktop nav */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: min(75vw, 400px); /* Mobile menu width */
+        height: 100vh;
+        background-color: var(--light-navy);
+        box-shadow: -10px 0px 30px -15px rgba(2,12,27,0.7);
+        transform: translateX(100%);
+        transition: var(--transition);
+        padding-top: 50px;
+    }
+    .nav.active { /* JS will toggle this class */
+        display: flex;
+        transform: translateX(0%);
+    }
+    .nav-link {
+        width: 100%;
+        text-align: center;
+        padding: 15px 20px;
+        font-size: var(--fz-md);
+    }
+    .nav-link::before { font-size: var(--fz-sm); }
+    .resume-link-btn { margin: 20px auto; font-size: var(--fz-md); padding: 1rem 2rem; }
+    .admin-login-btn { margin: 15px auto; }
 
-    .access-portals { grid-template-columns: 1fr; margin: 4rem 0; } /* Stack cards */
-    .flip-card { min-height: 340px; }
+    .mobile-nav-toggle { display: block; z-index: 12; /* Ensure it's above mobile nav panel */}
+    .left-sidebar, .right-sidebar { display: none; } /* Hide sidebars on mobile */
+    .portfolio-main { padding-top: var(--nav-scroll-height); }
+    .admin-brief { padding: 80px 0; } /* Adjust padding for hero */
 }
 
 @media (max-width: 480px) {
-    .header { flex-direction: column; align-items: flex-start; padding-bottom: 1rem; }
-    .logo { margin-bottom: 0.5rem; }
-    .nav { width: 100%; flex-wrap: wrap; justify-content: flex-start; }
-    .nav-link { font-size: 0.75rem; } /* Even smaller */
-    
-    .admin-content h1 { font-size: clamp(1.8rem, 9vw, 3rem); }
-    .admin-tagline.main-tagline { font-size: clamp(1.3rem, 7vw, 2.5rem); }
-    .cta-button-intro { padding: 0.8rem 1.5rem; font-size: 0.85rem; }
+    .container { padding: 0 25px; }
+    .header { padding: 0 15px; }
 }
