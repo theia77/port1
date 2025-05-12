@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetElement = document.querySelector(targetId);
 
             if (targetElement) {
-                // Calculate position, considering fixed header
                 const headerOffset = document.querySelector('.site-header').offsetHeight;
                 const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
                 const offsetPosition = elementPosition - headerOffset;
@@ -23,39 +22,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Optional: Header shadow on scroll
+    // Header shadow on scroll
     const header = document.querySelector('.site-header');
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) { // Add shadow after scrolling a bit
+        if (window.scrollY > 10) {
             header.style.boxShadow = '0 10px 30px -10px rgba(2,12,27,0.7)';
         } else {
             header.style.boxShadow = 'none';
         }
     });
 
-    // Simple fade-in animation for sections on scroll (optional)
+    // Fade-in animation for sections on scroll
     const sections = document.querySelectorAll('.content-section, .hero-section');
     const observerOptions = {
-        root: null, // relative to document viewport
+        root: null,
         rootMargin: '0px',
-        threshold: 0.1 // 10% of item visible
+        threshold: 0.1 
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                // observer.unobserve(entry.target); // Optional: stop observing after animation
+                entry.target.classList.add('visible'); // Add 'visible' class
+                // observer.unobserve(entry.target); // Optional: stop observing after first animation
             }
+            // Optional: remove 'visible' class if you want animation to repeat when scrolling up
+            // else {
+            //     entry.target.classList.remove('visible');
+            // }
         });
     }, observerOptions);
 
     sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
         observer.observe(section);
     });
-
 });
