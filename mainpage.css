@@ -1,20 +1,20 @@
-/* Main Styles */
+/* mainpage.css */
 :root {
     --primary: #2563eb;
     --primary-dark: #1d4ed8;
-    --secondary: #10b981;
+    --secondary: #10b981; /* Greenish color from image for highlights */
     --secondary-dark: #059669;
-    --dark: #0f172a;
-    --darker: #0a0f1c;
-    --light: #f8fafc;
-    --accent: #7c3aed;
-    --accent-dark: #6d28d9;
-    --gray: #64748b;
-    --light-gray: #e2e8f0;
-    --danger: #ef4444;
-    --success: #22c55e;
-    --warning: #f59e0b; /* Added for Education card */
-    --transition: all 0.3s ease;
+    --dark: #0a192f; /* Dark navy blue from image background */
+    --darker: #020c1b; /* Even darker for accents */
+    --light: #ccd6f6; /* Light blue/gray for text from image */
+    --lightest: #e6f1ff; /* Lighter for main headings */
+    --accent: #64ffda; /* Accent color (teal/mint) from image for buttons, highlights */
+    --accent-dark: #52d1b7;
+    --gray: #8892b0; /* Slate gray for less prominent text */
+    --light-gray: #a8b2d1;
+    --transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1); /* Smooth transition */
+    --font-sans: 'Inter', sans-serif;
+    --font-mono: 'Space Grotesk', monospace; /* Using Space Grotesk as mono for consistency */
 }
 
 * {
@@ -25,280 +25,245 @@
 
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
     color: var(--light);
     background-color: var(--dark);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.particles-background {
+.particles-background, #bridge-model {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     z-index: -1;
-    animation: fadeIn 1.5s ease-out;
 }
+#bridge-model { opacity: 0.1; } /* Reduced opacity for subtle background */
 
-#bridge-model {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    opacity: 0.15;
-    animation: fadeInSlow 2s ease-out 0.5s forwards;
-}
 .container {
-    max-width: 1200px;
+    max-width: 1100px; /* Common portfolio width */
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 2rem; /* Default padding */
 }
 
+/* Header Styles */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2rem 0;
-    border-bottom: 1px solid rgba(248, 250, 252, 0.1);
-    animation: slideInDown 0.8s ease-out;
-}
-
-.logo {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    position: relative;
-    animation: logoReveal 1.2s ease-out;
-    overflow: hidden;
-}
-
-.logo::before {
-    content: '';
-    position: absolute;
+    padding: 1.5rem 0; /* Adjusted padding */
+    position: fixed; /* Fixed header like in many portfolios */
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: var(--primary);
-    transform: translateX(-100%);
-    animation: logoSwipe 1.2s ease-out;
-    z-index: 1;
+    background-color: rgba(10, 25, 47, 0.85); /* Semi-transparent dark blue */
+    backdrop-filter: blur(10px);
+    z-index: 100;
+    transition: var(--transition);
+    box-shadow: 0 2px 10px rgba(2, 12, 27, 0.7);
+    padding-left: 2rem; /* Align with container */
+    padding-right: 2rem; /* Align with container */
 }
 
-.logo span {
-    color: var(--secondary);
-    position: relative;
-    display: inline-block;
-    animation: colorPulse 4s infinite alternate;
+.logo {
+    font-family: var(--font-mono);
+    font-size: 1.8rem; /* Slightly smaller */
+    font-weight: 700;
+    color: var(--accent); /* Accent color for logo */
+    /* If using an image logo: */
+    /* img { height: 40px; width: auto; } */
+    border: 2px solid var(--accent);
+    padding: 0.3rem 0.6rem;
+    line-height: 1;
 }
+
 
 .nav {
     display: flex;
-    gap: 1.5rem;
-    animation: fadeIn 1s ease-out 0.5s both;
+    align-items: center;
+    gap: 1rem; /* Spacing between nav items */
 }
 
 .nav-link {
     color: var(--light);
     text-decoration: none;
-    font-weight: 600;
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+    font-family: var(--font-mono); /* Mono font for nav links like image */
+    font-size: 0.9rem; /* Typical nav link size */
+    padding: 0.5rem 0.75rem;
     transition: var(--transition);
+    position: relative;
 }
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -4px;
-    left: 0;
-    background-color: var(--secondary);
-    transition: width 0.3s ease;
-}
-
 .nav-link:hover {
-    color: var(--secondary);
+    color: var(--accent);
+}
+.nav-link i { /* Icon styling if kept */
+    margin-right: 0.3em;
 }
 
-.nav-link:hover::after {
-    width: 100%;
+/* Style for numbered nav links like "01. Projects" */
+.nav-link::before {
+    /* content: "0" counter(nav-item) ". "; /* For automatic numbering if desired */
+    /* counter-increment: nav-item; */
+    /* color: var(--accent); */
+    /* margin-right: 0.3em; */
+    /* font-size: 0.85em; */
 }
 
-.nav-link i {
-    animation: iconPulse 2s infinite alternate;
-}
-
-.admin-login-btn {
-    background-color: rgba(124, 58, 237, 0.2);
+.admin-login-btn, .resume-link-btn { /* Style for special buttons in nav */
+    color: var(--accent);
+    border: 1px solid var(--accent);
     padding: 0.5rem 1rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-left: 1rem; /* Space it out */
+}
+.admin-login-btn:hover, .resume-link-btn:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+    color: var(--accent);
+}
+.admin-login-btn i { margin-right: 0.5em; }
+
+/* Main Content & Admin Brief */
+.portfolio-main {
+    padding-top: 100px; /* Account for fixed header */
 }
 
-.admin-login-btn:hover {
-    background-color: rgba(124, 58, 237, 0.3);
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
-}
-
-.admin-login-btn::after {
-    display: none; /* Remove underline from button-like link */
-}
-
-/* Admin Brief Section - Modified */
 .admin-brief {
     display: flex;
-    justify-content: center; /* Center the admin-content */
-    align-items: center;
-    text-align: center; /* Center text within admin-content */
-    margin: 5rem 0;
-    animation: fadeIn 1s ease-out 0.8s both;
+    justify-content: flex-start; /* Align to left */
+    align-items: center; /* Vertically center if height is constrained */
+    min-height: calc(80vh - 100px); /* Take up most of viewport height minus header */
+    padding: 4rem 0; /* More padding */
+    text-align: left; /* Align text to left */
 }
 
-/* .admin-avatar and .profile-img styles removed as the element is gone */
-
 .admin-content {
-    max-width: 700px; /* Optional: constrain width */
+    max-width: 700px;
+}
+
+.intro-greeting {
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 1rem; /* md in Tailwind */
+    margin-bottom: 0.75rem; /* Adjusted margin */
 }
 
 .admin-content h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.75rem;
-    margin: 0 0 0.75rem;
-    letter-spacing: -0.5px;
+    font-family: var(--font-sans); /* Sans-serif for main name */
+    font-size: clamp(2.5rem, 6vw, 4.5rem); /* Responsive font size for name */
+    font-weight: 700; /* Bold */
+    color: var(--lightest);
+    margin-bottom: 0.5rem; /* Reduced margin */
+    line-height: 1.1;
+}
+.highlight-name { /* For the name itself, not a general highlight */
+    /* No specific style needed if inheriting from h1, unless you want different color */
+}
+
+.admin-tagline.main-tagline {
+    font-family: var(--font-sans);
+    font-size: clamp(2rem, 5vw, 3.5rem); /* Responsive for tagline */
+    font-weight: 600; /* Bold but slightly less than name */
+    color: var(--light-gray); /* Slightly less prominent color */
+    margin-bottom: 1.5rem; /* Space after tagline */
     line-height: 1.2;
-    animation: slideInRight 0.8s ease-out;
-}
-
-.highlight { 
-    color: var(--secondary);
-    position: relative;
-    animation: glowText 3s infinite alternate;
-}
-.admin-content .highlight::after { 
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 8px;
-    bottom: 8px;
-    left: 0;
-    background-color: var(--primary);
-    opacity: 0.5;
-    z-index: -1;
-}
-
-.admin-tagline {
-    font-size: 1.25rem;
-    margin: 0 0 1.5rem;
-    color: rgba(248, 250, 252, 0.8);
-    font-weight: 500;
-    animation: slideInRight 0.8s ease-out 0.2s;
 }
 
 .admin-description p {
-    margin: 1rem 0;
-    max-width: 600px; /* Already had max-width, good */
-    margin-left: auto; /* For centering block elements if parent is text-align: center */
-    margin-right: auto;
-    line-height: 1.8;
-    font-size: 1.05rem;
-    opacity: 0;
-    animation: fadeIn 1s ease-out forwards;
+    color: var(--gray);
+    font-size: 1rem; /* Standard paragraph size */
+    max-width: 550px; /* Constrain width for readability */
+    margin-bottom: 1rem;
+    line-height: 1.7;
+}
+.admin-description p:last-child {
+    margin-bottom: 2rem; /* More space before button/socials */
 }
 
-.admin-description p:nth-child(1) {
-    animation-delay: 1.2s;
-}
-
-.admin-description p:nth-child(2) {
-    animation-delay: 1.5s;
-}
-
-.social-links {
-    display: flex;
-    justify-content: center; /* Ensure social links are centered */
-    gap: 1.25rem;
-    margin-top: 1.5rem;
-    animation: slideInUp 0.8s ease-out 1.8s both;
-}
-
-.social-icon {
-    color: var(--light);
-    font-size: 1.25rem;
-    transition: var(--transition);
-    position: relative;
+.cta-button-intro { /* Style for "Get In Touch" button */
     display: inline-block;
+    color: var(--accent);
+    background-color: transparent;
+    border: 1px solid var(--accent);
+    padding: 0.9rem 1.75rem;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: var(--transition);
+    margin-top: 1rem; /* Space above button */
+}
+.cta-button-intro:hover {
+    background-color: rgba(100, 255, 218, 0.1);
 }
 
-.social-icon:hover {
-    color: var(--secondary);
-    transform: translateY(-3px) scale(1.2);
+.social-links.main-social-links { /* Main social links, distinct from card socials */
+    display: flex;
+    gap: 1.5rem; /* Increased gap */
+    margin-top: 2.5rem; /* More space */
+    /* For fixed sidebar style (more advanced CSS needed): */
+    /* position: fixed; left: 2rem; bottom: 2rem; flex-direction: column; */
+}
+.social-links.main-social-links .social-icon {
+    color: var(--light-gray);
+    font-size: 1.3rem; /* Larger icons */
+    transition: var(--transition);
+}
+.social-links.main-social-links .social-icon:hover {
+    color: var(--accent);
+    transform: translateY(-3px);
 }
 
-.social-icon::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: rgba(16, 185, 129, 0.2);
-    border-radius: 50%;
-    transform: scale(0);
-    transition: transform 0.3s ease;
-    z-index: -1;
-}
-
-.social-icon:hover::before {
-    transform: scale(1.5);
-}
-
-/* Flip Card Styles */
+/* Access Portals Section */
 .access-portals {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Adjusted minmax slightly for potentially 4 cards */
-    gap: 2rem;
-    margin: 5rem 0;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 1.5rem; /* Gap between cards */
+    margin: 6rem 0; /* More vertical margin */
     perspective: 1000px;
 }
+.section-title-portals {
+    grid-column: 1 / -1; /* Span full width if grid has multiple columns */
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    color: var(--lightest);
+    margin-bottom: 2.5rem;
+    position: relative;
+}
+.section-title-portals::after { /* Underline effect */
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--accent);
+    margin: 0.5rem auto 0;
+}
 
+
+/* Flip Card Styles (largely same as before, minor thematic tweaks if needed) */
 .flip-card {
     background-color: transparent;
     width: 100%;
-    height: 400px; /* Or adjust if content varies significantly */
+    min-height: 380px; /* Ensure cards have enough height */
     position: relative;
     perspective: 1000px;
-    border-radius: 15px;
+    border-radius: 8px; /* Slightly less rounded */
     animation: cardEntrance 0.8s ease-out forwards;
-    animation-delay: calc(var(--card-index) * 0.15s); /* Slightly adjusted delay for smoother staggering */
+    animation-delay: calc(var(--card-index) * 0.1s);
     opacity: 0;
+    border: 1px solid rgba(var(--accent-rgb, 100, 255, 218), 0.1); /* Subtle border */
 }
-
+/* ... (rest of .flip-card, .flip-card-inner, .flip-card-front, .flip-card-back styles) ... */
+/* Ensure --card-index is set if using staggered animation */
 .flip-card:nth-child(1) { --card-index: 1; }
 .flip-card:nth-child(2) { --card-index: 2; }
 .flip-card:nth-child(3) { --card-index: 3; }
-.flip-card:nth-child(4) { --card-index: 4; } /* For the new Education card */
-
-.flip-card-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    transition: transform 0.8s;
-    transform-style: preserve-3d;
-    border-radius: 15px;
-}
-
-.flip-card:hover .flip-card-inner {
-    transform: rotateY(180deg);
-}
+.flip-card:nth-child(4) { --card-index: 4; }
 
 .flip-card-front, .flip-card-back {
     position: absolute;
@@ -306,619 +271,210 @@ body {
     height: 100%;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    border-radius: 15px;
-    padding: 2.5rem;
+    border-radius: 8px;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; /* Center content vertically and horizontally */
+    align-items: center;
+    text-align: center;
+    background-color: var(--darker); /* Use darker for card background */
+    box-shadow: 0 4px 15px rgba(2,12,27,0.5);
 }
 
-.flip-card-front {
-    background: rgba(15, 23, 42, 0.7);
-    backdrop-filter: blur(10px);
-    color: var(--light);
-    border: 1px solid transparent;
-}
-
-.flip-card-back {
-    background: rgba(15, 23, 42, 0.9);
-    backdrop-filter: blur(10px);
-    color: var(--light);
+.flip-card:hover .flip-card-inner {
     transform: rotateY(180deg);
 }
 
-.flip-card.quest-portal .flip-card-front { border-color: var(--accent); }
-.flip-card.xp-portal .flip-card-front { border-color: var(--primary); }
-.flip-card.contact-portal .flip-card-front { border-color: var(--secondary); }
-.flip-card.education-portal .flip-card-front { border-color: var(--warning); } /* New Education Card */
-
-.flip-card.quest-portal .flip-card-back { background: linear-gradient(135deg, rgba(124, 58, 237, 0.9), rgba(79, 37, 150, 0.9)); }
-.flip-card.xp-portal .flip-card-back { background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(29, 78, 216, 0.9)); }
-.flip-card.contact-portal .flip-card-back { background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.9)); }
-.flip-card.education-portal .flip-card-back { background: linear-gradient(135deg, rgba(245, 158, 11, 0.9), rgba(217, 119, 6, 0.9)); } /* New Education Card */
-
-
-.flip-card-back h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-}
-
-.flip-card-back p {
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-    max-width: 80%;
-}
-
-.card-link { 
-    position: absolute;
-    top: 0;
-    left: 0;
+.flip-card-inner {
+    position: relative;
     width: 100%;
     height: 100%;
-    z-index: 10; 
+    transition: transform 0.7s;
+    transform-style: preserve-3d;
+    border-radius: 8px;
 }
 
 .portal-icon {
-    font-size: 2.5rem;
-    margin-bottom: 1.75rem;
-    /* Default color can be var(--light) or specific to card if not overridden */
+    font-size: 2.2rem;
+    margin-bottom: 1.25rem;
+    color: var(--accent); /* Consistent accent for icons */
 }
-.flip-card.quest-portal .portal-icon { color: var(--accent); }
-.flip-card.xp-portal .portal-icon { color: var(--primary); }
-.flip-card.contact-portal .portal-icon { color: var(--secondary); }
-.flip-card.education-portal .portal-icon { color: var(--warning); } /* New Education Card */
-
 
 .flip-card-front h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
-    margin: 0 0 1.75rem;
-    letter-spacing: -0.5px;
-}
-
-/* XP Bars */
-.xp-preview {
-    width: 100%; /* Ensure preview containers take full width for alignment */
-    margin-bottom: 1.5rem; 
-}
-
-.xp-bar {
-    height: 30px;
-    background: rgba(37, 99, 235, 0.15);
-    border-radius: 15px;
+    font-family: var(--font-sans);
+    font-size: 1.3rem;
+    font-weight: 600;
     margin-bottom: 1rem;
+    color: var(--lightest);
+}
+
+.quest-preview, .xp-preview, .contact-options, .education-preview {
+    display: flex;
+    flex-direction: column; /* Stack preview items vertically */
+    gap: 0.5rem;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.quest-tag, .contact-method, .education-tag, .xp-bar span {
+    font-size: 0.85rem;
+    color: var(--gray);
+}
+.xp-bar {
+    height: 8px; /* Slimmer XP bar */
+    background: rgba(100, 255, 218, 0.1);
+    border-radius: 4px;
     position: relative;
     overflow: hidden;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0.5rem;
 }
-
 .xp-bar::before {
     content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: var(--xp, 0%); 
-    background: linear-gradient(90deg, var(--primary), var(--accent));
-    border-radius: 15px;
-    transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: absolute; top: 0; left: 0; height: 100%;
+    width: var(--xp, 0%);
+    background: var(--accent);
+    border-radius: 4px;
+    transition: width 1s ease-out;
 }
-
-.xp-bar.animated::before { 
-    /* Animation is handled by the transition on width */
-}
-
-
 .xp-bar span {
-    position: absolute;
-    left: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.9rem;
+    position: absolute; left: 8px; top: -16px; /* Position above bar */
+    color: var(--light-gray);
+    font-size: 0.8rem;
+}
+
+
+.flip-card-back h3 {
+    font-family: var(--font-sans);
+    font-size: 1.4rem;
     font-weight: 600;
-    z-index: 1; 
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0.75rem;
+    color: var(--lightest);
 }
-
-/* Quest Tags & Similar Preview Tags */
-.quest-preview, .contact-options, .education-preview {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    justify-content: center; /* Center tags */
-    margin-bottom: 1.5rem; 
-    width: 100%; /* Ensure preview containers take full width */
+.flip-card-back p {
+    font-size: 0.95rem;
+    color: var(--light-gray);
+    margin-bottom: 1.5rem;
+    max-width: 90%;
 }
-
-.quest-tag, .contact-method, .education-tag {
-    color: var(--light);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: var(--transition);
-}
-
-.quest-tag { background: rgba(124, 58, 237, 0.2); }
-.quest-portal:hover .quest-tag { background: rgba(124, 58, 237, 0.3); }
-
-.contact-method { background: rgba(16, 185, 129, 0.2); }
-.contact-portal:hover .contact-method { background: rgba(16, 185, 129, 0.3); }
-
-.education-tag { background: rgba(245, 158, 11, 0.2); } /* New Education Tag */
-.education-portal:hover .education-tag { background: rgba(245, 158, 11, 0.3); } /* New Education Tag */
-
-
-/* Enter Button */
 .enter-btn {
-    margin-top: auto; /* Pushes button to bottom if card content is shorter */
-    padding-top: 1rem; /* Add some space above if pushed to bottom */
-    display: inline-flex; 
+    display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    font-weight: 600;
-    color: var(--light); /* Default color for button text on back of card */
+    font-weight: 500;
+    font-family: var(--font-mono);
+    color: var(--accent);
     transition: var(--transition);
-    cursor: pointer; 
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--accent);
+    border-radius: 4px;
+    font-size: 0.9rem;
 }
-.flip-card.quest-portal .enter-btn { color: var(--accent-dark); } /* Darker shade for better contrast on its specific gradient */
-.flip-card.xp-portal .enter-btn { color: var(--primary-dark); }
-.flip-card.contact-portal .enter-btn { color: var(--secondary-dark); }
-.flip-card.education-portal .enter-btn { color: #c27803; } /* Darker yellow/orange for education card */
-
-
 .enter-btn:hover {
-    opacity: 0.8; /* General hover effect */
+    background-color: rgba(100, 255, 218, 0.1);
 }
+.enter-btn i { transition: transform 0.2s ease-out; }
+.enter-btn:hover i { transform: translateX(5px); }
 
-.enter-btn span:last-child i { /* Target the icon for animation */
-    transition: transform 0.3s;
-}
 
-.flip-card:hover .enter-btn span:last-child i { 
-    transform: translateX(8px);
-}
-
-/* Footer */
+/* Footer Styles */
 .footer {
-    margin-top: 5rem;
-    padding: 3rem 0;
-    border-top: 1px solid rgba(248, 250, 252, 0.1);
-}
-
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
+    margin-top: 6rem;
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(var(--light-rgb, 204, 214, 246), 0.1);
     text-align: center;
 }
-
 .footer-logo {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 1.3rem;
     font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 1rem;
 }
-
-.footer-logo span {
-    color: var(--secondary);
-}
-
 .footer-links {
     display: flex;
-    gap: 2rem;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
 }
-
 .footer-links a {
     color: var(--gray);
     text-decoration: none;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
     transition: var(--transition);
 }
-
-.footer-links a:hover {
-    color: var(--light);
-}
-
+.footer-links a:hover { color: var(--accent); }
 .footer-copyright {
     color: var(--gray);
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
 }
-
-/* Admin Panel Styles (Modal - potentially for auth.html) */
-.admin-panel {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(10, 15, 28, 0.9);
-    z-index: 1000;
-    display: none; 
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(5px);
-}
-
-.admin-panel.active {
-    display: flex; 
-}
-
-.admin-panel-content {
-    background-color: var(--dark);
-    border-radius: 15px;
-    width: 90%;
-    max-width: 800px;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(124, 58, 237, 0.3);
-}
-
-.admin-panel-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem;
-    border-bottom: 1px solid rgba(248, 250, 252, 0.1);
-}
-
-.admin-panel-header h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    color: var(--accent);
-    margin: 0;
-}
-
-.close-admin-panel {
-    background: none;
-    border: none;
-    color: var(--gray);
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.close-admin-panel:hover {
-    color: var(--danger);
-}
-
-.admin-login-section,
-.admin-edit-section {
-    padding: 2rem;
-}
-
-.admin-edit-section {
-    display: none; 
-}
-
-.admin-edit-section.active {
-    display: block; 
-}
-
-.admin-login-section h3,
-.admin-edit-section h3 {
-    font-family: 'Space Grotesk', sans-serif;
-    margin-bottom: 1.5rem;
-    color: var(--light);
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
+.footer-copyright .current-year, .footer-copyright #copyright-name {
     color: var(--light-gray);
-    font-weight: 500;
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    background-color: rgba(15, 23, 42, 0.7);
-    border: 1px solid rgba(124, 58, 237, 0.3);
-    border-radius: 8px;
-    color: var(--light);
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    transition: var(--transition);
-}
 
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 2px rgba(124, 58, 237, 0.2);
-}
-
-.form-group input[type="range"] {
-    padding: 0; 
-    height: 6px; 
-    background: rgba(37, 99, 235, 0.2); 
-    border: none;
-    border-radius: 3px;
-    appearance: none; 
-    -webkit-appearance: none; 
-}
-
-.form-group input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--accent); 
-    cursor: pointer;
-}
-
-.form-group input[type="range"]::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    border-radius: 50%;
-    background: var(--accent); 
-    cursor: pointer;
-    border: none; 
-}
-
-.range-value {
-    display: inline-block;
-    margin-left: 1rem;
-    color: var(--light);
-    font-weight: 600;
-}
-
-.preview-container {
-    margin-top: 1rem;
-    display: none; 
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 2px solid var(--accent);
-}
-
-.preview-container.active {
-    display: block; 
-}
-
-#image-preview { /* This ID was for the avatar preview in admin panel */
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.admin-btn {
-    background-color: var(--accent);
-    color: var(--light);
-    border: none;
-    border-radius: 8px;
-    padding: 0.75rem 1.5rem;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: var(--transition);
-}
-
-.admin-btn:hover {
-    background-color: var(--accent-dark);
-    transform: translateY(-2px);
-}
-
-.admin-tabs {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-    border-bottom: 1px solid rgba(248, 250, 252, 0.1);
-    padding-bottom: 1rem;
-    overflow-x: auto; 
-}
-
-.admin-tab {
-    background: none;
-    border: none;
-    color: var(--gray);
-    padding: 0.5rem 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: var(--transition);
-    white-space: nowrap; 
-}
-
-.admin-tab.active {
-    color: var(--accent);
-    position: relative;
-}
-.admin-tab.active::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: -1rem; 
-    left: 0;
-    background-color: var(--accent);
-}
-
-.admin-tab-content {
-    display: none; 
-}
-
-.admin-tab-content.active {
-    display: block; 
-}
-
-.error-message {
-    color: var(--danger);
-    margin-top: 1rem;
-    font-size: 0.9rem;
-    display: none; 
-}
-
-/* Notification */
+/* Notification & Admin Panel Modal (if used on this page) */
+/* ... (existing styles for .notification and .admin-panel from previous interactions) ... */
 .notification {
     position: fixed;
-    top: 20px;
+    bottom: 20px; /* Changed from top */
     right: 20px;
-    background-color: var(--dark);
-    border-left: 4px solid var(--success);
+    background-color: var(--darker); /* Use darker for notification */
+    border-left: 4px solid var(--accent);
     padding: 1rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transform: translateX(120%); 
-    transition: transform 0.3s ease;
-    z-index: 1100; 
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(2,12,27,0.7);
+    transform: translateX(120%);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 1100;
+    opacity: 0;
 }
-
 .notification.active {
-    transform: translateX(0); 
+    transform: translateX(0);
+    opacity: 1;
 }
+.notification-content { display: flex; align-items: center; gap: 0.75rem; }
+.notification-content i { font-size: 1.25rem; color: var(--accent); }
+.notification.success { border-left-color: var(--success); /* Define --success if not already */ }
+.notification.success i { color: var(--success); }
+.notification.error { border-left-color: var(--danger); /* Define --danger */ }
+.notification.error i { color: var(--danger); }
+.notification.info { border-left-color: var(--primary); }
+.notification.info i { color: var(--primary); }
 
-.notification-content {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-}
 
-.notification-content i {
-    color: var(--success);
-    font-size: 1.25rem;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInSlow {
-    from { opacity: 0; }
-    to { opacity: 0.15; } 
-}
-
-@keyframes slideInDown {
-    from { transform: translateY(-50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes slideInRight { 
-    from { transform: translateX(-50px); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideInUp {
-    from { transform: translateY(30px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes logoReveal {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes logoSwipe {
-    0% { transform: translateX(-100%); }
-    50% { transform: translateX(0); }
-    100% { transform: translateX(100%); }
-}
-
-@keyframes colorPulse {
-    0% { color: var(--secondary); }
-    50% { color: var(--accent); }
-    100% { color: var(--secondary); }
-}
-@keyframes iconPulse { 
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
-}
-
-/* @keyframes avatarPulse removed as avatar is gone */
-
-@keyframes rotateIn {
-    from { transform: rotate(-10deg) scale(0.8); opacity: 0; }
-    to { transform: rotate(0) scale(1); opacity: 1; }
-}
-
-@keyframes glowText {
-    0% { text-shadow: 0 0 5px rgba(16, 185, 129, 0.1); } 
-    100% { text-shadow: 0 0 15px rgba(16, 185, 129, 0.5); }
-}
-
-/* @keyframes highlightReveal removed as it was unused */
-
+/* Animations (cardEntrance can be kept) */
 @keyframes cardEntrance {
-    from { opacity: 0; transform: scale(0.8) translateY(50px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
+    from { opacity: 0; transform: translateY(40px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Responsive */
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-    .admin-brief {
-        /* flex-direction: column; /* Not needed if only one child */
-        text-align: center;
-        margin: 3rem 0;
-    }
+    .container { padding: 0 1.5rem; }
+    .header { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .nav { gap: 0.5rem; } /* Reduce gap for smaller screens */
+    .nav-link { font-size: 0.8rem; padding: 0.4rem 0.5rem; }
+    .admin-login-btn, .resume-link-btn { padding: 0.4rem 0.8rem; font-size: 0.75rem; }
     
-    /* .admin-avatar styles removed */
-    
-    .admin-content h1 {
-        font-size: 2.25rem;
-    }
-    
-    .social-links {
-        justify-content: center;
-    }
-    
-    .access-portals {
-        grid-template-columns: 1fr; 
-    }
-    
-    .admin-panel-content { 
-        width: 95%;
-        max-height: 95vh;
-    }
-    
-    .admin-tabs { 
-        padding-bottom: 0.75rem;
-    }
-    
-    .admin-tab { 
-        padding: 0.5rem 0.75rem;
-        font-size: 0.9rem;
-    }
+    .admin-brief { padding: 3rem 0; min-height: auto; }
+    .admin-content h1 { font-size: clamp(2rem, 8vw, 3.5rem); }
+    .admin-tagline.main-tagline { font-size: clamp(1.5rem, 6vw, 2.8rem); }
+    .admin-description p { font-size: 0.95rem; }
+
+    .access-portals { grid-template-columns: 1fr; margin: 4rem 0; } /* Stack cards */
+    .flip-card { min-height: 340px; }
 }
 
 @media (max-width: 480px) {
-    .header {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
+    .header { flex-direction: column; align-items: flex-start; padding-bottom: 1rem; }
+    .logo { margin-bottom: 0.5rem; }
+    .nav { width: 100%; flex-wrap: wrap; justify-content: flex-start; }
+    .nav-link { font-size: 0.75rem; } /* Even smaller */
     
-    .nav {
-        width: 100%;
-        justify-content: space-around; 
-    }
-    
-    .flip-card {
-        /* height: 450px; /* Consider 'auto' or min-height if content varies */
-        min-height: 400px; 
-        height: auto;
-    }
-    .flip-card-front, .flip-card-back {
-        padding: 1.5rem; 
-    }
-    
-    .admin-panel-header { 
-        padding: 1rem;
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
-    
-    .admin-login-section, 
-    .admin-edit-section {
-        padding: 1.5rem;
-    }
+    .admin-content h1 { font-size: clamp(1.8rem, 9vw, 3rem); }
+    .admin-tagline.main-tagline { font-size: clamp(1.3rem, 7vw, 2.5rem); }
+    .cta-button-intro { padding: 0.8rem 1.5rem; font-size: 0.85rem; }
 }
