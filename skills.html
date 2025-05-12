@@ -17,7 +17,7 @@
     
     <div class="container">
         <header class="header">
-            <div class="logo">Sumo</span>Verse</div>
+            <div class="logo">Sumo<span>Verse</span></div> {/* Corrected from Sumo</span>Verse */}
             <nav class="nav">
                 <a href="mainpage.html" class="nav-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a> 
                 <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
@@ -209,8 +209,6 @@ import tensorflow as tf
         </footer>
     </div>
 
-    <!-- Admin Panel Modal REMOVED from here -->
-
     <div class="notification" id="notification">
         <div class="notification-content">
             <i class="fas fa-check-circle"></i>
@@ -221,6 +219,9 @@ import tensorflow as tf
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
-    <script src="skills.js"></script> 
+    
+    <!-- Firebase Initialization -->
+    <script type="module" src="firebase-init.js"></script>
+    <script type="module" src="skills.js"></script> {/* Ensure skills.js is treated as a module if it imports Firebase */}
 </body>
 </html>
