@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CodeStruct - Civil Engineer and Data Scientist specializing in infrastructure innovation and data-driven solutions">
-    <meta name="keywords" content="civil engineering, data science, infrastructure, portfolio, machine learning">
-    <title>SumoVerse | Portfolio Hub</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="Portfolio Hub - Yashita Namdeo">
+    <meta name="keywords" content="web development, data science, portfolio, computer science, yashita namdeo">
+    <title>Yashita Namdeo | Portfolio Hub</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"> {/* Make sure you have a favicon.ico or update path */}
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="mainpage.css"> 
+    <link rel="stylesheet" href="mainpage.css">
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
@@ -17,54 +17,75 @@
 
     <div class="container">
         <header class="header">
-            <div class="logo">Sumo<span>Verse</span></div>
+            <div class="logo">YN</div> {/* Updated Logo */}
             <nav class="nav">
-                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a> 
-                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a> 
+                {/* Updated Navigation Links - Removed "Home" as this is the main hub */}
+                {/* The image shows "About", "Experience", "Projects", "Contact", "Resume" */}
+                {/* Mapping to our existing structure: */}
+                {/* "About" could be the admin-brief section itself or a new subpage */}
+                {/* "Experience" - not built yet, could be a new subpage */}
+                <a href="projects.html" class="nav-link">01. Projects</a> {/* Added numbering like image */}
+                <a href="skills.html" class="nav-link">02. Skills</a>   {/* Added numbering */}
+                <a href="education.html" class="nav-link">03. Education</a> {/* Added numbering */}
+                <a href="contact.html" class="nav-link">04. Contact Me</a> {/* Added numbering */}
+                {/* Consider adding a "Resume" link if you have a resume.pdf or a resume page */}
+                {/* <a href="resume.pdf" class="nav-link resume-link-btn" target="_blank">Resume</a> */}
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-user-shield"></i> Admin</a> {/* Changed icon for admin */}
             </nav>
         </header>
 
         <main class="portfolio-main">
             <section class="admin-brief">
                 <div class="admin-content">
-                    
-                    <h1><span class="highlight" id="profile-name">Sumouli Pramanik</span></h1>
-                    <p class="admin-tagline" id="profile-tagline">Civil Engineer | Data Scientist | Infrastructure Consultant</p>
+                    {/* Updated Introduction Text based on the image */}
+                    <p class="intro-greeting">Hello, my name is</p>
+                    <h1><span class="highlight-name" id="profile-name">Yashita Namdeo.</span></h1> {/* Used highlight-name for specific styling */}
+                    <p class="admin-tagline main-tagline" id="profile-tagline">I love exploring new things!</p>
                     <div class="admin-description">
-                        <p id="profile-description-1">I transform raw data into resilient infrastructure. With dual expertise in civil engineering and machine learning, I build bridges between physical construction and digital innovation.</p>
-                        <p id="profile-description-2">This portfolio hub showcases my technical capabilities, project achievements, and the intersection of engineering precision with data-driven insights.</p>
+                        <p id="profile-description-1">I'm a Final Year Computer Science Engineering Student at SVVV, Indore. Primarily interested in Web Development and Data Science.</p>
+                        <p id="profile-description-2">I enjoy learning new skills and implementing them in real life!</p>
                     </div>
-                    <div class="social-links">
-                        
-                        <a href="#" id="linkedin-url" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" id="github-url" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
-                        <a href="#" id="twitter-url" class="social-icon" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter"></i></a>
+                    {/* "Get In Touch" button similar to the image's style */}
+                    <a href="contact.html" class="cta-button-intro" id="get-in-touch-intro">Get In Touch</a>
+
+                    {/* Social links from the image (left sidebar style) - these would require specific CSS positioning */}
+                    {/* For simplicity in current structure, keeping them below text but can be moved with CSS */}
+                    <div class="social-links main-social-links">
+                        <a href="#" id="github-url" class="social-icon" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="#" id="linkedin-url" class="social-icon" target="_blank" rel="noopener noreferrer" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        {/* Add other social icons based on image like Instagram, or others you use */}
+                        {/* <a href="#" id="instagram-url" class="social-icon" target="_blank" rel="noopener noreferrer" title="Instagram"><i class="fab fa-instagram"></i></a> */}
+                        <a href="#" id="twitter-url" class="social-icon" target="_blank" rel="noopener noreferrer" title="Twitter"><i class="fab fa-twitter"></i></a>
                     </div>
                 </div>
             </section>
 
+            {/* The "access-portals" (flip cards) can remain as gateways to subpages, */}
+            {/* or you can remove them if the header navigation is sufficient. */}
+            {/* For now, keeping them as they provide visual entry points. */}
             <section class="access-portals">
+                <div class="section-title-portals">Explore My Work & Journey</div> {/* Optional title for portals section */}
                 <!-- Quest Board/Projects Showcase -->
                 <div class="flip-card quest-portal">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="portal-icon"><i class="fas fa-project-diagram"></i></div>
-                            <h3 id="projects-card-title">Quest Board/Projects</h3> 
+                            <h3 id="projects-card-title">Projects</h3>
                             <div class="quest-preview">
-                                <div class="quest-tag" id="project-1-preview">Bridge Health AI</div>
-                                <div class="quest-tag" id="project-2-preview">Smart City Analytics</div>
-                                <div class="quest-tag" id="project-3-preview">Structural ML</div>
+                                <div class="quest-tag" id="project-1-preview">Project Alpha</div>
+                                <div class="quest-tag" id="project-2-preview">Data Insights</div>
+                                <div class="quest-tag" id="project-3-preview">Web Portfolio</div>
                             </div>
                         </div>
                         <div class="flip-card-back">
                             <h3>Project Details</h3>
-                            <p>Explore innovative engineering projects combining civil engineering with data science.</p>
+                            <p>Explore a collection of my technical and creative projects.</p>
                             <div class="enter-btn">
                                 <span id="projects-btn-text">View Projects</span> <span><i class="fas fa-arrow-right"></i></span>
                             </div>
                         </div>
                     </div>
-                    <a href="projects.html" class="card-link"></a> 
+                    <a href="projects.html" class="card-link"></a>
                 </div>
 
                 <!-- Skills XP Dashboard -->
@@ -72,39 +93,63 @@
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="portal-icon"><i class="fas fa-chart-bar"></i></div>
-                            <h3 id="skills-card-title">Skills XP Dashboard</h3> 
+                            <h3 id="skills-card-title">Skills</h3>
                             <div class="xp-preview">
                                 <div class="xp-bar" style="--xp:90%">
-                                    <span id="skill-1-name-preview">Python</span>
+                                    <span id="skill-1-name-preview">JavaScript</span>
                                 </div>
                                 <div class="xp-bar" style="--xp:85%">
-                                    <span id="skill-2-name-preview">AutoCAD</span>
+                                    <span id="skill-2-name-preview">Python</span>
                                 </div>
-                                <div class="xp-bar" style="--xp:78%">
-                                    <span id="skill-3-name-preview">Machine Learning</span>
+                                <div class="xp-bar" style="--xp:80%">
+                                    <span id="skill-3-name-preview">React</span>
                                 </div>
                             </div>
                         </div>
                         <div class="flip-card-back">
                             <h3>Skill Proficiency</h3>
-                            <p>Detailed breakdown of technical skills and expertise levels in various domains.</p>
+                            <p>Detailed breakdown of technical skills and expertise levels.</p>
                             <div class="enter-btn">
                                 <span id="skills-btn-text">Explore Skills</span> <span><i class="fas fa-arrow-right"></i></span>
                             </div>
                         </div>
                     </div>
-                    <a href="skills.html" class="card-link"></a> 
+                    <a href="skills.html" class="card-link"></a>
                 </div>
+
+                <!-- Education Portal -->
+                <div class="flip-card education-portal">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="portal-icon"><i class="fas fa-user-graduate"></i></div>
+                            <h3 id="education-card-title">Education</h3>
+                            <div class="education-preview">
+                                <div class="education-tag" id="education-item-1-preview">B.Tech CSE</div>
+                                <div class="education-tag" id="education-item-2-preview">SVVV, Indore</div>
+                                <div class="education-tag" id="education-item-3-preview">Web Dev Spec.</div>
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <h3>Educational Journey</h3>
+                            <p>Discover academic achievements and qualifications.</p>
+                            <div class="enter-btn">
+                                <span id="education-btn-text">Explore Education</span> <span><i class="fas fa-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="education.html" class="card-link"></a>
+                </div>
+                
                 <!-- Contact/Hire Me -->
                 <div class="flip-card contact-portal">
                     <div class="flip-card-inner">
                         <div class="flip-card-front">
                             <div class="portal-icon"><i class="fas fa-envelope"></i></div>
-                            <h3 id="contact-card-title">Contact/Hire Me</h3> 
+                            <h3 id="contact-card-title">Contact Me</h3>
                             <div class="contact-options">
                                 <div class="contact-method" id="contact-method-1-preview">Email</div>
-                                <div class="contact-method" id="contact-method-2-preview">Calendly</div>
-                                <div class="contact-method" id="contact-method-3-preview">Consultation</div>
+                                <div class="contact-method" id="contact-method-2-preview">LinkedIn</div>
+                                <div class="contact-method" id="contact-method-3-preview">Call</div>
                             </div>
                         </div>
                         <div class="flip-card-back">
@@ -115,50 +160,27 @@
                             </div>
                         </div>
                     </div>
-                    <a href="contact.html" class="card-link"></a> 
-                </div>
-
-                <!-- Education Portal -->
-                <div class="flip-card education-portal">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="portal-icon"><i class="fas fa-user-graduate"></i></div>
-                            <h3 id="education-card-title">Education & Academia</h3> 
-                            <div class="education-preview">
-                                <div class="education-tag" id="education-item-1-preview">Degree Name</div>
-                                <div class="education-tag" id="education-item-2-preview">University Name</div>
-                                <div class="education-tag" id="education-item-3-preview">Key Project/GPA</div>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <h3>Educational Journey</h3>
-                            <p>Discover academic achievements, research, and qualifications.</p>
-                            <div class="enter-btn">
-                                <span id="education-btn-text">Explore Education</span> <span><i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="education.html" class="card-link"></a> 
+                    <a href="contact.html" class="card-link"></a>
                 </div>
             </section>
         </main>
 
         <footer class="footer">
             <div class="footer-content">
-                <div class="footer-logo">Sumo<span>Verse</span></div>
+                <div class="footer-logo">YN</div>
                 <div class="footer-links">
                     <a href="privacy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
                 </div>
                 <div class="footer-copyright">
-                    &copy; <span class="current-year">2025</span> <span id="copyright-name">SumoVerse</span>. All rights reserved.
+                    &copy; <span class="current-year">2025</span> <span id="copyright-name">Yashita Namdeo</span>. All rights reserved.
                 </div>
             </div>
         </footer>
     </div>
 
     <div class="admin-panel" id="adminPanelMainPage">
-        
+        {/* Content for admin panel (if used as a modal on this page) would go here. */}
     </div>
 
     <div class="notification" id="notification">
@@ -170,9 +192,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    
-    <!-- Firebase Initialization -->
-    <script type="module" src="firebase-init.js"></script>
-    <script type="module" src="mainpage.js"></script> {/* Ensure mainpage.js is treated as a module if it imports Firebase */}
+    <script src="mainpage.js"></script>
 </body>
 </html>
