@@ -26,8 +26,8 @@
     --fz-heading-xl: clamp(3rem, 8vw, 5rem); /* Biggest Tagline */
 
     --border-radius: 4px;
-    --nav-height: 100px;
-    --nav-scroll-height: 70px;
+    --nav-height: 70px;  /* Reduced to 70px based on image */
+    --nav-scroll-height: 70px; /* Kept same so header doesn't change size on scroll */
     --tab-height: 42px;
     --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
     --transition: all 0.25s var(--easing);
@@ -40,7 +40,7 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* Added for smooth scrolling on anchor links */
 }
 
 body {
@@ -63,7 +63,7 @@ body {
 }
 
 .container {
-    max-width: 1600px; /* Allow wider content like image */
+    max-width: 1200px; /* Common portfolio width */
     margin: 0 auto;
     padding: 0 150px; /* Wider side padding */
 }
@@ -93,7 +93,7 @@ body {
 
 
 .logo a {
-    font-family: var(--font-mono); /* As per image 'Y' style */
+    font-family: var(--font-mono);
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--green);
@@ -120,26 +120,31 @@ body {
     font-size: var(--fz-xs); /* 13px, as per common portfolio styles */
     padding: 10px 15px;
     transition: var(--transition);
-    counter-increment: item 1; /* For numbering */
-}
-.nav-link::before { /* Numbering "01." etc. */
-    content: '0' counter(item) '.';
-    margin-right: 5px;
-    color: var(--green);
-    font-size: var(--fz-xs);
+    position: relative;
 }
 .nav-link:hover {
     color: var(--green);
 }
-.nav-link i { margin-right: 0.3em; } /* For admin icon */
+.nav-link i { /* Icon styling if kept */
+    margin-right: 0.3em;
+}
 
-.resume-link-btn {
+/* Style for numbered nav links like "01. Projects" */
+.nav-link::before {
+    /* content: "0" counter(nav-item) ". "; /* For automatic numbering if desired */
+    /* counter-increment: nav-item; */
+    /* color: var(--green); */
+    /* margin-right: 0.3em; */
+    /* font-size: 0.85em; */
+}
+
+.admin-login-btn, .resume-link-btn { /* Style for special buttons in nav */
     color: var(--green);
     border: 1px solid var(--green);
-    padding: 0.6rem 1.2rem; /* Slightly larger than other nav links */
+    padding: 0.6rem 1.2rem;
     border-radius: var(--border-radius);
-    font-size: var(--fz-xs);
-    margin-left: 15px;
+    font-size: 0.85rem;
+    margin-left: 15px; /* Space it out */
 }
 .resume-link-btn:hover {
     background-color: var(--green-tint);
@@ -151,7 +156,6 @@ body {
 }
 .admin-login-btn i { color: var(--slate); font-size: 1.1rem; }
 .admin-login-btn:hover, .admin-login-btn:hover i { color: var(--green); }
-
 
 /* Mobile Nav Toggle */
 .mobile-nav-toggle {
@@ -193,92 +197,18 @@ body {
     transform: translateY(-7px) rotate(-45deg);
 }
 
-
-/* Main Content & Hero (Admin Brief) Section */
-.portfolio-main {
-    padding-top: var(--nav-height); /* Space for fixed header */
-}
-
-.admin-brief {
-    display: flex;
-    justify-content: center; /* Center content horizontally */
-    flex-direction: column;  /* Stack vertically for this setup */
-    align-items: flex-start; /* Align text to left */
-    min-height: calc(100vh - var(--nav-height)); /* Full viewport height minus nav */
-    padding: 0; /* Use container padding */
-    max-width: 1000px; /* Max width for hero content */
-    margin: 0 auto; /* Center the max-width block */
-}
-
-.admin-content {
-    /* max-width: 700px; Removed to use admin-brief's max-width */
-}
-
-.intro-greeting {
-    color: var(--green);
-    font-family: var(--font-mono);
-    font-size: var(--fz-md); /* 16px */
-    margin-bottom: 20px;
-    line-height: 1;
-}
-
-.admin-content h1 { /* For "Yashita Namdeo." */
-    color: var(--lightest-slate);
-    font-family: var(--font-sans);
-    font-weight: 700; /* Bold */
-    font-size: var(--fz-heading-lg);
-    margin: 0 0 10px;
-    line-height: 1.1;
-}
-
-.admin-tagline.main-tagline { /* For "I love exploring new things!" */
-    color: var(--slate); /* Slightly less prominent */
-    font-family: var(--font-sans);
-    font-weight: 700; /* Still bold */
-    font-size: var(--fz-heading-lg); /* Same size as name */
-    margin: 0 0 25px;
-    line-height: 1.1;
-}
-
-.admin-description p {
-    color: var(--slate);
-    font-size: var(--fz-lg); /* 18px for better readability */
-    max-width: 540px;
-    margin-bottom: 15px;
-    line-height: 1.5;
-}
-.admin-description p:last-child { margin-bottom: 0; }
-
-.cta-button-intro {
-    display: inline-block;
-    color: var(--green);
-    background-color: transparent;
-    border: 1px solid var(--green);
-    padding: 1.25rem 1.75rem;
-    border-radius: var(--border-radius);
-    font-family: var(--font-mono);
-    font-size: var(--fz-sm); /* 14px */
-    text-decoration: none;
-    transition: var(--transition);
-    margin-top: 50px;
-}
-.cta-button-intro:hover {
-    background-color: var(--green-tint);
-}
-
-/* Fixed Sidebars */
+/* Sidebars (Fixed Social and Email) */
 .left-sidebar, .right-sidebar {
     width: 40px;
     position: fixed;
     bottom: 0;
     z-index: 10;
-    color: var(--slate);
-    display: none; /* Hidden by default, shown on larger screens */
+    color: var(--light-slate); /* Consistent color */
+    display: none; /* Hidden by default */
+    transition: var(--transition);
 }
-@media (min-width: 768px) { /* Show sidebars on tablet and up */
-    .left-sidebar, .right-sidebar {
-        display: block;
-    }
+@media (min-width: 768px) {
+    .left-sidebar, .right-sidebar { display: block; } /* Only show on larger screens */
 }
 
 .left-sidebar { left: 40px; right: auto; }
@@ -298,7 +228,7 @@ body {
     display: block;
     width: 1px;
     height: 90px;
-    margin: 20px auto 0; /* Line after the content */
+    margin: 20px auto 0;
     background-color: var(--slate);
 }
 
@@ -319,7 +249,7 @@ body {
     font-size: var(--fz-xs); /* 13px */
     letter-spacing: 0.1em;
     writing-mode: vertical-rl;
-    margin: 20px auto; /* This is the link itself */
+    margin: 20px auto;
     padding: 10px;
     color: inherit;
     text-decoration: none;
@@ -327,15 +257,103 @@ body {
 }
 .right-sidebar .email-link:hover {
     color: var(--green);
-    transform: translateY(-3px); /* Careful with transform on vertical text */
+    transform: translateY(-3px); /* Test and fix this for vertical text */
 }
 
+/* Main Content & Hero (Admin Brief) Section */
+.portfolio-main {
+    padding-top: var(--nav-height); /* Account for fixed header */
+}
 
-/* Access Portals Section (Optional, if kept) */
+.admin-brief {
+    display: flex;
+    justify-content: flex-start; /* Align to left */
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: calc(100vh - var(--nav-height)); /* Full viewport minus header */
+    padding: 150px 0; /* Increased padding to shift down contents */
+    text-align: left;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.admin-content {
+    /* max-width: 700px; -  removed to make the entire content responsive */
+    padding-left: 50px;
+}
+
+.intro-greeting {
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: var(--fz-md); /* 16px */
+    margin-bottom: 1rem;
+}
+
+.admin-content h1 {
+    font-family: var(--font-sans);
+    font-size: var(--fz-heading-lg);
+    font-weight: 700;
+    color: var(--lightest-slate);
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+.admin-tagline.main-tagline {
+    color: var(--slate);
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: var(--fz-heading-lg); /* Make as big as name */
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+}
+
+.admin-description p {
+    color: var(--slate);
+    font-size: var(--fz-lg); /* 18px */
+    max-width: 540px;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+.admin-description p:last-child {
+    margin-bottom: 2rem;
+}
+
+.cta-button-intro {
+    display: inline-block;
+    color: var(--green);
+    background-color: transparent;
+    border: 1px solid var(--green);
+    padding: 1.25rem 1.75rem;
+    border-radius: var(--border-radius);
+    font-family: var(--font-mono);
+    font-size: var(--fz-sm); /* 14px */
+    text-decoration: none;
+    transition: var(--transition);
+    margin-top: 3rem; /* More space above button */
+}
+.cta-button-intro:hover {
+    background-color: var(--green-tint);
+}
+
+/* Main social links after intro text */
+.social-links.main-social-links {
+    display: flex;
+    gap: 2rem;
+    margin-top: 3rem;
+}
+.social-links.main-social-links .social-icon {
+    color: var(--light-slate);
+    font-size: 1.3rem;
+    transition: var(--transition);
+}
+.social-links.main-social-links .social-icon:hover {
+    color: var(--green);
+    transform: translateY(-3px);
+}
+
+/* Access Portals Section (Optional) */
 .access-portals {
-    padding: 100px 0; /* Add significant padding if it's a new section */
-    /* Rest of the styles for .access-portals, .flip-card etc. can be similar to before */
-    /* or simplified if not using flip cards anymore */
+    padding: 100px 0;
 }
 .section-title-portals {
     text-align: center;
@@ -345,39 +363,56 @@ body {
     margin-bottom: 40px;
     position: relative;
 }
-.section-title-portals span { /* For number like "01." */
+.section-title-portals span {
     color: var(--green);
     font-size: var(--fz-md);
     margin-right: 10px;
+}
+.access-portals .section-title-portals::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--green);
+    margin: 0.5rem auto 0;
+    position: absolute;
+    left: 50%;
+    margin-left: -30px;
+    bottom: -15px;
 }
 .portals-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
 }
-/* Styles for .flip-card, .quest-portal etc. from previous CSS can be used here */
-/* If removing flip cards, style new "work item" cards here */
 
+/* Styles for flip-card etc. from previous interactions can be placed here */
 
 /* Footer Styles */
 .footer {
     text-align: center;
-    padding: 25px 0;
-    margin-top: 50px;
+    padding: 2.5rem 0;
+    margin-top: 5rem;
 }
+.footer-content {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
 .footer-credit {
     font-family: var(--font-mono);
-    font-size: var(--fz-xs);
+    font-size: var(--fz-xs); /* 13px */
     color: var(--slate);
     line-height: 1.5;
     margin-bottom: 10px;
 }
+
 .footer-socials {
     margin-bottom: 10px;
 }
 .footer-socials a {
     color: var(--slate);
-    font-size: var(--fz-xl);
+    font-size: var(--fz-xl); /* 20px */
     margin: 0 10px;
     transition: var(--transition);
 }
@@ -390,32 +425,13 @@ body {
     font-size: var(--fz-xs);
     color: var(--gray);
 }
-.footer-copyright .current-year { color: var(--light-slate); }
-
-
-/* Notification Styles */
-.notification {
-    /* ... (styles from previous response, ensure vars like --darker, --accent are used) ... */
-    position: fixed; bottom: 20px; right: 20px;
-    background-color: var(--light-navy); /* Use a theme color */
-    color: var(--lightest-slate);
-    padding: 1rem 1.5rem; border-radius: var(--border-radius);
-    box-shadow: 0 5px 15px rgba(2,12,27,0.7);
-    transform: translateX(120%); opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease; z-index: 1100;
+.footer-copyright .current-year {
+    color: var(--light-slate);
 }
-.notification.active { transform: translateX(0); opacity: 1; }
-.notification-content { display: flex; align-items: center; gap: 0.75rem; }
-.notification-content i { font-size: 1.25rem; }
-.notification.success { border-left: 4px solid var(--green); }
-.notification.success i { color: var(--green); }
-.notification.error { border-left: 4px solid var(--danger, #e57373); } /* Define --danger if not present */
-.notification.error i { color: var(--danger, #e57373); }
-.notification.info { border-left: 4px solid var(--primary, #64b5f6); } /* Define --primary */
-.notification.info i { color: var(--primary, #64b5f6); }
 
+/* Mobile Navigation styles from previous responses */
 
-/* Responsive Adjustments for Header and Main Container */
+/* Responsive Adjustments */
 @media (max-width: 1080px) {
     .container { padding: 0 100px; }
     .header { padding: 0 40px; }
@@ -425,9 +441,9 @@ body {
 
 @media (max-width: 768px) {
     .container { padding: 0 50px; }
-    .header { padding: 0 25px; height: var(--nav-scroll-height); } /* Header always scrolled height on mobile */
+    .header { padding: 0 25px; height: var(--nav-scroll-height); } /* Header always scrolled height */
     .nav {
-        display: none; /* Hide desktop nav */
+        display: none; /* Hide desktop nav by default */
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -440,9 +456,9 @@ body {
         box-shadow: -10px 0px 30px -15px rgba(2,12,27,0.7);
         transform: translateX(100%);
         transition: var(--transition);
-        padding-top: 50px;
+        padding-top: 100px; /* More space for menu */
     }
-    .nav.active { /* JS will toggle this class */
+    .nav.active {
         display: flex;
         transform: translateX(0%);
     }
@@ -454,12 +470,22 @@ body {
     }
     .nav-link::before { font-size: var(--fz-sm); }
     .resume-link-btn { margin: 20px auto; font-size: var(--fz-md); padding: 1rem 2rem; }
-    .admin-login-btn { margin: 15px auto; }
 
-    .mobile-nav-toggle { display: block; z-index: 12; /* Ensure it's above mobile nav panel */}
-    .left-sidebar, .right-sidebar { display: none; } /* Hide sidebars on mobile */
+    .mobile-nav-toggle { display: block; }
+    .left-sidebar, .right-sidebar { display: none; } /* Hide sidebars */
     .portfolio-main { padding-top: var(--nav-scroll-height); }
-    .admin-brief { padding: 80px 0; } /* Adjust padding for hero */
+    .admin-brief { padding: 80px 0; } /* Adjust hero */
+    
+    /* Adjust the "Access Portals" section to remove grid */
+    .access-portals {
+      grid-template-columns: 1fr; /* stack vertically */
+        padding: 2rem 0; /* More padding */
+    }
+    .portals-grid {
+        display: flex;  /* Remove grid layout */
+        flex-direction: column; /* Stack children */
+        align-items: center; /* Center Horizontally */
+    }
 }
 
 @media (max-width: 480px) {
