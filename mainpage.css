@@ -1,17 +1,17 @@
 /* style.css */
 :root {
-    --dark-navy: #0a192f;
-    --light-navy: #112240;
-    --lightest-navy: #233554;
-    --slate: #8892b0;
-    --light-slate: #a8b2d1;
-    --lightest-slate: #ccd6f6;
-    --white: #e6f1ff;
-    --accent: #64ffda; /* Teal/Cyan accent color from screenshot */
-    --accent-tint: rgba(100, 255, 218, 0.1);
+    --dark-navy: #0a192f;      /* Main background */
+    --light-navy: #112240;     /* Slightly lighter background elements */
+    --lightest-navy: #233554;  /* Borders, lines */
+    --slate: #8892b0;          /* Body text, secondary text */
+    --light-slate: #a8b2d1;     /* Lighter text, icons */
+    --lightest-slate: #ccd6f6;  /* Headings, primary text */
+    --white: #e6f1ff;          /* Almost white text, can be same as lightest-slate */
+    --accent: #64ffda;         /* Teal/Cyan accent color from screenshot */
+    --accent-tint: rgba(100, 255, 218, 0.1); /* For hover effects on accent elements */
 
     --font-sans: 'Inter', sans-serif;
-    --font-mono: 'Space Grotesk', monospace; /* For headings or code-like text */
+    --font-mono: 'Space Grotesk', monospace;
 
     --fz-xxs: 12px;
     --fz-xs: 13px;
@@ -22,14 +22,15 @@
     --fz-xxl: 22px;
     --fz-heading-sm: 24px;
     --fz-heading-md: 32px;
-    --fz-heading-lg: 48px;
-    --fz-heading-xl: 60px;
+    --fz-heading-lg: 48px; /* Approx for "I love exploring..." */
+    --fz-heading-xl: 70px; /* Approx for "Yashita Namdeo." */
+
 
     --border-radius: 4px;
     --nav-height: 100px;
-    --sidebar-width: 40px; /* Width of the fixed sidebars */
-    --content-padding-x: 150px; /* Horizontal padding for main content */
-    --content-padding-y: 100px; /* Vertical padding for main content sections */
+    --sidebar-width: 40px;
+    --content-padding-x: 150px;
+    --content-padding-y: 100px;
     
     --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
     --transition: all 0.25s var(--easing);
@@ -56,7 +57,7 @@ body {
     font-size: var(--fz-md);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-x: hidden;
 }
 
 /* Header */
@@ -70,7 +71,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 50px;
-    background-color: rgba(10, 25, 47, 0.85); /* Slight transparency */
+    background-color: rgba(10, 25, 47, 0.85);
     backdrop-filter: blur(10px);
     z-index: 11;
     transition: var(--transition);
@@ -79,14 +80,15 @@ body {
 .logo-container .logo {
     color: var(--accent);
     font-family: var(--font-mono);
-    font-size: var(--fz-xxl); /* Adjust as needed */
+    font-size: 32px; /* Adjust for 'Y' logo size */
     font-weight: 700;
     text-decoration: none;
-    /* Basic hexagon shape attempt with text, SVG would be better */
-    /* width: 42px; height: 48px; line-height: 48px; text-align: center; */
-    /* background-color: var(--accent); color: var(--dark-navy); clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); */
+    /* For a simple hexagon, pure CSS is tricky. SVG is best. */
+    /* This is a placeholder for the 'Y' in a hexagon */
+    border: 2px solid var(--accent);
+    padding: 5px 10px; 
+    border-radius: var(--border-radius); /* Simplified logo */
 }
-
 
 .main-nav {
     display: flex;
@@ -142,12 +144,12 @@ body {
 }
 
 .left-sidebar {
-    left: 40px; /* Adjust as needed */
+    left: 40px;
     right: auto;
 }
 
 .right-sidebar {
-    right: 40px; /* Adjust as needed */
+    right: 40px;
     left: auto;
 }
 
@@ -160,7 +162,7 @@ body {
     margin: 0;
 }
 
-.social-sidebar ul::after { /* Line below icons */
+.social-sidebar ul::after {
     content: '';
     display: block;
     width: 1px;
@@ -188,6 +190,7 @@ body {
     font-size: var(--fz-xs);
     letter-spacing: 0.1em;
     writing-mode: vertical-rl;
+    text-orientation: mixed;
     margin: 20px auto;
     padding: 10px;
     color: var(--light-slate);
@@ -198,26 +201,26 @@ body {
 .email-sidebar a:hover,
 .email-sidebar a:focus {
     color: var(--accent);
-    transform: translateY(-3px); /* Adjust for vertical text */
+    /* transform: translateY(-3px); Removed for vertical text, as it might look odd */
 }
 
-.email-sidebar::after { /* Line below email */
+.email-sidebar::after {
     content: '';
     display: block;
     width: 1px;
     height: 90px;
-    margin: 20px auto 0; /* Adjust margin for vertical layout */
+    margin: 20px auto 0; /* Adjust if needed for vertical layout */
     background-color: var(--light-slate);
 }
 
 
 /* Content Wrapper */
 .content-wrapper {
-    padding-left: var(--content-padding-x);
-    padding-right: var(--content-padding-x);
-    padding-top: var(--nav-height); /* Space for fixed header */
-    max-width: 1600px; /* Max width of content area */
-    margin: 0 auto; /* Center content */
+    padding-left: calc(var(--content-padding-x) + var(--sidebar-width)); /* Adjusted for sidebars */
+    padding-right: calc(var(--content-padding-x) + var(--sidebar-width));/* Adjusted for sidebars */
+    padding-top: var(--nav-height);
+    max-width: 1600px;
+    margin: 0 auto;
     min-height: 100vh;
 }
 
@@ -228,7 +231,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    padding: var(--content-padding-y) 0; /* Vertical padding */
+    padding: var(--content-padding-y) 0;
+    max-width: 1000px; /* Constrain width of hero text */
 }
 
 .hero-section .intro-hello {
@@ -239,23 +243,23 @@ body {
 }
 
 .hero-section .intro-name {
-    color: var(--white);
-    font-size: clamp(40px, 8vw, var(--fz-heading-xl)); /* Responsive font size */
+    color: var(--lightest-slate); /* Was --white, using --lightest-slate from screenshot */
+    font-size: var(--fz-heading-xl);
     font-weight: 700;
-    margin: 0 0 10px;
+    margin: 0 0 5px; /* Reduced margin */
     line-height: 1.1;
 }
 
 .hero-section .intro-tagline {
-    color: var(--lightest-slate);
-    font-size: clamp(30px, 7vw, var(--fz-heading-lg)); /* Responsive font size */
-    font-weight: 600;
+    color: var(--slate); /* Was --lightest-slate, using --slate from screenshot for "I love..." */
+    font-size: var(--fz-heading-lg);
+    font-weight: 600; /* Slightly less bold than name */
     margin: 0 0 25px;
     line-height: 1.2;
 }
 
 .hero-section .intro-bio {
-    max-width: 550px; /* Limit width of bio */
+    max-width: 550px;
     color: var(--slate);
     font-size: var(--fz-lg);
     margin-bottom: 40px;
@@ -285,10 +289,18 @@ body {
 .content-section {
     padding-top: var(--content-padding-y);
     padding-bottom: var(--content-padding-y);
-    max-width: 1000px; /* Max width for text-heavy sections */
+    max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0; /* For scroll animation */
+    transform: translateY(20px); /* For scroll animation */
+    transition: opacity 0.6s var(--easing), transform 0.6s var(--easing);
 }
+.content-section.visible { /* Class added by JS */
+    opacity: 1;
+    transform: translateY(0);
+}
+
 
 .content-section h2 {
     display: flex;
@@ -299,13 +311,13 @@ body {
     font-size: clamp(var(--fz-heading-sm), 5vw, var(--fz-heading-md));
     font-family: var(--font-sans);
     font-weight: 600;
-    color: var(--white);
+    color: var(--lightest-slate);
     white-space: nowrap;
 }
 .content-section h2 span {
     color: var(--accent);
     font-family: var(--font-mono);
-    font-size: calc(var(--fz-heading-md) * 0.7); /* Smaller than heading */
+    font-size: calc(var(--fz-heading-md) * 0.7);
     margin-right: 10px;
     font-weight: 400;
 }
@@ -314,7 +326,7 @@ body {
     content: '';
     display: block;
     position: relative;
-    top: -1px; /* Adjust alignment */
+    top: -1px;
     width: 300px;
     height: 1px;
     margin-left: 20px;
@@ -334,6 +346,9 @@ body {
     border-radius: var(--border-radius);
     box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
     transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .blog-post-card:hover {
@@ -342,7 +357,7 @@ body {
 }
 
 .blog-post-card h3 {
-    color: var(--white);
+    color: var(--lightest-slate);
     font-size: var(--fz-xl);
     margin-bottom: 10px;
 }
@@ -358,6 +373,7 @@ body {
     color: var(--light-slate);
     font-size: var(--fz-sm);
     margin-bottom: 20px;
+    flex-grow: 1; /* Allow paragraph to take available space */
 }
 
 .read-more-btn {
@@ -365,12 +381,30 @@ body {
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
     text-decoration: none;
+    align-self: flex-start; /* Align button to the start of the flex item */
 }
 .read-more-btn:hover {
     text-decoration: underline;
 }
 
-/* Footer at the very bottom */
+/* Contact Section specifics for centering */
+.contact-section {
+    text-align: center;
+}
+.contact-section h3 {
+    color: var(--lightest-slate);
+    font-family: var(--font-mono);
+    font-size: clamp(var(--fz-md), 3vw, var(--fz-lg)); /* Responsive size */
+    margin-bottom: 20px;
+}
+.contact-section p {
+    color: var(--slate);
+    max-width: 600px;
+    margin: 0 auto 30px auto;
+}
+
+
+/* Footer */
 .site-footer-bottom {
     padding: 25px 0;
     text-align: center;
@@ -396,22 +430,27 @@ body {
     }
     .left-sidebar { left: 20px; }
     .right-sidebar { right: 20px; }
+     .content-wrapper {
+        padding-left: calc(var(--content-padding-x) / 2 + var(--sidebar-width)); /* Reduced padding */
+        padding-right: calc(var(--content-padding-x) / 2 + var(--sidebar-width));/* Reduced padding */
+    }
 }
 
 @media (max-width: 768px) {
     :root {
-        --content-padding-x: 50px;
+        --content-padding-x: 25px; /* Further reduce for main content area only */
         --nav-height: 80px;
+         --fz-heading-xl: 50px; /* Adjust hero font sizes */
+         --fz-heading-lg: 36px;
     }
     .site-header { padding: 0 25px; }
     
-    .main-nav { display: none; /* Basic mobile: hide nav, implement burger later */ }
-    /* TODO: Add mobile navigation (e.g., burger menu) */
+    .main-nav { display: none; /* TODO: Implement mobile navigation (burger menu) */ }
 
-    .left-sidebar, .right-sidebar { display: none; /* Hide sidebars on small screens */ }
+    .left-sidebar, .right-sidebar { display: none; /* Hide sidebars on smaller screens */ }
     
     .content-wrapper {
-        padding-left: var(--content-padding-x);
+        padding-left: var(--content-padding-x); /* Use the reduced padding directly */
         padding-right: var(--content-padding-x);
         padding-top: var(--nav-height);
     }
@@ -423,10 +462,16 @@ body {
     .content-section h2::after {
         width: 100px;
     }
+    .hero-section {
+        padding-left: 0; /* Ensure hero text is not overly indented */
+        padding-right: 0;
+    }
 }
 
 @media (max-width: 480px) {
     :root {
-        --content-padding-x: 25px;
+        --content-padding-x: 20px;
+         --fz-heading-xl: 40px;
+         --fz-heading-lg: 30px;
     }
 }
