@@ -3,150 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="CodeStruct - Civil Engineer and Data Scientist specializing in infrastructure innovation and data-driven solutions">
-    <meta name="keywords" content="civil engineering, data science, infrastructure, portfolio, machine learning">
-    <title>CodeStruct | Portfolio Hub</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Yashita Namdeo - Portfolio</title>
+    <!-- Link to Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="mainpage.css"> {/* MODIFIED: CSS filename changed */}
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="particles-background" id="particles-js"></div>
-    <div id="bridge-model"></div> 
-    
-    <div class="container">
-        <header class="header">
-            <div class="logo">sumo<span>imps</span></div>
-            <nav class="nav">
-                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
-                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a> {/* MODIFIED: Links to auth.html */}
-            </nav>
-        </header>
+    <header class="site-header">
+        <div class="logo-container">
+            <!-- For a simple text logo -->
+            <a href="#" class="logo">Y</a>
+            <!-- If you have an SVG for the hexagon 'Y' logo, you can place it here -->
+        </div>
+        <nav class="main-nav">
+            <a href="#about"><span>01.</span> About</a>
+            <a href="#experience"><span>02.</span> Experience</a>
+            <a href="#projects"><span>03.</span> Projects</a>
+            <a href="#blogs"><span>04.</span> Blogs</a>
+            <a href="#contact"><span>05.</span> Contact</a>
+        </nav>
+        <a href="YOUR_RESUME_LINK.pdf" target="_blank" class="resume-button">Resume</a>
+    </header>
 
-        <main class="portfolio-main">
-            <section class="admin-brief">
-                <div class="admin-avatar">
-                    <img src="profile-image.jpg" alt="Sumo The Styleful" class="profile-img">
-                </div>
-                <div class="admin-content">
-                    <h1><span class="highlight" id="profile-name">sumouli Pramanik</span></h1>
-                    <p class="admin-tagline" id="profile-tagline">Civil Engineer | Data Scientist | Infrastructure Consultant</p>
-                    <div class="admin-description">
-                        <p id="profile-description-1">I transform raw data into resilient infrastructure. With dual expertise in civil engineering and machine learning, I build bridges between physical construction and digital innovation.</p>
-                        <p id="profile-description-2">This portfolio hub showcases my technical capabilities, project achievements, and the intersection of engineering precision with data-driven insights.</p>
-                    </div>
-                    <div class="social-links">
-                        <a href="#" id="linkedin-url" class="social-icon"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" id="github-url" class="social-icon"><i class="fab fa-github"></i></a>
-                        <a href="#" id="twitter-url" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-            </section>
+    <aside class="social-sidebar left-sidebar">
+        <ul>
+            <li><a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a></li>
+            <li><a href="https://linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a href="https://instagram.com/yourusername" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a></li>
+            <li><a href="https://twitter.com/yourusername" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a></li>
+            <!-- Add other social icons as needed -->
+        </ul>
+    </aside>
 
-            <section class="access-portals">
-                <div class="flip-card quest-portal">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="portal-icon"><i class="fas fa-project-diagram"></i></div>
-                            <h3 id="projects-title">Quest Board/Projects</h3>
-                            <div class="quest-preview">
-                                <div class="quest-tag" id="project-1">Bridge Health AI</div>
-                                <div class="quest-tag" id="project-2">Smart City Analytics</div>
-                                <div class="quest-tag" id="project-3">Structural ML</div>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <h3>Project Details</h3>
-                            <p>Explore innovative engineering projects combining civil engineering with data science.</p>
-                            <div class="enter-btn">
-                                <span id="projects-btn-text">View Projects</span> <span><i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="projects.html" class="card-link"></a>
-                </div>
+    <aside class="email-sidebar right-sidebar">
+        <a href="mailto:yashita.namdeo2000@gmail.com">yashita.namdeo2000@gmail.com</a>
+    </aside>
 
-                <div class="flip-card xp-portal">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="portal-icon"><i class="fas fa-chart-bar"></i></div>
-                            <h3 id="skills-title">Skills XP Dashboard</h3>
-                            <div class="xp-preview">
-                                <div class="xp-bar" style="--xp:90%">
-                                    <span id="skill-1-name">Python</span>
-                                </div>
-                                <div class="xp-bar" style="--xp:85%">
-                                    <span id="skill-2-name">AutoCAD</span>
-                                </div>
-                                <div class="xp-bar" style="--xp:78%">
-                                    <span id="skill-3-name">Machine Learning</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <h3>Skill Proficiency</h3>
-                            <p>Detailed breakdown of technical skills and expertise levels in various domains.</p>
-                            <div class="enter-btn">
-                                <span id="skills-btn-text">Explore Skills</span> <span><i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="skills.html" class="card-link"></a>
-                </div>
+    <div class="content-wrapper">
+        <section id="hero" class="hero-section">
+            <p class="intro-hello">Hello, my name is</p>
+            <h1 class="intro-name">Yashita Namdeo.</h1>
+            <h2 class="intro-tagline">I love exploring new things!</h2>
+            <p class="intro-bio">
+                I'm a Final Year Computer Science Engineering Student at SVVV, Indore. 
+                Primarily interested in Web Development and Data Science. 
+                I enjoy learning new skills and implementing them in real life!
+            </p>
+            <a href="#contact" class="cta-button">Get In Touch</a>
+        </section>
 
-                <div class="flip-card contact-portal">
-                    <div class="flip-card-inner">
-                        <div class="flip-card-front">
-                            <div class="portal-icon"><i class="fas fa-envelope"></i></div>
-                            <h3 id="contact-title">Contact/Hire Me</h3>
-                            <div class="contact-options">
-                                <div class="contact-method" id="contact-method-1">Email</div>
-                                <div class="contact-method" id="contact-method-2">Calendly</div>
-                                <div class="contact-method" id="contact-method-3">Consultation</div>
-                            </div>
-                        </div>
-                        <div class="flip-card-back">
-                            <h3>Get In Touch</h3>
-                            <p>Reach out for collaborations, consultations, or project inquiries.</p>
-                            <div class="enter-btn">
-                                <span id="contact-btn-text">Get in Touch</span> <span><i class="fas fa-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="contact.html" class="card-link"></a>
-                </div>
-            </section>
-        </main>
-        
-        <footer class="footer">
-            <div class="footer-content">
-                <div class="footer-logo">Code<span>Struct</span></div>
-                <div class="footer-links">
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
-                </div>
-                <div class="footer-copyright">
-                    &copy; <span class="current-year"></span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
-                </div>
+        <section id="about" class="content-section">
+            <h2><span>01.</span> About Me</h2>
+            <p>Detailed information about me will go here. I am passionate about technology and continuously learning...</p>
+            <!-- Add more content -->
+        </section>
+
+        <section id="experience" class="content-section">
+            <h2><span>02.</span> Experience</h2>
+            <p>My professional experience and internships will be listed here...</p>
+            <!-- Example Experience Item -->
+            <div class="experience-item">
+                <h3>Software Engineer Intern - Tech Company (Summer 202X)</h3>
+                <ul>
+                    <li>Developed new features for a web application using React and Node.js.</li>
+                    <li>Collaborated with a team of developers in an agile environment.</li>
+                </ul>
             </div>
+            <!-- Add more experience items -->
+        </section>
+
+        <section id="projects" class="content-section">
+            <h2><span>03.</span> Projects</h2>
+            <p>Here are some of the projects I've worked on...</p>
+            <!-- Example Project Item -->
+            <div class="project-item">
+                <h3>Project Title 1</h3>
+                <p>A brief description of the project, technologies used, and a link to the project if available.</p>
+                <a href="#">View Project</a> <a href="#">Source Code</a>
+            </div>
+            <!-- Add more project items -->
+        </section>
+        
+        <section id="blogs" class="blogs-section content-section">
+            <h2><span>04.</span> Blogs</h2>
+            <div class="blog-post-grid">
+                <div class="blog-post-card">
+                    <h3>My First Blog Post</h3>
+                    <p class="blog-date">May 12, 2025</p>
+                    <p>A short summary of what this blog post is about. It could be about a recent tech discovery, a project walkthrough, or my learning journey...</p>
+                    <a href="#" class="read-more-btn">Read More</a>
+                </div>
+                <div class="blog-post-card">
+                    <h3>Understanding Asynchronous JavaScript</h3>
+                    <p class="blog-date">April 20, 2025</p>
+                    <p>Exploring callbacks, promises, and async/await in JavaScript to handle asynchronous operations effectively...</p>
+                    <a href="#" class="read-more-btn">Read More</a>
+                </div>
+                <!-- Add more blog post cards here -->
+            </div>
+        </section>
+
+        <section id="contact" class="content-section">
+            <h2><span>05.</span> What's Next?</h2>
+            <h3>Get In Touch</h3>
+            <p>My inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you! Feel free to reach out about opportunities, collaborations, or just to connect.</p>
+            <a href="mailto:yashita.namdeo2000@gmail.com" class="cta-button">Say Hello</a>
+        </section>
+        
+        <footer class="site-footer-bottom">
+            <p>Designed & Built by Yashita Namdeo</p>
+            <p><a href="https://github.com/yourusername/portfolio-v2" target="_blank">View Source on GitHub</a></p>
         </footer>
     </div>
 
-    <div class="admin-panel" id="adminPanel">
-        <!-- Content for admin panel (if it were a modal) would go here. -->
-        <!-- Since navigation is to auth.html, this might be minimal or removed if not used for other popups. -->
-    </div>
-
-    <div class="notification" id="notification">
-        <div class="notification-content">
-            <i class="fas fa-check-circle"></i>
-            <span id="notification-message"></span>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="mainpage.js"></script> {/* MODIFIED: JS filename changed */}
+    <script src="script.js"></script>
 </body>
 </html>
