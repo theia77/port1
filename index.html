@@ -44,7 +44,7 @@
             </div>
             
             <div class="cta-container">
-                <a href="mainpage.html" class="cta-button"> {/* MODIFIED: Ensures it points to mainpage.html */}
+                <a href="mainpage.html" class="cta-button">
                     Enter SumoVerse
                     <svg class="arrow-icon" viewBox="0 0 24 24">
                         <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
@@ -67,7 +67,10 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <!-- Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    
+    <!-- Firebase Initialization -->
+    <script type="module" src="firebase-init.js"></script>
     <!-- Main JS for this page -->
-    <script src="main.js"></script> 
+    <script type="module" src="main.js"></script> {/* Ensure main.js is treated as a module if it imports Firebase */}
 </body>
 </html>
