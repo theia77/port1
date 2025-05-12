@@ -160,44 +160,19 @@ body {
 /* Admin Brief Section */
 .admin-brief {
     display: flex;
-    gap: 3rem; /* This gap will apply if other elements were next to admin-content */
-    align-items: center; /* Vertically aligns content if admin-content had varying height */
-    justify-content: center; /* Horizontally centers admin-content if .admin-brief is full width */
+    gap: 3rem; 
+    align-items: center; 
+    justify-content: center; 
     margin: 5rem 0;
     animation: fadeIn 1s ease-out 0.8s both;
-    text-align: left; /* Default, adjust if centering of text itself is desired */
+    text-align: left; 
 }
 
 /* Styles for admin-avatar and profile-img removed/commented out as profile photo is removed */
-/*
-.admin-avatar {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, var(--primary), var(--accent));
-    flex-shrink: 0;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
-    border: 4px solid rgba(248, 250, 252, 0.1);
-    position: relative;
-    animation: avatarPulse 4s infinite alternate, rotateIn 1.5s ease-out;
-}
-
-.profile-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.admin-avatar:hover .profile-img {
-    transform: scale(1.1);
-}
-*/
 
 .admin-content {
-    /* max-width: 700px; /* Or any width you prefer */
-    /* margin: 0 auto; /* To center the content block if its parent is wider */
+    /* max-width: 700px; */
+    /* margin: 0 auto; */
 }
 
 
@@ -309,11 +284,12 @@ body {
     opacity: 0;
 }
 
-.flip-card:nth-child(1) { --card-index: 1; }
-.flip-card:nth-child(2) { --card-index: 2; }
-.flip-card:nth-child(3) { --card-index: 3; }
-.flip-card:nth-child(4) { --card-index: 4; } /* Education Card */
-.flip-card:nth-child(5) { --card-index: 5; } /* Blog Card */
+.flip-card:nth-child(1) { --card-index: 1; } /* Projects */
+.flip-card:nth-child(2) { --card-index: 2; } /* Skills */
+.flip-card:nth-child(3) { --card-index: 3; } /* Education */
+.flip-card:nth-child(4) { --card-index: 4; } /* Blog */
+.flip-card:nth-child(5) { --card-index: 5; } /* Experience */
+.flip-card:nth-child(6) { --card-index: 6; } /* Contact */
 
 
 .flip-card-inner {
@@ -362,23 +338,21 @@ body {
     text-align: center;
 }
 
-/* Existing Card Specific Styles */
+/* Card Specific Styles */
 .flip-card.quest-portal .flip-card-front { border-color: var(--accent); }
 .flip-card.xp-portal .flip-card-front { border-color: var(--primary); }
+.flip-card.education-portal .flip-card-front { border-color: var(--accent); } 
+.flip-card.blog-portal .flip-card-front { border-color: var(--primary); } 
+.flip-card.experience-portal .flip-card-front { border-color: var(--secondary); } /* New: Green for Experience */
 .flip-card.contact-portal .flip-card-front { border-color: var(--secondary); }
+
 
 .flip-card.quest-portal .flip-card-back { background: linear-gradient(135deg, rgba(124, 58, 237, 0.9), rgba(79, 37, 150, 0.9)); }
 .flip-card.xp-portal .flip-card-back { background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(29, 78, 216, 0.9)); }
-.flip-card.contact-portal .flip-card-back { background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.9)); }
-
-/* New Card Specific Styles: Education & Blog */
-.flip-card.education-portal .flip-card-front { border-color: var(--accent); } /* Purple */
-.flip-card.education-portal .portal-icon { color: var(--accent); }
 .flip-card.education-portal .flip-card-back { background: linear-gradient(135deg, rgba(124, 58, 237, 0.9), rgba(79, 37, 150, 0.9)); }
-
-.flip-card.blog-portal .flip-card-front { border-color: var(--primary); } /* Blue */
-.flip-card.blog-portal .portal-icon { color: var(--primary); }
 .flip-card.blog-portal .flip-card-back { background: linear-gradient(135deg, rgba(37, 99, 235, 0.9), rgba(29, 78, 216, 0.9)); }
+.flip-card.experience-portal .flip-card-back { background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.9)); } /* New: Green gradient */
+.flip-card.contact-portal .flip-card-back { background: linear-gradient(135deg, rgba(16, 185, 129, 0.9), rgba(5, 150, 105, 0.9)); }
 
 
 .flip-card-back h3 {
@@ -388,7 +362,7 @@ body {
 }
 
 .flip-card-back p {
-    margin-bottom: 1rem; /* Reduced margin as button is removed */
+    margin-bottom: 1rem; 
     font-size: 1.1rem;
     max-width: 80%;
 }
@@ -405,14 +379,14 @@ body {
 .portal-icon {
     font-size: 2.5rem;
     margin-bottom: 1.75rem;
-    /* Default color set per card type below */
 }
 
 .flip-card.quest-portal .portal-icon { color: var(--accent); }
 .flip-card.xp-portal .portal-icon { color: var(--primary); }
+.flip-card.education-portal .portal-icon { color: var(--accent); }
+.flip-card.blog-portal .portal-icon { color: var(--primary); }
+.flip-card.experience-portal .portal-icon { color: var(--secondary); } /* New: Green icon */
 .flip-card.contact-portal .portal-icon { color: var(--secondary); }
-/* .flip-card.education-portal .portal-icon already set */
-/* .flip-card.blog-portal .portal-icon already set */
 
 
 .flip-card-front h3 {
@@ -448,11 +422,6 @@ body {
     border-radius: 15px;
     transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
-.xp-bar.animated::before { 
-    /* width: var(--xp); This is handled by setting --xp and the transition */
-}
-
 
 .xp-bar span {
     position: absolute;
@@ -509,8 +478,8 @@ body {
     background: rgba(16, 185, 129, 0.3);
 }
 
-/* New Preview Tags for Education and Blog Cards */
-.education-preview, .blog-preview {
+/* Preview Tags for Education, Blog, and Experience Cards */
+.education-preview, .blog-preview, .experience-preview {
     display: flex;
     gap: 0.75rem;
     flex-wrap: wrap;
@@ -543,32 +512,19 @@ body {
     background: rgba(37, 99, 235, 0.3);
 }
 
-
-/* Enter Button Styles - Removed/Commented out as button is removed */
-/*
-.enter-btn {
-    margin-top: 2rem; 
-    display: inline-flex; 
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 600;
-    color: var(--secondary); 
+.exp-tag { /* New styles for experience tags */
+    background: rgba(16, 185, 129, 0.2); /* Secondary (green) related */
+    color: var(--light);
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 500;
     transition: var(--transition);
-    cursor: pointer; 
+}
+.experience-portal:hover .exp-tag {
+    background: rgba(16, 185, 129, 0.3);
 }
 
-.enter-btn span {
-    transition: transform 0.3s;
-}
-
-.flip-card:hover .enter-btn { 
-    color: var(--light); 
-}
-
-.flip-card:hover .enter-btn span { 
-    transform: translateX(8px);
-}
-*/
 
 /* Footer */
 .footer {
@@ -624,14 +580,14 @@ body {
     height: 100%;
     background-color: rgba(10, 15, 28, 0.9);
     z-index: 1000;
-    display: none; /* Hidden by default */
+    display: none; 
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(5px);
 }
 
 .admin-panel.active {
-    display: flex; /* Shown when active class is added */
+    display: flex; 
 }
 
 .admin-panel-content {
@@ -678,11 +634,11 @@ body {
 }
 
 .admin-edit-section {
-    display: none; /* Hidden by default */
+    display: none; 
 }
 
 .admin-edit-section.active {
-    display: block; /* Shown when active */
+    display: block; 
 }
 
 .admin-login-section h3,
@@ -761,7 +717,7 @@ body {
 
 .preview-container {
     margin-top: 1rem;
-    display: none; /* Hidden by default */
+    display: none; 
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -770,7 +726,7 @@ body {
 }
 
 .preview-container.active {
-    display: block; /* Shown when active */
+    display: block; 
 }
 
 #image-preview {
@@ -831,18 +787,18 @@ body {
 }
 
 .admin-tab-content {
-    display: none; /* Hidden by default */
+    display: none; 
 }
 
 .admin-tab-content.active {
-    display: block; /* Shown when active */
+    display: block; 
 }
 
 .error-message {
     color: var(--danger);
     margin-top: 1rem;
     font-size: 0.9rem;
-    display: none; /* Hidden by default */
+    display: none; 
 }
 
 /* Notification */
@@ -855,13 +811,13 @@ body {
     padding: 1rem 1.5rem;
     border-radius: 8px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transform: translateX(120%); /* Start off-screen */
+    transform: translateX(120%); 
     transition: transform 0.3s ease;
     z-index: 1100; 
 }
 
 .notification.active {
-    transform: translateX(0); /* Slide in */
+    transform: translateX(0); 
 }
 
 .notification-content {
@@ -943,12 +899,12 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 992px) { /* Adjust breakpoint for nav link wrapping */
+@media (max-width: 992px) { 
     .nav {
-        gap: 1rem; /* Reduce gap slightly for more links */
+        gap: 1rem; 
     }
     .nav-link {
-        font-size: 0.9rem; /* Slightly smaller font for nav links */
+        font-size: 0.9rem; 
     }
 }
 
@@ -956,7 +912,7 @@ body {
 @media (max-width: 768px) {
     .admin-brief {
         flex-direction: column;
-        text-align: center; /* Center content text when stacked */
+        text-align: center; 
         margin: 3rem 0;
     }
     
@@ -969,7 +925,7 @@ body {
     }
     
     .access-portals {
-        grid-template-columns: 1fr; /* Stack cards on smaller screens */
+        grid-template-columns: 1fr; 
     }
     
     .admin-panel-content { 
@@ -985,34 +941,34 @@ body {
         padding: 0.5rem 0.75rem;
         font-size: 0.9rem;
     }
-    .nav { /* Ensure nav wraps and centers links when header stacks */
+    .nav { 
         justify-content: center;
         width: 100%;
-        gap: 0.75rem; /* Further adjust gap for stacked nav */
+        gap: 0.75rem; 
     }
     .nav-link {
-        padding: 0.5rem; /* More touch area for mobile */
+        padding: 0.5rem; 
     }
 }
 
 @media (max-width: 480px) {
     .header {
         flex-direction: column;
-        gap: 1.5rem; /* Increased gap for better separation when stacked */
+        gap: 1.5rem; 
         text-align: center;
     }
     
     .nav {
-        justify-content: space-around; /* Space out nav links more evenly */
-        flex-wrap: wrap; /* Ensure wrapping if too many items */
+        justify-content: space-around; 
+        flex-wrap: wrap; 
     }
     
     .flip-card {
         height: auto; 
-        min-height: 380px; /* Adjust min-height for smaller screens */
+        min-height: 380px; 
     }
     .flip-card-front, .flip-card-back {
-        padding: 2rem; /* Adjust padding on small screens */
+        padding: 2rem; 
     }
     
     .admin-panel-header { 
@@ -1027,9 +983,9 @@ body {
         padding: 1.5rem;
     }
     .admin-content h1 {
-        font-size: 2rem; /* Further reduce heading size */
+        font-size: 2rem; 
     }
     .admin-tagline {
-        font-size: 1.1rem; /* Reduce tagline size */
+        font-size: 1.1rem; 
     }
 }
