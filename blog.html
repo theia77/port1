@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Blog Insights and Articles - SumoVerse">
+    <meta name="keywords" content="blog, articles, insights, portfolio, civil engineering, data science, technology">
+    <title>Blog Insights</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="blog.css">
+</head>
+<body>
+    <div class="particles-background" id="particles-js"></div>
+    <div id="bridge-model"></div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="logo">Sumo<span>Verse</span></div>
+            <nav class="nav">
+                <a href="mainpage.html" class="nav-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
+            </nav>
+        </header>
+
+        <main class="blog-main">
+            <div class="page-header">
+                <h1 id="blog-page-main-title">Blog <span class="highlight" id="blog-page-highlight-title">Insights</span></h1>
+                <p class="page-description" id="blog-page-description">Sharing thoughts, articles, and discoveries at the intersection of engineering, data, and innovation.</p>
+            </div>
+
+            <div class="blog-grid" id="blog-grid-container">
+                <!-- Static Example Blog Post (Fallback) -->
+                <!-- This will be replaced by blog.js if data is found in localStorage -->
+                <div class="blog-entry-card" data-blog-id="static-post-1">
+                    <div class="blog-entry-image-container">
+                        <img src="placeholder-blog-image.jpg" alt="Blog post illustration" class="blog-entry-image">
+                    </div>
+                    <div class="blog-entry-content">
+                        <div class="blog-entry-header">
+                            <h2 class="post-title">The Future of AI in Structural Analysis</h2>
+                            <span class="post-date">October 26, 2025</span>
+                        </div>
+                        <p class="post-excerpt">Exploring how artificial intelligence is revolutionizing the way we analyze and design structures, from predictive maintenance to generative design...</p>
+                        <div class="post-meta">
+                            <div class="post-tags">
+                                <span class="tag">AI</span><span class="tag">Structural Engineering</span><span class="tag">Innovation</span>
+                            </div>
+                            <a href="#" class="read-more-link">Read More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Static Example -->
+
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">Blog<span>Feed</span></div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; <span id="current-year-blog">2025</span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="notification-message"></span>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- Firebase Initialization -->
+    <script type="module" src="firebase-init.js"></script>
+    <script type="module" src="blog.js"></script>
+</body>
+</html>
