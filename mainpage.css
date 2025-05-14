@@ -11,9 +11,9 @@
     --accent-dark: #B76A59;
     --gray: #8C8278; /* Warm Gray */
     --light-gray: #EAE5DD; /* Light Warm Gray/Beige */
-    --danger: #ef4444;
-    --success: #22c55e;
-    --warning: #f59e0b;
+    --danger: #E57373; /* Kept original, adjust if needed */
+    --success: #66BB6A; /* Kept original, adjust if needed */
+    --warning: #FFB74D; /* Kept original, adjust if needed */
     --transition: all 0.3s ease;
 }
 
@@ -330,7 +330,7 @@ body {
 }
 
 .flip-card-back {
-    color: var(--light); /* New text color */
+    color: #ffffff; /* Ensuring text on gradient is white for contrast */
     transform: rotateY(180deg);
     display: flex;
     flex-direction: column;
@@ -348,12 +348,12 @@ body {
 .flip-card.experience-portal .flip-card-front { border-left: 5px solid var(--secondary); }
 .flip-card.contact-portal .flip-card-front { border-left: 5px solid var(--secondary); }
 
-.flip-card.quest-portal .flip-card-back { background: linear-gradient(135deg, rgba(206, 123, 105, 0.9), rgba(183, 106, 89, 0.9)); } /* New Accent (Soft Coral) */
-.flip-card.xp-portal .flip-card-back { background: linear-gradient(135deg, rgba(141, 169, 196, 0.9), rgba(112, 140, 160, 0.9)); } /* New Primary (Muted Cadet Blue) */
-.flip-card.education-portal .flip-card-back { background: linear-gradient(135deg, rgba(206, 123, 105, 0.9), rgba(183, 106, 89, 0.9)); } /* New Accent */
-.flip-card.blog-portal .flip-card-back { background: linear-gradient(135deg, rgba(141, 169, 196, 0.9), rgba(112, 140, 160, 0.9)); } /* New Primary */
-.flip-card.experience-portal .flip-card-back { background: linear-gradient(135deg, rgba(214, 193, 128, 0.9), rgba(191, 174, 112, 0.9)); } /* New Secondary (Muted Gold) */
-.flip-card.contact-portal .flip-card-back { background: linear-gradient(135deg, rgba(214, 193, 128, 0.9), rgba(191, 174, 112, 0.9)); } /* New Secondary */
+.flip-card.quest-portal .flip-card-back { background: linear-gradient(135deg, rgba(206, 123, 105, 0.95), rgba(183, 106, 89, 0.95)); } /* New Accent (Soft Coral) */
+.flip-card.xp-portal .flip-card-back { background: linear-gradient(135deg, rgba(141, 169, 196, 0.95), rgba(112, 140, 160, 0.95)); } /* New Primary (Muted Cadet Blue) */
+.flip-card.education-portal .flip-card-back { background: linear-gradient(135deg, rgba(206, 123, 105, 0.95), rgba(183, 106, 89, 0.95)); } /* New Accent */
+.flip-card.blog-portal .flip-card-back { background: linear-gradient(135deg, rgba(141, 169, 196, 0.95), rgba(112, 140, 160, 0.95)); } /* New Primary */
+.flip-card.experience-portal .flip-card-back { background: linear-gradient(135deg, rgba(214, 193, 128, 0.95), rgba(191, 174, 112, 0.95)); } /* New Secondary (Muted Gold) */
+.flip-card.contact-portal .flip-card-back { background: linear-gradient(135deg, rgba(214, 193, 128, 0.95), rgba(191, 174, 112, 0.95)); } /* New Secondary */
 
 .flip-card-back h3 {
     font-family: 'Space Grotesk', sans-serif;
@@ -434,7 +434,7 @@ body {
     font-size: 0.9rem;
     font-weight: 600;
     z-index: 1;
-    /* text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5); /* Light shadow for light theme if needed */
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.3); /* Subtle light shadow for better readability on gradient */
 }
 
 /* Quest Tags */
@@ -455,19 +455,19 @@ body {
     border: 1px solid transparent;
 }
 
-.quest-tag { background: rgba(206, 123, 105, 0.1); border-color: rgba(206, 123, 105, 0.3); } /* New Accent (Soft Coral) */
+.quest-tag { background: rgba(206, 123, 105, 0.1); border-color: rgba(206, 123, 105, 0.3); color: var(--accent-dark) } /* New Accent (Soft Coral) */
 .flip-card:hover .quest-tag { background: rgba(206, 123, 105, 0.2); }
 
-.edu-tag { background: rgba(206, 123, 105, 0.1); border-color: rgba(206, 123, 105, 0.3); } /* New Accent */
+.edu-tag { background: rgba(206, 123, 105, 0.1); border-color: rgba(206, 123, 105, 0.3); color: var(--accent-dark)} /* New Accent */
 .flip-card:hover .edu-tag { background: rgba(206, 123, 105, 0.2); }
 
-.blog-tag { background: rgba(141, 169, 196, 0.1); border-color: rgba(141, 169, 196, 0.3); } /* New Primary (Muted Cadet Blue) */
+.blog-tag { background: rgba(141, 169, 196, 0.1); border-color: rgba(141, 169, 196, 0.3); color: var(--primary-dark)} /* New Primary (Muted Cadet Blue) */
 .flip-card:hover .blog-tag { background: rgba(141, 169, 196, 0.2); }
 
-.exp-tag { background: rgba(214, 193, 128, 0.1); border-color: rgba(214, 193, 128, 0.3); } /* New Secondary (Muted Gold) */
+.exp-tag { background: rgba(214, 193, 128, 0.1); border-color: rgba(214, 193, 128, 0.3); color: var(--secondary-dark)} /* New Secondary (Muted Gold) */
 .flip-card:hover .exp-tag { background: rgba(214, 193, 128, 0.2); }
 
-.contact-method { background: rgba(214, 193, 128, 0.1); border-color: rgba(214, 193, 128, 0.3); } /* New Secondary */
+.contact-method { background: rgba(214, 193, 128, 0.1); border-color: rgba(214, 193, 128, 0.3); color: var(--secondary-dark)} /* New Secondary */
 .flip-card:hover .contact-method { background: rgba(214, 193, 128, 0.2); }
 
 
@@ -727,7 +727,7 @@ body {
     position: absolute;
     width: 100%;
     height: 2px;
-    bottom: -1rem;
+    bottom: -1rem; /* Ensure this lines up correctly with padding-bottom */
     left: 0;
     background-color: var(--accent); /* Underline with new accent color */
 }
@@ -825,6 +825,7 @@ body {
     50% { transform: scale(1.2); }
 }
 
+/* avatarPulse might not be used if avatar is removed, but kept for completeness if re-added */
 @keyframes avatarPulse { /* Updated for new theme's primary */
     0% { box-shadow: 0 10px 30px rgba(141, 169, 196, 0.2); } /* Muted Cadet Blue shadow */
     100% { box-shadow: 0 10px 30px rgba(141, 169, 196, 0.4); }
