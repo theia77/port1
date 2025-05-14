@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional Work Experience and Career Journey - SumoVerse">
+    <meta name="keywords" content="work experience, career, professional journey, portfolio, civil engineering, data science, projects">
+    <title>Work Experience</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="experience.css">
+</head>
+<body>
+    <div class="particles-background" id="particles-js"></div>
+    <div id="bridge-model"></div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="logo">Sumo<span>Verse</span></div>
+            <nav class="nav">
+                <a href="mainpage.html" class="nav-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
+            </nav>
+        </header>
+
+        <main class="experience-main">
+            <div class="page-header">
+                <h1 id="experience-page-main-title">Professional <span class="highlight" id="experience-page-highlight-title">Journey</span></h1>
+                <p class="page-description" id="experience-page-description">An overview of my work experience, key responsibilities, and impactful contributions.</p>
+            </div>
+
+            <div class="experience-grid" id="experience-grid-container">
+                <!-- Static Example Experience Entry (Fallback) -->
+                <!-- This will be replaced by experience.js if data is found in localStorage -->
+                <div class="experience-entry-card" data-experience-id="lead-data-scientist-static">
+                    <div class="experience-entry-header">
+                        <i class="fas fa-briefcase entry-icon"></i>
+                        <div class="experience-title-group">
+                            <h2 class="job-title">Lead Data Scientist</h2>
+                            <p class="company-name">Innovatech Solutions Inc.</p>
+                        </div>
+                        <span class="employment-dates">Jan 2021 - Present</span>
+                    </div>
+                    <div class="experience-details">
+                        <p class="job-description">Leading a team of data scientists to develop and deploy machine learning models for infrastructure analytics. Responsible for project lifecycle management, from conceptualization to production deployment, focusing on predictive maintenance and operational efficiency for large-scale civil projects.</p>
+                        
+                        <div class="key-responsibilities">
+                            <h3>Key Achievements & Responsibilities:</h3>
+                            <ul>
+                                <li>Successfully deployed a predictive maintenance model for bridge structures, reducing inspection costs by 20%.</li>
+                                <li>Mentored junior data scientists, fostering a culture of innovation and continuous learning.</li>
+                                <li>Collaborated with civil engineering teams to integrate data-driven insights into project planning and execution.</li>
+                                <li>Presented research findings at 3+ industry conferences.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="related-content-section">
+                        <h3><i class="fas fa-cogs"></i> Skills & Technologies Used</h3>
+                        <div class="skills-tags">
+                            <span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">Scikit-learn</span><span class="tag">AWS</span>
+                            <span class="tag">SQL</span><span class="tag">Project Management</span><span class="tag">Agile</span><span class="tag">Data Visualization</span>
+                        </div>
+                    </div>
+
+                    <div class="related-content-section">
+                        <h3><i class="fas fa-project-diagram"></i> Key Projects Involved</h3>
+                        <ul class="related-items-list">
+                            <li>
+                                <a href="#" class="related-item-link">SmartBridge AI Platform</a>
+                                <p class="related-item-description">Led the development of an AI platform for real-time structural health monitoring of city bridges.</p>
+                                <div class="related-item-tags">
+                                    <span class="tag">AI</span><span class="tag">IoT</span><span class="tag">Predictive Maintenance</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- End Static Example -->
+
+            </div>
+        </main>
+        
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-logo">Career<span>Path</span></div>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                </div>
+                <div class="footer-copyright">
+                    &copy; <span id="current-year-experience">2025</span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <div class="notification" id="notification">
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="notification-message"></span>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- Firebase Initialization -->
+    <script type="module" src="firebase-init.js"></script>
+    <script type="module" src="experience.js"></script>
+</body>
+</html>
