@@ -5,11 +5,11 @@ document.addEventListener('DOMContentLoaded', function() {
         particlesJS('particles-js', {
             particles: {
                 number: { value: 60, density: { enable: true, value_area: 900 } },
-                color: { value: "#3b82f6" },
+                color: { value: "#8DA9C4" }, // New Primary: Muted Cadet Blue
                 shape: { type: "circle", stroke: { width: 0, color: "#000000" }},
-                opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }},
+                opacity: { value: 0.4, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }}, // Slightly less opaque for light bg
                 size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1, sync: false }},
-                line_linked: { enable: true, distance: 150, color: "#7c3aed", opacity: 0.3, width: 1 },
+                line_linked: { enable: true, distance: 150, color: "#D6C180", opacity: 0.25, width: 1 }, // New Secondary: Muted Gold, adjusted opacity
                 move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out", bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 }}
             },
             interactivity: {
@@ -41,13 +41,13 @@ document.addEventListener('DOMContentLoaded', function() {
         bridgeContainer.appendChild(renderer.domElement);
 
         const createBridge = () => {
+            const deckMaterial = new THREE.MeshBasicMaterial({ color: 0x8DA9C4, wireframe: true, transparent: true, opacity: 0.6 }); // New Primary: Muted Cadet Blue
             const deckGeometry = new THREE.BoxGeometry(10, 0.4, 2);
-            const deckMaterial = new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true, transparent: true, opacity: 0.7 });
             const deck = new THREE.Mesh(deckGeometry, deckMaterial);
             scene.add(deck);
             
+            const towerMaterial = new THREE.MeshBasicMaterial({ color: 0xCE7B69, wireframe: true, transparent: true, opacity: 0.6 }); // New Accent: Soft Coral/Terracotta
             const towerGeometry = new THREE.BoxGeometry(0.4, 3, 0.4);
-            const towerMaterial = new THREE.MeshBasicMaterial({ color: 0x7c3aed, wireframe: true, transparent: true, opacity: 0.7 });
             
             const leftTower = new THREE.Mesh(towerGeometry, towerMaterial);
             leftTower.position.set(-3, 1.5, 0);
@@ -57,35 +57,44 @@ document.addEventListener('DOMContentLoaded', function() {
             rightTower.position.set(3, 1.5, 0);
             scene.add(rightTower);
             
+            const cableMaterial = new THREE.MeshBasicMaterial({ color: 0xD6C180, wireframe: true, transparent: true, opacity: 0.6 }); // New Secondary: Muted Gold
             const cableGeometry = new THREE.CylinderGeometry(0.03, 0.03, 7, 8); 
-            const cableMaterial = new THREE.MeshBasicMaterial({ color: 0x10b981, wireframe: true, transparent: true, opacity: 0.7 });
             
             const mainCable = new THREE.Mesh(cableGeometry, cableMaterial);
             mainCable.rotation.z = Math.PI / 2; 
             mainCable.position.set(0, 3, 0); 
             scene.add(mainCable);
             
+            // Add thinner suspender cables for more detail (optional)
+            for (let i = -4; i <= 4; i += 2) {
+                if (i === 0) continue; // Skip middle
+                const suspenderGeometry = new THREE.CylinderGeometry(0.02, 0.02, 3, 6);
+                const suspender = new THREE.Mesh(suspenderGeometry, cableMaterial); // Use same cable material
+                suspender.position.set(i, 1.5, 0); // Adjust Y to connect deck to main cable level
+                scene.add(suspender);
+            }
+
             return { deck, leftTower, rightTower, mainCable };
         };
         
         const bridge = createBridge();
         
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7); // Slightly brighter ambient for light theme
         scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.9); // Slightly brighter directional
         directionalLight.position.set(0, 10, 5);
         scene.add(directionalLight);
 
         function animate() {
             requestAnimationFrame(animate);
             
-            bridge.deck.rotation.y += 0.005;
-            bridge.leftTower.rotation.y += 0.007;
-            bridge.rightTower.rotation.y += 0.007;
-            bridge.mainCable.rotation.x += 0.003; 
+            bridge.deck.rotation.y += 0.003; // Slower rotation
+            bridge.leftTower.rotation.y += 0.004;
+            bridge.rightTower.rotation.y += 0.004;
+            bridge.mainCable.rotation.x += 0.002;
             
-            const time = Date.now() * 0.001;
-            bridge.deck.position.y = Math.sin(time) * 0.1;
+            const time = Date.now() * 0.0005; // Slower oscillation
+            bridge.deck.position.y = Math.sin(time) * 0.05; // Smaller oscillation
             
             renderer.render(scene, camera);
         }
@@ -106,9 +115,8 @@ document.addEventListener('DOMContentLoaded', function() {
             const barTop = bar.getBoundingClientRect().top;
             
             if (barTop < windowHeight * 0.85 && barTop > -bar.offsetHeight) { 
-                bar.classList.add('animated');
-            } else {
-                // bar.classList.remove('animated'); 
+                // The --xp variable is set inline in HTML, CSS handles animation with it.
+                // No specific class like 'animated' needed if CSS transition on width with var(--xp) is used.
             }
         });
     };
@@ -118,32 +126,29 @@ document.addEventListener('DOMContentLoaded', function() {
         currentYearElement.textContent = new Date().getFullYear();
     }
 
-    // Admin Panel Functionality (largely for modal or auth.html)
     const adminPanel = document.getElementById('adminPanel');
-    // const adminLoginBtn = document.querySelector('.admin-login-btn'); // This is now a direct link
     const closeAdminPanelBtn = document.querySelector('.close-admin-panel');
-    const adminLoginSection = document.getElementById('adminLogin'); // Likely on auth.html
-    const adminEditSection = document.getElementById('adminEdit'); // Likely on auth.html
-    const adminLoginForm = document.getElementById('adminLoginForm'); // Likely on auth.html
-    const adminTabs = document.querySelectorAll('.admin-tab'); // Likely on auth.html
-    const adminTabContents = document.querySelectorAll('.admin-tab-content'); // Likely on auth.html
-    const loginError = document.getElementById('login-error'); // Likely on auth.html
     
-    const profileForm = document.getElementById('profileForm'); // Likely on auth.html
-    const skillsForm = document.getElementById('skillsForm'); // Likely on auth.html
-    const projectsForm = document.getElementById('projectsForm'); // Likely on auth.html
-    const contactForm = document.getElementById('contactForm'); // Likely on auth.html
+    // Admin Panel related JS - This would typically live on auth.html or be loaded by it.
+    // For simplicity, keeping structure but noting its primary context.
+    const adminLoginSection = document.getElementById('adminLogin'); 
+    const adminEditSection = document.getElementById('adminEdit'); 
+    const adminLoginForm = document.getElementById('adminLoginForm'); 
+    const adminTabs = document.querySelectorAll('.admin-tab'); 
+    const adminTabContents = document.querySelectorAll('.admin-tab-content'); 
+    const loginError = document.getElementById('login-error'); 
     
-    // The adminLoginBtn click event listener that prevented default and showed a modal is removed
-    // as the button now navigates to auth.html.
+    const profileForm = document.getElementById('profileForm'); 
+    const skillsForm = document.getElementById('skillsForm'); 
+    const projectsForm = document.getElementById('projectsForm'); 
+    const contactForm = document.getElementById('contactForm'); 
 
-    if (closeAdminPanelBtn && adminPanel) { // This can remain if adminPanel is used for other modal purposes
+    if (closeAdminPanelBtn && adminPanel) { 
         closeAdminPanelBtn.addEventListener('click', () => {
             adminPanel.classList.remove('active');
         });
     }
     
-    // The following admin-related JS would primarily live on or be loaded by auth.html
     if (adminLoginForm) { 
         adminLoginForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -154,6 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const username = usernameInput.value;
             const password = passwordInput.value;
             
+            // Dummy credentials
             if (username === 'admin' && password === 'password123') { 
                 if(adminLoginSection) adminLoginSection.style.display = 'none';
                 if(adminEditSection) adminEditSection.classList.add('active');
@@ -190,25 +196,27 @@ document.addEventListener('DOMContentLoaded', function() {
             range.addEventListener('input', () => {
                 valueDisplay.textContent = `${range.value}%`;
             });
-            valueDisplay.textContent = `${range.value}%`; 
+            valueDisplay.textContent = `${range.value}%`; // Initialize
         }
     });
     
-    function loadContentIntoForms() { // This would be on auth.html
-        const profileNameEl = document.getElementById('profile-name'); // On mainpage
-        const editNameEl = document.getElementById('edit-name'); // On admin form
-        if (profileNameEl && editNameEl) editNameEl.value = profileNameEl.textContent;
-
-        const profileTaglineEl = document.getElementById('profile-tagline'); // On mainpage
-        const editTaglineEl = document.getElementById('edit-tagline'); // On admin form
-        if (profileTaglineEl && editTaglineEl) editTaglineEl.value = profileTaglineEl.textContent;
-        // ... (Continue for all form fields, carefully checking element existence if this script runs on mainpage)
+    function loadContentIntoForms() { 
+        // This function is more complex if data is to be fetched or pre-filled
+        // from main page elements, especially since admin is on a separate auth.html.
+        // For now, it's a placeholder.
+        // Example for one field (if it were on the same page or data passed):
+        const profileNameOnMainPage = document.getElementById('profile-name')?.textContent;
+        const editNameInput = document.getElementById('edit-name');
+        if (profileNameOnMainPage && editNameInput) {
+            editNameInput.value = profileNameOnMainPage;
+        }
+        // Add similar for other editable fields if needed.
     }
     
-    const profileImageInput = document.getElementById('edit-profile-image'); // On admin form
-    const imagePreview = document.getElementById('image-preview'); // On admin form
-    const previewContainer = document.querySelector('.preview-container'); // On admin form
-    
+    const profileImageInput = document.getElementById('edit-profile-image'); 
+    const imagePreview = document.getElementById('image-preview'); 
+    const previewContainer = document.querySelector('.preview-container'); 
+
     if (profileImageInput && imagePreview && previewContainer) {
         profileImageInput.addEventListener('change', function() {
             if (this.files && this.files[0]) {
@@ -222,14 +230,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Form submission handlers - these would typically be on auth.html
     if (profileForm) {
         profileForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            // Example: Update main page content if this script were to also handle that (complex)
-            const editNameVal = document.getElementById('edit-name')?.value;
-            const profileNameDisplay = document.getElementById('profile-name'); // On mainpage
-            if(editNameVal && profileNameDisplay) profileNameDisplay.textContent = editNameVal; // This direct update is tricky across pages
+            // Logic to save profile data (e.g., to localStorage or send to server)
+            // Then update the main page if elements are accessible or via stored data on reload.
             showNotification('Profile updated successfully!');
         });
     }
@@ -259,11 +264,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     window.addEventListener('scroll', animateXPBars);
-    animateXPBars(); // Initial check
+    animateXPBars(); // Initial check on load
     
-    // Close modal if clicked outside (if adminPanel is used as a modal)
     window.addEventListener('click', (e) => {
-        if (adminPanel && e.target === adminPanel) { // If adminPanel is an active modal
+        if (adminPanel && e.target === adminPanel && adminPanel.classList.contains('active')) { 
             adminPanel.classList.remove('active');
         }
     });
