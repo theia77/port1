@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
-    <div id="hero-3d-container"></div>
+    <div id="hero-3d-container"></div> <!-- Container for the Three.js 3D model -->
 
     <div class="container">
         <header class="header">
@@ -29,7 +29,9 @@
             <h1 class="title">
                 <span class="title-line title-line-1">Building <span class="highlight">Smarter</span></span>
                 <span class="title-line title-line-2">Infrastructure with</span>
-                <span class="title-line title-line-3 typing-text"></span>
+                <span class="title-line title-line-3"> <!-- Typing text will appear here -->
+                    <span class="typing-text"></span>
+                </span>
             </h1>
             
             <p class="subtitle" id="landing-subtitle">Civil Engineer | Data Scientist | Infrastructure Consultant</p>
@@ -72,19 +74,20 @@
                 <a href="terms.html">Terms of Service</a>
             </div>
             <div class="footer-copyright">
-                &copy; <span class="current-year">2025</span> SumoVerse. All rights reserved.
+                &copy; <span class="current-year">2024</span> SumoVerse. All rights reserved.
             </div>
         </div>
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script> <!-- Added ScrollTrigger -->
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script> <!-- Kept if needed for 3D model, though current model is non-interactive directly -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
-    <script type="module" src="firebase-init.js"></script>
+    <script type="module" src="firebase-init.js"></script> <!-- If you use Firebase -->
     <script type="module" src="main.js"></script>
 </body>
 </html>
