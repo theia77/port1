@@ -1,324 +1,249 @@
-
-/* Education Page Styles */
+/* education.css - Architect's Study Theme (Continuation) */
 :root {
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --secondary: #10b981;
-    --secondary-dark: #059669;
-    --dark: #0f172a;
-    --darker: #0a0f1c;
-    --light: #f8fafc;
-    --accent: #7c3aed; /* Used for highlights */
-    --accent-alt: #f59e0b; /* A warm color for education theme elements if needed */
-    --gray: #64748b;
-    --light-gray: #e2e8f0;
-    --card-bg: rgba(15, 23, 42, 0.7); /* Slightly transparent dark bg for cards */
-    --card-border: rgba(124, 58, 237, 0.2); /* Accent border */
-    --transition: all 0.3s ease;
+    --bg-color: #FCFBF8;
+    --text-color: #5A534A;
+    --primary-accent: #8DA9C4; /* Muted Cadet Blue */
+    --primary-accent-dark: #708CA0;
+    --primary-accent-rgb: 141, 169, 196;
+    --secondary-accent: #D6C180; /* Soft Honey/Muted Gold */
+    --secondary-accent-dark: #BFAE70;
+    --secondary-accent-rgb: 214, 193, 128;
+    --tertiary-accent: #CE7B69; /* Soft Coral/Terracotta */
+    --tertiary-accent-rgb: 206, 123, 105;
+    --gray: #8C8278;
+    --light-gray: #EAE5DD;
+    --card-bg: #FFFFFF;
+    --card-border: var(--light-gray);
+    --card-shadow: 0 6px 18px rgba(90, 83, 74, 0.08);
+    --card-hover-shadow: 0 10px 25px rgba(90, 83, 74, 0.12);
+    --transition-fast: all 0.3s ease-in-out;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    margin: 0;
     font-family: 'Inter', sans-serif;
-    color: var(--light);
-    background-color: var(--dark);
-    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-.particles-background, #bridge-model { /* Shared styles from other pages */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-#bridge-model { opacity: 0.15; }
+.particles-background, #bridge-model-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; }
+#bridge-model-bg { z-index: -1; opacity: 0.12; }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; position: relative; z-index: 1; }
 
-.header { /* Shared styles */
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2rem 0;
-    border-bottom: 1px solid rgba(248, 250, 252, 0.1);
-}
+/* Header (Shared) */
+.header { display: flex; justify-content: space-between; align-items: center; padding: 2rem 0; border-bottom: 1px solid var(--light-gray); animation: slideInDown 0.7s ease-out; }
+@keyframes slideInDown { from { transform: translateY(-100%); opacity: 0;} to { transform: translateY(0); opacity: 1;} }
+.logo { font-family: 'Space Grotesk', sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--text-color); text-decoration: none; }
+.logo span { color: var(--primary-accent); }
+.nav { display: flex; flex-wrap: wrap; gap: 1rem; }
+.nav-link { color: var(--gray); text-decoration: none; font-weight: 600; font-size: 0.90rem; position: relative; display: flex; align-items: center; gap: 0.3rem; padding: 0.3rem 0.4rem; transition: var(--transition-fast); border-bottom: 2px solid transparent; }
+.nav-link:hover, .nav-link.active { color: var(--primary-accent); border-bottom-color: var(--primary-accent); }
+.nav-link i { margin-right: 0.2em; font-size: 0.9em; }
+.admin-login-btn { background-color: rgba(var(--tertiary-accent-rgb), 0.1); border: 1px solid rgba(var(--tertiary-accent-rgb), 0.3); color: var(--tertiary-accent) !important; padding: 0.5rem 1rem !important; border-radius: 50px !important; font-weight: 600;}
+.admin-login-btn:hover { background-color: rgba(var(--tertiary-accent-rgb), 0.2); transform: translateY(-1px); border-bottom-color: transparent !important; }
 
-.logo { /* Shared styles */
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2rem;
-    font-weight: 700;
-}
-.logo span { color: var(--secondary); }
 
-.nav { display: flex; gap: 1.5rem; } /* Shared styles */
-.nav-link {
-    color: var(--light);
-    text-decoration: none;
-    font-weight: 600;
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: var(--transition);
-}
-.nav-link:hover { color: var(--secondary); }
-.admin-login-btn { /* Shared styles */
-    background-color: rgba(124, 58, 237, 0.2);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-}
-.admin-login-btn:hover { background-color: rgba(124, 58, 237, 0.3); }
+/* Page Header (Shared) */
+.page-header { margin-bottom: 3.5rem; text-align: center; animation: fadeInHeader 0.8s ease-out 0.2s backwards; }
+@keyframes fadeInHeader { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.page-header h1 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.5rem, 5vw, 3.2rem); margin-bottom: 1rem; color: var(--text-color); }
+.page-header .highlight { color: var(--primary-accent); }
+.page-description { max-width: 750px; margin: 0 auto; color: var(--gray); font-size: clamp(1rem, 2vw, 1.15rem); }
 
 /* Education Main Content */
-.education-main {
-    padding: 3rem 0;
-}
-
-.page-header { /* Shared styles */
-    margin-bottom: 3rem;
-    text-align: center;
-}
-.page-header h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 3rem;
-    margin-bottom: 1rem;
-}
-.highlight { color: var(--accent); } /* Shared highlight */
-.page-description {
-    max-width: 700px;
-    margin: 0 auto;
-    color: var(--gray);
-    font-size: 1.1rem;
-}
+.education-main { padding: 3rem 0; }
 
 .education-grid {
     display: grid;
-    grid-template-columns: 1fr; /* Each entry takes full width */
-    gap: 2.5rem;
+    grid-template-columns: 1fr; /* Single column for education entries */
+    gap: 2.5rem; /* Space between education cards */
 }
 
 .education-entry-card {
     background: var(--card-bg);
-    border-radius: 15px;
-    padding: 2rem 2.5rem;
+    border-radius: 12px;
     border: 1px solid var(--card-border);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    padding: 2rem;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: cardFadeInUp 0.6s ease-out forwards;
+}
+.education-entry-card:nth-child(odd) { animation-delay: 0.1s; }
+.education-entry-card:nth-child(even) { animation-delay: 0.2s; }
+
+@keyframes cardFadeInUp {
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .education-entry-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(var(--accent-rgb, 124, 58, 237), 0.1); /* Use accent color for hover shadow */
+    transform: translateY(-6px);
+    box-shadow: var(--card-hover-shadow);
 }
 
 .education-entry-header {
     display: flex;
-    align-items: flex-start; /* Align icon and text block nicely */
-    gap: 1rem;
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid rgba(var(--accent-rgb, 124, 58, 237), 0.2);
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--light-gray);
 }
 
 .entry-icon {
-    font-size: 2.5rem;
-    color: var(--accent-alt); /* Use a distinct color for education icon */
-    margin-top: 0.25rem; /* Align with text */
+    font-size: 2.5rem; /* Larger icon */
+    color: var(--secondary-accent);
+    background-color: rgba(var(--secondary-accent-rgb), 0.1);
+    padding: 0.8rem;
+    border-radius: 50%;
+    min-width: 60px; /* Ensure icon container has fixed size */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.education-title-group {
-    flex-grow: 1;
-}
-
+.education-title-group { flex-grow: 1; }
 .degree-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.75rem;
-    color: var(--light);
-    margin-bottom: 0.25rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    margin-bottom: 0.2rem;
 }
-
 .university-name {
-    font-size: 1.1rem;
-    color: var(--secondary); /* Use secondary color for university */
+    font-size: 1rem;
+    color: var(--primary-accent);
     font-weight: 500;
-    margin-bottom: 0.5rem;
 }
 
 .graduation-year {
-    background-color: rgba(var(--accent-alt-rgb, 245, 158, 11), 0.2);
-    color: var(--accent-alt);
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
     font-size: 0.9rem;
     font-weight: 600;
-    white-space: nowrap;
+    color: var(--tertiary-accent);
+    background-color: rgba(var(--tertiary-accent-rgb), 0.1);
+    padding: 0.4rem 0.9rem;
+    border-radius: 20px;
 }
 
-.education-details {
-    margin-bottom: 1.5rem;
-}
-
+.education-details { margin-bottom: 1.5rem; }
 .gpa-achievements {
-    font-size: 1rem;
-    color: var(--light-gray);
-    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--gray);
+    margin-bottom: 0.5rem;
 }
-.gpa-achievements strong {
-    font-weight: 600;
-    color: var(--light);
-}
-
+.gpa-achievements strong { color: var(--text-color); }
 .education-description {
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: var(--gray);
     line-height: 1.7;
 }
 
-.related-content-section {
-    margin-top: 2rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(var(--light-rgb, 248, 250, 252), 0.1);
-}
-
+.related-content-section { margin-top: 2rem; }
 .related-content-section h3 {
     font-family: 'Space Grotesk', sans-serif;
     font-size: 1.3rem;
-    color: var(--primary);
+    color: var(--primary-accent);
     margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed var(--light-gray);
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
-.related-content-section h3 i {
-    font-size: 1.1em; /* Make icon slightly larger than text */
-}
-
+.related-content-section h3 i { font-size: 1.1rem; }
 
 .related-items-list {
     list-style: none;
     padding-left: 0;
 }
-
 .related-items-list li {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.2rem;
     padding: 1rem;
-    background: rgba(var(--darker-rgb, 10, 15, 28), 0.5);
+    background-color: rgba(var(--text-color-rgb, 90, 83, 74), 0.03); /* Very subtle bg for items */
     border-radius: 8px;
-    border-left: 3px solid var(--secondary);
+    border: 1px solid var(--light-gray);
 }
 
 .related-item-link {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
-    color: var(--light);
+    color: var(--text-color);
     text-decoration: none;
-    transition: var(--transition);
+    transition: var(--transition-fast);
     display: block;
     margin-bottom: 0.3rem;
 }
-.related-item-link:hover {
-    color: var(--secondary);
-    text-decoration: underline;
+.related-item-link:hover { color: var(--secondary-accent); }
+.related-item-link-static { /* For non-clickable items like coursework */
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-color);
+    display: block;
+    margin-bottom: 0.3rem;
 }
 
 .related-item-description {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: var(--gray);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.7rem;
 }
 
-.related-item-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-.related-item-tags .tag {
-    background-color: rgba(var(--primary-rgb, 37, 99, 235), 0.2);
-    color: var(--light);
-    padding: 0.25rem 0.6rem;
+.related-item-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tag {
+    background-color: rgba(var(--primary-accent-rgb), 0.1);
+    color: var(--primary-accent-dark, #708CA0);
+    padding: 0.3rem 0.7rem;
     border-radius: 15px;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border: 1px solid rgba(var(--primary-accent-rgb),0.15);
 }
 
+/* Footer (Shared) */
+.footer { padding: 2.5rem 0; border-top: 1px solid var(--light-gray); text-align: center; margin-top: 4rem; }
+.footer-content { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.footer-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-color); }
+.footer-logo span { color: var(--primary-accent); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { color: var(--gray); text-decoration: none; font-size: 0.9rem; transition: var(--transition-fast); }
+.footer-links a:hover { color: var(--primary-accent); }
+.footer-copyright { color: var(--gray); font-size: 0.85rem; }
 
-.footer { /* Shared styles */
-    margin-top: 5rem;
-    padding: 3rem 0;
-    border-top: 1px solid rgba(248, 250, 252, 0.1);
-}
-.footer-content, .footer-logo, .footer-links, .footer-copyright { /* Shared styles */
-    text-align: center;
-}
-.footer-content { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
-.footer-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; }
-.footer-logo span { color: var(--secondary); }
-.footer-links { display: flex; gap: 2rem; }
-.footer-links a { color: var(--gray); text-decoration: none; transition: var(--transition); }
-.footer-links a:hover { color: var(--light); }
-.footer-copyright { color: var(--gray); font-size: 0.9rem; }
-
-/* Notification Styles (shared) */
-.notification {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: var(--dark);
-    border-left-width: 4px;
-    border-left-style: solid;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    transform: translateX(120%);
-    transition: transform 0.3s ease;
-    z-index: 1100;
-}
+/* Notification (Shared) */
+.notification { position: fixed; bottom: 20px; right: 20px; background-color: var(--card-bg); border-left-width: 4px; border-left-style: solid; padding: 1.2rem 1.5rem; border-radius: 10px; box-shadow: 0 8px 20px rgba(var(--text-color-rgb,90,83,74), 0.15); transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55); z-index: 1100; color: var(--text-color); }
 .notification.active { transform: translateX(0); }
 .notification-content { display: flex; align-items: center; gap: 0.75rem; }
 .notification-content i { font-size: 1.25rem; }
+.notification.success { border-left-color: var(--secondary-accent); }
+.notification.success i { color: var(--secondary-accent); }
+.notification.error { border-left-color: var(--tertiary-accent); }
+.notification.error i { color: var(--tertiary-accent); }
+.notification.info { border-left-color: var(--primary-accent); }
+.notification.info i { color: var(--primary-accent); }
 
-.notification.success { border-left-color: var(--success); }
-.notification.success i { color: var(--success); }
-.notification.error { border-left-color: var(--danger); }
-.notification.error i { color: var(--danger); }
-.notification.info { border-left-color: var(--primary); } /* Example for info */
-.notification.info i { color: var(--primary); }
-
-
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
-    .page-header h1 { font-size: 2.5rem; }
-    .education-entry-card { padding: 1.5rem; }
-    .degree-title { font-size: 1.5rem; }
-    .university-name { font-size: 1rem; }
-    .related-content-section h3 { font-size: 1.2rem; }
-}
-
-@media (max-width: 480px) {
-    .header { flex-direction: column; gap: 1rem; text-align: center; }
-    .nav { width: 100%; justify-content: space-around; }
-    .page-header h1 { font-size: 2rem; }
-    .education-entry-header { flex-direction: column; align-items: stretch; }
+    .container { padding: 0 1.5rem; }
+    .education-entry-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .entry-icon { font-size: 2rem; padding: 0.7rem; min-width: 50px; height: 50px;}
+    .degree-title { font-size: 1.4rem; }
     .graduation-year { align-self: flex-start; margin-top: 0.5rem; }
-    .entry-icon { margin-bottom: 0.5rem; font-size: 2rem; }
+}
+@media (max-width: 480px) {
+    .container { padding: 0 1rem; }
+    .header { flex-direction: column; gap: 1rem; }
+    .nav { width: 100%; justify-content: space-around; }
+    .page-header h1 { font-size: clamp(2rem, 5vw, 2.5rem); }
+    .admin-login-btn {padding: 0.4rem 0.8rem !important; font-size: 0.8rem;}
 }
 
-/* For RGB variables if not globally defined */
-:root {
-    --accent-rgb: 124, 58, 237;
-    --accent-alt-rgb: 245, 158, 11;
-    --light-rgb: 248, 250, 252;
-    --darker-rgb: 10, 15, 28;
-    --primary-rgb: 37, 99, 235;
+:root { /* Define RGB for JS/shadows if needed */
+    --text-color-rgb: 90, 83, 74;
 }
