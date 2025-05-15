@@ -1,6 +1,16 @@
-// main.js (for index.html - Landing Page)
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize particles.js with "Architect's Study" theme
+
+document.addEventListener('DOMContentLoaded', () => {
+    // ... (your existing main.js code from previous response) ...
+    updateCurrentYear(); // Add this
+});
+
+function updateCurrentYear() { // Add this function if not present
+    const yearSpan = document.querySelector('.current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+}
+
     if (typeof particlesJS !== 'undefined') {
         particlesJS('particles-js', {
             particles: {
