@@ -1,32 +1,22 @@
-
 document.addEventListener('DOMContentLoaded', () => {
-    // ... (your existing main.js code from previous response) ...
-    updateCurrentYear(); // Add this
-});
-
-function updateCurrentYear() { // Add this function if not present
-    const yearSpan = document.querySelector('.current-year');
-    if (yearSpan) {
-        yearSpan.textContent = new Date().getFullYear();
-    }
-}
+    updateCurrentYear();
 
     if (typeof particlesJS !== 'undefined') {
         particlesJS('particles-js', {
             particles: {
-                number: { value: 40, density: { enable: true, value_area: 800 } }, // Fewer for a cleaner look
-                color: { value: "#8DA9C4" }, // Primary: Muted Cadet Blue
+                number: { value: 40, density: { enable: true, value_area: 800 } },
+                color: { value: "#8DA9C4" },
                 shape: { type: "circle" },
-                opacity: { value: 0.25, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.05, sync: false } }, // More subtle
-                size: { value: 2, random: true, anim: { enable: false } }, // Smaller, non-animated size
-                line_linked: { enable: true, distance: 180, color: "#D6C180", opacity: 0.15, width: 1 }, // Secondary: Muted Gold, more subtle
-                move: { enable: true, speed: 0.8, direction: "none", random: true, straight: false, out_mode: "out" } // Slower movement
+                opacity: { value: 0.25, random: true, anim: { enable: true, speed: 0.5, opacity_min: 0.05, sync: false } },
+                size: { value: 2, random: true, anim: { enable: false } },
+                line_linked: { enable: true, distance: 180, color: "#D6C180", opacity: 0.15, width: 1 },
+                move: { enable: true, speed: 0.8, direction: "none", random: true, straight: false, out_mode: "out" }
             },
             interactivity: {
                 detect_on: "canvas",
                 events: {
-                    onhover: { enable: true, mode: "grab" }, // Softer grab interaction
-                    onclick: { enable: false, mode: "push" } // Disabled click interaction for cleaner feel
+                    onhover: { enable: true, mode: "grab" },
+                    onclick: { enable: false, mode: "push" }
                 },
                 modes: {
                     grab: { distance: 150, line_opacity: 0.2 },
@@ -38,13 +28,11 @@ function updateCurrentYear() { // Add this function if not present
         });
     }
 
-    // Initialize 3D Bridge Model with "Architect's Study" theme
     initBridgeModel();
 
-    // Typing animation
     const typingText = document.querySelector('.typing-text');
     if (typingText) {
-        const words = ["Data Science", "AI Models", "Civil Engineering", "CodeStruct"];
+        const words = ["Data-Driven Design", "Smart Infrastructure", "AI-Powered Engineering", "Sustainable Solutions", "Resilient Urban Planning", "Predictive Analytics in Construction"];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;
@@ -54,8 +42,8 @@ function updateCurrentYear() { // Add this function if not present
 
         function type() {
             const currentWord = words[wordIndex];
-            // Ensure typingText starts empty or with a non-breaking space to maintain height
-            typingText.innerHTML = currentWord.substring(0, charIndex) + '<span class="cursor">|</span>';
+            // Relies on CSS for the blinking cursor via border-right
+            typingText.textContent = currentWord.substring(0, charIndex);
             
             if (!isDeleting && charIndex < currentWord.length) {
                 charIndex++;
@@ -71,27 +59,22 @@ function updateCurrentYear() { // Add this function if not present
                 setTimeout(type, isDeleting ? typeSpeed : delayBetweenWords);
             }
         }
-        // Initial delay for typing animation to start after other elements have animated in
-        setTimeout(type, parseFloat(getComputedStyle(document.querySelector('.title-line-2')).animationDelay.replace('s','')) * 1000 + 800); 
+        // Start typing after title line 3 animation (1.1s delay + 0.6s duration = 1.7s) + small buffer
+        setTimeout(type, 1800); 
     }
 
-
-    // CTA button confetti with "Architect's Study" theme colors
     const ctaButton = document.querySelector('.cta-button');
     if (ctaButton && typeof confetti === 'function') {
         ctaButton.addEventListener('click', function(e) {
-            // Allow default link behavior (navigation) unless a delay is explicitly needed
-            // e.preventDefault(); // Uncomment if navigation should be delayed
-
-            const duration = 1000; // Shorter confetti duration
+            const duration = 1000;
             const animationEnd = Date.now() + duration;
-            const defaults = { startVelocity: 25, spread: 360, ticks: 50, zIndex: 1001 }; // Ensure confetti is on top
+            const defaults = { startVelocity: 25, spread: 360, ticks: 50, zIndex: 1001 };
 
             function randomInRange(min, max) {
                 return Math.random() * (max - min) + min;
             }
 
-            const themeColorsConfetti = ['#8DA9C4', '#D6C180', '#CE7B69', '#FCFBF8']; // Architect's Study colors
+            const themeColorsConfetti = ['#8DA9C4', '#D6C180', '#CE7B69', '#FCFBF8'];
 
             const interval = setInterval(function() {
                 const timeLeft = animationEnd - Date.now();
@@ -111,21 +94,17 @@ function updateCurrentYear() { // Add this function if not present
                     colors: themeColorsConfetti
                 }));
             }, 200);
-
-            // If navigation was prevented:
-            // setTimeout(() => { window.location.href = this.getAttribute('href'); }, duration + 100);
         });
     }
 
-    // Counter animation
     function animateCounters() {
         const counters = document.querySelectorAll('.counter');
-        const speed = 180; // Slightly faster
+        const speed = 180; 
         
         counters.forEach(counter => {
             const target = +counter.getAttribute('data-target');
-            let count = 0; // Start from 0 for animation
-            counter.innerText = count; // Initialize display to 0
+            let count = 0; 
+            counter.innerText = count;
 
             const updateCount = () => {
                 const increment = target / speed;
@@ -134,8 +113,7 @@ function updateCurrentYear() { // Add this function if not present
                     counter.innerText = Math.ceil(count);
                     setTimeout(updateCount, 12); 
                 } else {
-                    counter.innerText = target; // Ensure exact target is displayed
-                    // Subtle pulse effect after counting finishes
+                    counter.innerText = target;
                     counter.style.transform = 'scale(1.1)';
                     setTimeout(() => { counter.style.transform = 'scale(1)'; }, 200);
                 }
@@ -146,36 +124,75 @@ function updateCurrentYear() { // Add this function if not present
 
     const statsContainer = document.querySelector('.stats-container');
     if (statsContainer) {
+        // GSAP animation for individual stat items
+        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            gsap.utils.toArray('.stat').forEach((stat, index) => {
+                gsap.fromTo(stat, 
+                    { opacity: 0, y: 20 },
+                    { 
+                        opacity: 1, 
+                        y: 0, 
+                        duration: 0.5, 
+                        delay: index * 0.1, // Stagger animation
+                        scrollTrigger: {
+                            trigger: statsContainer,
+                            start: "top 85%", // Start animation when statsContainer is 85% from top of viewport
+                            toggleActions: "play none none none", // Play once when triggered
+                        }
+                    }
+                );
+            });
+        }
+
+        // IntersectionObserver for counter animation (triggers after GSAP makes them visible)
         const observer = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
                 animateCounters();
-                observer.unobserve(statsContainer); // Animate only once
+                observer.unobserve(statsContainer); 
             }
         }, { threshold: 0.6 }); // Trigger when 60% visible
         observer.observe(statsContainer);
     }
     
-    // Mousemove parallax effect (kept subtle)
-    document.addEventListener('mousemove', function(e) {
-        const moveX = (e.clientX - window.innerWidth / 2) * 0.008; // Reduced intensity
-        const moveY = (e.clientY - window.innerHeight / 2) * 0.008; // Reduced intensity
-        
-        const titleElement = document.querySelector('.title');
-        const subtitleElement = document.querySelector('.subtitle');
-        const statsElement = document.querySelector('.stats-container');
-        const ctaElement = document.querySelector('.cta-container');
+    // Subtle Mousemove parallax effect for hero content - keep if desired
+    const heroMain = document.querySelector('.hero');
+    if (heroMain) { // Only apply if hero section exists
+        document.addEventListener('mousemove', function(e) {
+            const rect = heroMain.getBoundingClientRect();
+            // Check if mouse is roughly over the hero area to avoid parallax when mouse is far away
+            if (e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom) {
+                const moveX = (e.clientX - window.innerWidth / 2) * 0.008; 
+                const moveY = (e.clientY - window.innerHeight / 2) * 0.008; 
+                
+                const titleElement = document.querySelector('.title');
+                const subtitleElement = document.querySelector('.subtitle');
+                // Note: stats and cta containers already have CSS animations, parallax might conflict or be too much.
+                // Consider removing parallax from them if CSS animations are preferred.
+                // const statsElement = document.querySelector('.stats-container'); 
+                // const ctaElement = document.querySelector('.cta-container');
 
-        if (titleElement) { titleElement.style.transform = `translate(${moveX}px, ${moveY}px)`; }
-        if (subtitleElement) { subtitleElement.style.transform = `translate(${moveX * 1.2}px, ${moveY * 1.2}px)`; }
-        if (statsElement) { statsElement.style.transform = `translate(${moveX * 0.8}px, ${moveY * 0.8}px)`; }
-        if (ctaElement) { ctaElement.style.transform = `translate(${moveX * 0.6}px, ${moveY * 0.6}px)`; }
-    });
+                if (titleElement) { titleElement.style.transform = `translate(${moveX}px, ${moveY}px)`; }
+                // If subtitle also has CSS animation, this might override it.
+                // if (subtitleElement && !subtitleElement.style.animationName) { subtitleElement.style.transform = `translate(${moveX * 1.2}px, ${moveY * 1.2}px)`; }
+            }
+        });
+    }
 });
 
-// 3D Bridge Model with "Architect's Study" theme
+function updateCurrentYear() {
+    const yearSpan = document.querySelector('.current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+}
+
 function initBridgeModel() {
-    const container = document.getElementById('bridge-container');
-    if (!container || typeof THREE === 'undefined') return; 
+    const container = document.getElementById('hero-3d-container'); // Changed ID
+    if (!container || typeof THREE === 'undefined') {
+        console.warn('Three.js container not found or THREE is not defined.');
+        return;
+    }
 
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -184,63 +201,44 @@ function initBridgeModel() {
     renderer.setPixelRatio(window.devicePixelRatio);
     container.appendChild(renderer.domElement);
 
-    // Softer lighting for "Architect's Study"
-    const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.6); // Brighter ambient
+    const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.7); // Slightly brighter ambient
     scene.add(ambientLight);
     
-    const directionalLight = new THREE.DirectionalLight(0xFFEEDD, 0.4); // Warmer directional light
+    const directionalLight = new THREE.DirectionalLight(0xFFEEDD, 0.5); // Warmer directional
     directionalLight.position.set(5, 8, 3).normalize();
     scene.add(directionalLight);
     
-    // Point lights with theme colors, more subtle
-    const pointLight1 = new THREE.PointLight(0x8DA9C4, 0.5, 60); // Primary color
+    const pointLight1 = new THREE.PointLight(0x8DA9C4, 0.6, 70); // Primary color, slightly brighter
     pointLight1.position.set(8, 4, 8);
     scene.add(pointLight1);
     
-    const pointLight2 = new THREE.PointLight(0xD6C180, 0.4, 60); // Secondary color
+    const pointLight2 = new THREE.PointLight(0xD6C180, 0.5, 70); // Secondary color, slightly brighter
     pointLight2.position.set(-8, -3, -8);
     scene.add(pointLight2);
 
     const createBridgeSegment = (xOffset) => {
         const group = new THREE.Group();
-        
-        // Road with theme-aligned colors
-        const roadGeometry = new THREE.BoxGeometry(10, 0.4, 1.8); // Slightly thinner
-        const roadMaterial = new THREE.MeshPhongMaterial({ 
-            color: 0x8C8278, // Warm Gray from theme
-            specular: 0x5A534A, // Dark Taupe for subtle specular
-            shininess: 20
-        });
+        const roadGeometry = new THREE.BoxGeometry(10, 0.4, 1.8);
+        const roadMaterial = new THREE.MeshPhongMaterial({ color: 0x8C8278, specular: 0x5A534A, shininess: 20 });
         const road = new THREE.Mesh(roadGeometry, roadMaterial);
         road.position.set(xOffset, 0, 0);
         group.add(road);
         
-        // Pillars with theme color
-        const pillarGeometry = new THREE.CylinderGeometry(0.25, 0.4, 4.5, 8); // More slender
-        const pillarMaterial = new THREE.MeshPhongMaterial({ 
-            color: 0x8DA9C4, // Primary: Muted Cadet Blue
-            specular: 0x708CA0, // Primary Dark
-            shininess: 25,
-        });
-        
+        const pillarGeometry = new THREE.CylinderGeometry(0.25, 0.4, 4.5, 8);
+        const pillarMaterial = new THREE.MeshPhongMaterial({ color: 0x8DA9C4, specular: 0x708CA0, shininess: 25 });
         for (let z = -1; z <= 1; z += 2) { 
             const pillar = new THREE.Mesh(pillarGeometry, pillarMaterial);
-            pillar.position.set(xOffset, -2.25, z * 0.7); // Adjusted position
+            pillar.position.set(xOffset, -2.25, z * 0.7);
             group.add(pillar);
         }
         
-        // Cables with theme color
-        const cableMaterial = new THREE.LineBasicMaterial({ 
-            color: 0xD6C180, // Secondary: Muted Gold
-            linewidth: 1.5 // Thinner lines
-        });
-        
+        const cableMaterial = new THREE.LineBasicMaterial({ color: 0xD6C180, linewidth: 1.5 });
         for (let z = -1; z <= 1; z += 2) {
-            const points = [];
-            points.push(new THREE.Vector3(xOffset - 4.5, 1.8, z * 0.7)); // Adjusted cable points
-            points.push(new THREE.Vector3(xOffset, 0.2, z * 0.7));
-            points.push(new THREE.Vector3(xOffset + 4.5, 1.8, z * 0.7)); 
-            
+            const points = [
+                new THREE.Vector3(xOffset - 4.5, 1.8, z * 0.7),
+                new THREE.Vector3(xOffset, 0.2, z * 0.7),
+                new THREE.Vector3(xOffset + 4.5, 1.8, z * 0.7)
+            ];
             const cableGeometry = new THREE.BufferGeometry().setFromPoints(points);
             const cable = new THREE.Line(cableGeometry, cableMaterial);
             group.add(cable);
@@ -249,30 +247,44 @@ function initBridgeModel() {
     };
 
     const bridgeSegments = [];
-    // Fewer segments for a less cluttered background, or adjust xOffset increments
-    for (let x = -5; x <= 5; x += 10) { // Only two segments for simplicity, or adjust distance
+    for (let x = -5; x <= 5; x += 10) { 
         const segment = createBridgeSegment(x);
         scene.add(segment);
         bridgeSegments.push(segment);
     }
 
-    camera.position.set(0, 3, 12); // Adjusted camera for better view of simpler model
+    camera.position.set(0, 3, 12);
     camera.lookAt(0, 0, 0);
 
     let time = 0;
+    let mouseX = 0, mouseY = 0;
+    let targetCameraX = 0, targetCameraY = camera.position.y;
+
+    document.addEventListener('mousemove', (event) => {
+        mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        // Adjust target based on mouse position, scale effect for subtle follow
+        targetCameraX = mouseX * 0.5; 
+        targetCameraY = camera.position.y - mouseY * 0.3; // Adjust Y slightly, keep it mostly level
+    }, false);
+
     function animate() {
         requestAnimationFrame(animate);
-        time += 0.008; // Slower animation overall
+        time += 0.008; 
         
         bridgeSegments.forEach((segment, i) => {
-            segment.position.y = Math.sin(time + i * 0.8) * 0.08; // Softer sway
-            segment.rotation.y += 0.0005 * (i % 2 === 0 ? 1 : -1); // Very slow rotation
+            segment.position.y = Math.sin(time + i * 0.8) * 0.08; 
+            segment.rotation.y += 0.0005 * (i % 2 === 0 ? 1 : -1); 
         });
         
-        // Subtle point light animation
-        pointLight1.intensity = 0.4 + Math.sin(time * 1.5) * 0.2;
+        pointLight1.intensity = 0.5 + Math.sin(time * 1.5) * 0.2; // Adjusted base intensity
         pointLight2.position.x = Math.cos(time * 0.3) * 9;
         pointLight2.position.z = Math.sin(time * 0.3) * 9;
+
+        // Smooth camera movement towards target
+        camera.position.x += (targetCameraX - camera.position.x) * 0.02;
+        // camera.position.y += (targetCameraY - camera.position.y) * 0.02; // Optional: subtle Y movement
+        camera.lookAt(scene.position); // Keep looking at the center of the scene
         
         renderer.render(scene, camera);
     }
