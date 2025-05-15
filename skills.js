@@ -1,201 +1,151 @@
 // skills.js
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize particles.js
+import { db } from './firebase-init.js';
+import { collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore.js";
+
+function initParticles() { /* ... (copy common initParticles function here) ... */ }
+function updateCurrentYear() { /* ... (copy common updateCurrentYear function here) ... */ }
+
+function animateSkillsPage() {
+    gsap.from(".page-header", { duration: 0.8, y: 30, opacity: 0, ease: "power3.out", delay: 0.2 });
+    // Sections and skill bars animated after loading
+}
+
+function createSkillItemHTML(skill) {
+    return `
+        <div class="skill-item" data-skill-id="${skill.id}">
+            <span>${skill.name}</span>
+            <div class="skill-bar">
+                <div class="skill-level" style="width: ${skill.level || 0}%;"></div>
+            </div>
+        </div>
+    `;
+}
+
+function createSkillsCategoryHTML(category) {
+    const skillsHTML = category.skills.map(skill => createSkillItemHTML(skill)).join('');
+    return `
+        <section class="skills-category-section">
+            <h2 class="category-title"><i class="fas ${category.icon || 'fa-star'}"></i> ${category.name}</h2>
+            <div class="skills-grid">
+                ${skillsHTML}
+            </div>
+        </section>
+    `;
+}
+
+async function loadSkillsData() {
+    const layoutContainer = document.getElementById('skills-layout-container');
+    if (!layoutContainer) return;
+
+    try {
+        // Assuming skills are grouped by category in Firestore or fetched as a flat list and then grouped.
+        // For this example, let's assume a 'skillCategories' collection, where each doc has a 'name' and a subcollection 'skills'.
+        // Or, one 'skillsData' document that holds an array of categories, each with an array of skills.
+        // Simpler: one 'skills' collection with a 'category' field and 'level' field.
+
+        const skillsCol = collection(db, 'skills'); // Flat list of skills, each with a category field
+        const q = query(skillsCol, orderBy('category'), orderBy('name')); // Order by category, then name
+        const skillsSnapshot = await getDocs(q);
+        
+        const skillsByCategory = {};
+        skillsSnapshot.docs.forEach(doc => {
+            const skill = { id: doc.id, ...doc.data() };
+            if (!skillsByCategory[skill.category]) {
+                skillsByCategory[skill.category] = {
+                    name: skill.category, // You might want a display name for category
+                    icon: skill.categoryIcon || 'fa-tools', // Define icons based on category
+                    skills: []
+                };
+            }
+            skillsByCategory[skill.category].skills.push(skill);
+        });
+
+        const categoriesList = Object.values(skillsByCategory);
+
+        if (categoriesList.length > 0) {
+            layoutContainer.innerHTML = ''; // Clear static fallback
+            categoriesList.forEach(category => {
+                layoutContainer.innerHTML += createSkillsCategoryHTML(category);
+            });
+            gsap.from(".skills-category-section", { 
+                duration: 0.7, 
+                y: 25, 
+                opacity: 0, 
+                stagger: 0.2, 
+                ease: "power3.out",
+                delay: 0.4 
+            });
+            // Animate skill bars when they become visible (Intersection Observer is good for this)
+            // Simple immediate animation for now:
+            document.querySelectorAll('.skill-level').forEach(bar => {
+                // The width is already set by inline style from createSkillItemHTML
+                // If you want to animate from 0:
+                const targetWidth = bar.style.width;
+                bar.style.width = '0%'; // Reset for animation
+                gsap.to(bar, { duration: 1, width: targetWidth, ease: 'power2.out', delay: 0.8 });
+            });
+
+        } else {
+             gsap.from(".skills-category-section", { duration: 0.7, y: 25, opacity: 0, stagger: 0.2, ease: "power3.out", delay: 0.4 });
+             // Animate static skill bars if any
+            document.querySelectorAll('.skill-item .skill-level').forEach(bar => {
+                const targetWidth = bar.style.width; // Get current width (from HTML)
+                bar.style.width = '0%';
+                gsap.to(bar, {duration: 1, width: targetWidth, ease: 'power2.out', delay: 0.8});
+            });
+        }
+    } catch (error) {
+        console.error("Error loading skills data: ", error);
+        // Animate static fallback on error
+        gsap.from(".skills-category-section", { duration: 0.7, y: 25, opacity: 0, stagger: 0.2, ease: "power3.out", delay: 0.4 });
+        document.querySelectorAll('.skill-item .skill-level').forEach(bar => {
+            const targetWidth = bar.style.width;
+            bar.style.width = '0%';
+            gsap.to(bar, {duration: 1, width: targetWidth, ease: 'power2.out', delay: 0.8});
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initParticles();
+    updateCurrentYear();
+    animateSkillsPage();
+    loadSkillsData();
+
+    const currentPage = window.location.pathname.split("/").pop() || "skills.html";
+    document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+        }
+    });
+});
+
+// Paste initParticles and updateCurrentYear functions here
+function initParticles() {
     if (typeof particlesJS !== 'undefined') {
         particlesJS('particles-js', {
             particles: {
-                number: { value: 60, density: { enable: true, value_area: 900 } },
-                color: { value: "#3b82f6" },
-                shape: { type: "circle", stroke: {width: 0, color: "#000000" }, },
-                opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
-                size: { value: 3, random: true, anim: { enable: true, speed: 2, size_min: 0.1, sync: false } },
-                line_linked: { enable: true, distance: 150, color: "#7c3aed", opacity: 0.3, width: 1 },
-                move: { enable: true, speed: 1.5, direction: "none", random: true, straight: false, out_mode: "out", bounce: false, attract: { enable: false, rotateX: 600, rotateY: 1200 }}
+                number: { value: 40, density: { enable: true, value_area: 800 } },
+                color: { value: "#8DA9C4" },
+                shape: { type: "circle" },
+                opacity: { value: 0.3, random: true },
+                size: { value: 2.5, random: true },
+                line_linked: { enable: true, distance: 180, color: "#D6C180", opacity: 0.2, width: 1 },
+                move: { enable: true, speed: 1, direction: "none", random: true, straight: false, out_mode: "out" }
             },
             interactivity: {
                 detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" },
-                    resize: true
-                },
-                modes: {
-                    repulse: { distance: 100, duration: 0.4 },
-                    push: { particles_nb: 4 }
-                }
+                events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: false } },
+                modes: { grab: { distance: 120, line_opacity: 0.3 } }
             },
             retina_detect: true
         });
     }
+}
 
-    // Initialize 3D bridge model
-    const bridgeContainer = document.getElementById('bridge-model');
-    if (bridgeContainer && typeof THREE !== 'undefined') {
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000);
-        camera.position.z = 5;
-        
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        bridgeContainer.appendChild(renderer.domElement);
-
-        const createBridge = () => {
-            const deckGeometry = new THREE.BoxGeometry(10, 0.4, 2);
-            const deckMaterial = new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true, transparent: true, opacity: 0.7 });
-            const deck = new THREE.Mesh(deckGeometry, deckMaterial);
-            scene.add(deck);
-            
-            const towerGeometry = new THREE.BoxGeometry(0.4, 3, 0.4);
-            const towerMaterial = new THREE.MeshBasicMaterial({ color: 0x7c3aed, wireframe: true, transparent: true, opacity: 0.7 });
-            
-            const leftTower = new THREE.Mesh(towerGeometry, towerMaterial);
-            leftTower.position.set(-3, 1.5, 0);
-            scene.add(leftTower);
-            
-            const rightTower = new THREE.Mesh(towerGeometry, towerMaterial);
-            rightTower.position.set(3, 1.5, 0);
-            scene.add(rightTower);
-            
-            const cableGeometry = new THREE.CylinderGeometry(0.03, 0.03, 7, 8);
-            const cableMaterial = new THREE.MeshBasicMaterial({ color: 0x10b981, wireframe: true, transparent: true, opacity: 0.7 });
-            
-            const mainCable = new THREE.Mesh(cableGeometry, cableMaterial);
-            mainCable.rotation.z = Math.PI / 2;
-            mainCable.position.y = 3;
-            scene.add(mainCable);
-            
-            return { deck, leftTower, rightTower, mainCable };
-        };
-        
-        const bridge = createBridge();
-        
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        scene.add(ambientLight);
-        const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        directionalLight.position.set(0, 10, 5);
-        scene.add(directionalLight);
-
-        function animate() {
-            requestAnimationFrame(animate);
-            bridge.deck.rotation.y += 0.005;
-            bridge.leftTower.rotation.y += 0.007;
-            bridge.rightTower.rotation.y += 0.007;
-            bridge.mainCable.rotation.x += 0.003;
-            const time = Date.now() * 0.001;
-            bridge.deck.position.y = Math.sin(time) * 0.1;
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
+function updateCurrentYear() {
+    const yearSpan = document.querySelector('.current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
     }
-
-    // Initialize code highlighting
-    if (typeof hljs !== 'undefined') {
-        document.querySelectorAll('.skills-main pre code').forEach((block) => { // Scoped to skills-main
-            hljs.highlightBlock(block);
-        });
-    }
-
-    // Animate XP bars on scroll
-    const animateXPBars = () => {
-        const xpBars = document.querySelectorAll('.skills-main .xp-bar'); // Scoped to skills-main
-        xpBars.forEach(bar => {
-            const barTop = bar.getBoundingClientRect().top;
-            // Check if bar is (partially) in viewport and not already animated
-            if (barTop < window.innerHeight * 0.9 && barTop + bar.offsetHeight > 0 && !bar.classList.contains('animated')) {
-                 // The --xp variable should be set in the HTML style attribute e.g. style="--xp: 90%;"
-                bar.classList.add('animated');
-            }
-            // Optional: Reset animation if it scrolls out of view (e.g. for re-animation on scroll up)
-            // else if ((barTop > window.innerHeight || barTop + bar.offsetHeight < 0) && bar.classList.contains('animated')) {
-            //    bar.classList.remove('animated');
-            // }
-        });
-    };
-
-    // Set current year in footer
-    const currentYearElement = document.querySelector('.current-year');
-    if (currentYearElement) {
-        currentYearElement.textContent = new Date().getFullYear();
-    }
-
-    // --- Admin Panel related JavaScript REMOVED from here ---
-    // All functionality for login, tabs, editing skills, code, certs, files
-    // that was previously in this file (targeting an admin panel within skills.html)
-    // is removed. This functionality should now reside in auth.html and its JS.
-
-    // Show notification (kept for potential future use, e.g., data loading status)
-    function showNotification(message, type = 'success') { // type can be 'success' or 'error'
-        const notification = document.getElementById('notification');
-        const notificationMessage = document.getElementById('notification-message');
-        const icon = notification.querySelector('i');
-        
-        if (notification && notificationMessage && icon) {
-            notificationMessage.textContent = message;
-            notification.classList.remove('success', 'error'); // Remove previous types
-            
-            if (type === 'error') {
-                notification.classList.add('error');
-                icon.className = 'fas fa-exclamation-circle'; // Error icon
-                notification.style.borderColor = 'var(--danger)'; // Error border
-                icon.style.color = 'var(--danger)';
-            } else {
-                notification.classList.add('success');
-                icon.className = 'fas fa-check-circle'; // Success icon
-                notification.style.borderColor = 'var(--success)'; // Success border
-                icon.style.color = 'var(--success)';
-            }
-            
-            notification.classList.add('active');
-            
-            setTimeout(() => {
-                notification.classList.remove('active');
-            }, 3000);
-        }
-    }
-    
-    // Run animations on page load and scroll
-    animateXPBars(); 
-    window.addEventListener('scroll', animateXPBars);
-
-    // If you plan to load skills data dynamically into skills.html (e.g., from localStorage managed by auth.html):
-    // loadSkillsDisplayData(); // You would define this function
-    function loadSkillsDisplayData() {
-        const skillsData = JSON.parse(localStorage.getItem('skillsDashboardData'));
-        if (skillsData) {
-            // Example: Populate technical skills
-            const techSkillsContainer = document.querySelector('#technical-skills-display');
-            // Clear existing static content if you're fully dynamic
-            // techSkillsContainer.innerHTML = '<h2 class="section-title">Technical Skills</h2>'; 
-            
-            // skillsData.technicalSkills.forEach(category => {
-            //    const categoryDiv = document.createElement('div');
-            //    categoryDiv.className = 'skill-category';
-            //    categoryDiv.innerHTML = `<h3>${category.name}</h3>`;
-            //    category.skills.forEach(skill => { /* ... create skill-item divs ... */ });
-            //    techSkillsContainer.appendChild(categoryDiv);
-            // });
-            // Similarly populate code samples, certifications from skillsData
-            // console.log("Skills data loaded for display", skillsData);
-            // showNotification("Skills data loaded dynamically.", "success");
-        } else {
-            // console.log("No dynamic skills data found, displaying static content.");
-            // showNotification("Displaying static skills content.", "info"); // 'info' type would need CSS
-        }
-        // After populating, re-run animations if necessary
-        animateXPBars();
-        if (typeof hljs !== 'undefined') {
-            document.querySelectorAll('.skills-main pre code').forEach((block) => {
-                hljs.highlightBlock(block);
-            });
-        }
-    }
-    // Call it if you want to load data:
-    // loadSkillsDisplayData(); 
-});
+}
