@@ -1,52 +1,52 @@
+/* main.css - Landing Page Styles - Architect's Study Theme */
 :root {
-    /* Architect's Study Theme */
-    --primary: #8DA9C4;       /* Muted Cadet Blue */
-    --primary-dark: #708CA0;
-    --secondary: #D6C180;     /* Soft Honey/Muted Gold */
-    --secondary-dark: #BFAE70;
-    --dark: #FCFBF8;         /* Warm Off-White / Light Beige (MAIN BACKGROUND) */
-    --light: #5A534A;        /* Dark Taupe / Muted Brown (MAIN TEXT) */
-    --accent: #CE7B69;       /* Soft Coral/Terracotta */
-    --accent-dark: #B76A59;
-    --gray: #8C8278;         /* Warm Gray */
-    --light-gray: #EAE5DD;   /* Light Warm Gray/Beige (Borders, subtle bg) */
-    --darker-bg-for-elements: #F0F0F0; /* For elements needing slight contrast from main bg */
+    --bg-color: #FCFBF8;
+    --text-color: #5A534A;
+    --primary-accent: #8DA9C4; /* Muted Cadet Blue */
+    --primary-accent-dark: #708CA0;
+    --primary-accent-rgb: 141, 169, 196;
+    --secondary-accent: #D6C180; /* Soft Honey/Muted Gold */
+    --secondary-accent-rgb: 214, 193, 128;
+    --tertiary-accent: #CE7B69; /* Soft Coral/Terracotta */
+    --tertiary-accent-rgb: 206, 123, 105;
+    --gray: #8C8278;
+    --light-gray: #EAE5DD;
+    --card-bg: #FFFFFF;
+    --card-border: var(--light-gray);
+    --card-shadow: 0 6px 18px rgba(90, 83, 74, 0.08);
+    --transition-fast: all 0.3s ease;
+    --transition-med: all 0.5s ease;
+}
 
-    --hero-title-font-size: clamp(2.8rem, 6vw, 4.5rem); /* Adjusted for better scaling */
-    --subtitle-font-size: clamp(1.1rem, 2.5vw, 1.35rem);
-    --stat-font-size: clamp(2rem, 4vw, 2.8rem);
-    --button-font-size: clamp(1rem, 2vw, 1.2rem);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    margin: 0;
     font-family: 'Inter', sans-serif;
-    color: var(--light); /* Main text color */
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
     overflow-x: hidden;
-    background-color: var(--dark); /* Main background color */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-.particles-background {
+.particles-background, #hero-3d-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
+    z-index: -2; /* Behind content and potential overlays */
+}
+#hero-3d-container {
+    z-index: -1; /* Above particles, behind content */
+    opacity: 0.8; /* Adjust as needed */
 }
 
-#bridge-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -2; /* Behind particles if particles are slightly opaque */
-    opacity: 0.12; /* More subtle for light theme */
-    animation: fadeInSlow 3.5s ease-in-out;
-}
 
 .container {
     max-width: 1200px;
@@ -56,346 +56,230 @@ body {
     z-index: 1;
 }
 
+/* Header */
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 2rem 0;
-    margin-bottom: 1rem; /* Reduced margin */
-    border-bottom: 1px solid var(--light-gray); /* Subtle border */
-    animation: slideInDown 1s ease-out 0.2s; /* Slight delay */
+    border-bottom: 1px solid var(--light-gray);
+    animation: slideInDown 0.8s ease-out;
+}
+@keyframes slideInDown {
+    from { transform: translateY(-100%); opacity: 0;}
+    to { transform: translateY(0); opacity: 1;}
 }
 
 .logo {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(1.8rem, 4vw, 2.2rem);
+    font-size: 2.2rem;
     font-weight: 700;
-    color: var(--light); /* Main text color for logo */
-    transition: color 0.3s ease;
+    color: var(--text-color);
+    text-decoration: none;
 }
-.logo:hover {
-    color: var(--primary); /* Hover to primary color */
-}
+.logo span { color: var(--primary-accent); }
 
-/* Removed .logo span and spin animation for a cleaner look */
-
+.nav { display: flex; gap: 1.5rem; }
 .nav-link {
-    color: var(--gray); /* Use warm gray for nav links */
+    color: var(--gray);
     text-decoration: none;
     font-weight: 600;
+    font-size: 0.95rem;
     position: relative;
-    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     padding: 0.3rem 0.5rem;
-    border-radius: 4px;
+    transition: var(--transition-fast);
+    border-bottom: 2px solid transparent;
+}
+.nav-link:hover, .nav-link.active { 
+    color: var(--primary-accent); 
+    border-bottom-color: var(--primary-accent);
+}
+.nav-link i { margin-right: 0.3em; }
+
+.admin-login-btn {
+    background-color: rgba(var(--tertiary-accent-rgb), 0.1);
+    border: 1px solid rgba(var(--tertiary-accent-rgb), 0.3);
+    color: var(--tertiary-accent) !important; /* Ensure override */
+    padding: 0.5rem 1rem !important;
+    border-radius: 50px !important;
+    font-weight: 600;
+}
+.admin-login-btn:hover { 
+    background-color: rgba(var(--tertiary-accent-rgb), 0.2);
+    transform: translateY(-1px);
+    border-bottom-color: transparent !important; /* Override active/hover style */
 }
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -2px; /* Closer to text */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--secondary); /* Gold accent for underline */
-    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
 
-.nav-link:hover::after {
-    width: 80%; /* Underline doesn't span full width for subtlety */
-}
-
-.nav-link:hover {
-    color: var(--primary); /* Primary blue on hover */
-}
-
+/* Hero Section */
 .hero {
-    min-height: 85vh; /* Ensure it takes significant space */
+    min-height: calc(100vh - 160px); /* Adjust based on header/footer height */
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: flex-start; /* Align content to the left */
-    padding-top: 1rem; /* Adjust as needed */
-    padding-bottom: 4rem; /* Space for scroll indicator */
+    align-items: center;
+    text-align: center;
+    padding: 4rem 0;
 }
 
 .title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: var(--hero-title-font-size);
-    line-height: 1.2; /* Tighter line height */
-    margin-bottom: 1.8rem; /* Increased margin */
-    margin-top: 0;
-    color: var(--light); /* Main text color */
+    font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
 }
-
-.title-line {
-    display: block;
-    overflow: hidden; /* For reveal animation */
-    opacity: 0;
-    transform: translateY(30px);
-    animation: revealText 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+.title-line { display: block; }
+.highlight { color: var(--primary-accent); }
+.typing-text {
+    color: var(--secondary-accent);
+    border-right: 3px solid var(--secondary-accent); /* Blinking cursor effect */
+    padding-right: 0.2em;
+    animation: blinkCursor 0.7s step-end infinite;
+    min-height: 1.1em; /* Prevent layout shift */
+    display: inline-block; /* For border-right to work well */
 }
-.title-line-1 { animation-delay: 0.5s; }
-.title-line-2 { animation-delay: 0.7s; }
-.title-line-3 { animation-delay: 0.9s; } /* Typing text will have its own timing */
-
-@keyframes revealText {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.highlight {
-    color: var(--primary); /* Muted Cadet Blue for highlight */
-    position: relative;
-    display: inline-block;
-    /* Removed glowText animation for a cleaner look, using underline instead */
-}
-
-.highlight::after { /* Underline effect for highlight */
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 0.2em; /* Thinner underline relative to font size */
-    bottom: 0.1em; /* Positioned slightly lower */
-    left: 0;
-    background-color: var(--secondary); /* Soft Honey/Muted Gold for underline */
-    opacity: 0.8;
-    z-index: -1;
-    transform: scaleX(0);
-    transform-origin: left;
-    animation: highlightUnderline 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards 1.5s; /* Delay animation */
-}
-
-@keyframes highlightUnderline {
-    to {
-        transform: scaleX(1);
-    }
-}
-
-.typing-text.active::after { /* Blinking cursor for typing text */
-    content: '|';
-    animation: blink 0.7s infinite;
-    color: var(--primary);
-}
-
-@keyframes blink {
-    50% { opacity: 0; }
+@keyframes blinkCursor {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--secondary-accent); }
 }
 
 .subtitle {
-    font-size: var(--subtitle-font-size);
-    margin-bottom: 3.5rem; /* More space */
-    margin-top: 0;
-    color: var(--gray); /* Warm gray for subtitle */
-    opacity: 0;
-    animation: fadeIn 1s ease forwards 1.8s; /* Delay and smooth fade */
-    max-width: 550px; /* Constrain width for readability */
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: var(--gray);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
 }
 
+/* Stats Container */
 .stats-container {
     display: flex;
-    gap: 2.5rem; /* More gap */
-    margin-bottom: 3.5rem;
-    opacity: 0;
-    animation: fadeIn 1s ease forwards 2.2s;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
 }
-
 .stat {
-    text-align: center;
-    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    padding: 0.5rem; /* Add some padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0; /* For GSAP */
+    transform: translateY(20px); /* For GSAP */
 }
-
-.stat:hover {
-    transform: translateY(-8px); /* Softer lift */
-}
-
-.stat span:first-child { /* Counter number */
+.counter {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: var(--stat-font-size);
+    font-size: 2.8rem;
     font-weight: 700;
-    color: var(--secondary); /* Gold for numbers */
-    display: block;
-    margin-bottom: 0.2rem;
-    /* Counter JS will handle the animation */
+    color: var(--tertiary-accent);
 }
-.stat span:last-child { /* Label */
-    font-size: clamp(0.8rem, 1.8vw, 1rem);
-    color: var(--gray); /* Warm gray for labels */
+.stat span:last-child {
+    font-size: 1rem;
+    color: var(--gray);
+    font-weight: 500;
 }
 
-.cta-container {
-    position: relative;
-    opacity: 0;
-    animation: fadeIn 1s ease forwards 2.6s;
-}
-
+/* CTA Button */
+.cta-container { margin-top: 1rem; }
 .cta-button {
+    font-family: 'Space Grotesk', sans-serif;
+    background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+    color: var(--bg-color);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
     display: inline-flex;
     align-items: center;
-    padding: 0.9rem 2.2rem; /* Adjusted padding */
-    background-color: var(--primary); /* Solid primary color */
-    color: var(--dark); /* Dark text on light primary button for contrast */
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: var(--button-font-size);
-    text-decoration: none;
-    border-radius: 30px; /* More rounded */
-    position: relative;
-    z-index: 1;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
-    box-shadow: 0 4px 15px rgba(141, 169, 196, 0.2); /* Softer shadow based on primary */
-    border: none; /* Remove complex border for cleaner look */
+    gap: 0.8rem;
+    transition: var(--transition-med);
+    box-shadow: 0 8px 20px rgba(var(--primary-accent-rgb), 0.25), 0 5px 15px rgba(var(--secondary-accent-rgb), 0.2);
+    transform-style: preserve-3d; /* For 3D hover effect */
 }
-
 .cta-button:hover {
-    transform: translateY(-4px) scale(1.03); /* Softer hover effect */
-    background-color: var(--primary-dark); /* Darken on hover */
-    box-shadow: 0 8px 25px rgba(112, 140, 160, 0.25); /* Enhanced shadow on hover */
+    transform: translateY(-5px) scale(1.05) translateZ(10px);
+    box-shadow: 0 12px 25px rgba(var(--primary-accent-rgb), 0.3), 0 8px 20px rgba(var(--secondary-accent-rgb), 0.25);
 }
-
-.cta-button:hover .arrow-icon {
-    transform: translateX(4px); /* Arrow moves more on hover */
-}
-
-/* Removed border-pulse animation for cleaner button */
-
 .arrow-icon {
     width: 24px;
     height: 24px;
-    margin-left: 10px;
-    fill: currentColor;
-    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth transition for arrow */
-    /* Removed bounce animation for a more static, sleek look until hover */
+    fill: var(--bg-color);
+    transition: transform 0.3s ease;
 }
+.cta-button:hover .arrow-icon { transform: translateX(5px); }
 
-/* Removed .glow-effect div and its CSS as button shadow is handled by cta-button */
-
+/* Scroll Indicator */
 .scroll-indicator {
     position: absolute;
-    bottom: 2.5rem; /* Slightly higher */
+    bottom: 30px;
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
-    animation: fadeIn 1s ease forwards 3.5s, subtleFloat 3s ease-in-out infinite 4s; /* Slower float */
+    animation: fadeInScroll 1s ease 2.5s forwards;
 }
-
-@keyframes subtleFloat {
-    0%, 100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, -6px); } /* Less float distance */
+@keyframes fadeInScroll {
+    to { opacity: 0.7; }
 }
-
 .mouse {
-    width: 22px; /* Slightly smaller */
-    height: 36px;
-    border: 2px solid var(--gray); /* Warm gray border */
-    border-radius: 11px;
+    width: 25px;
+    height: 40px;
+    border: 2px solid var(--gray);
+    border-radius: 20px;
     position: relative;
 }
-
 .mouse::before {
     content: '';
+    width: 5px;
+    height: 5px;
+    background-color: var(--gray);
+    border-radius: 50%;
     position: absolute;
-    width: 3px; /* Thinner scroll wheel */
-    height: 7px;
-    background: var(--gray); /* Warm gray scroll wheel */
-    border-radius: 1.5px;
-    top: 5px;
+    top: 8px;
     left: 50%;
     transform: translateX(-50%);
-    animation: scrollWheel 2.2s cubic-bezier(0.25, 0.8, 0.25, 1) infinite; /* Smoother scroll animation */
+    animation: scrollWheel 1.5s infinite ease-in-out;
 }
-
 @keyframes scrollWheel {
-    0% { transform: translate(-50%, 0); opacity: 1; }
-    40% { opacity: 1; }
-    80% { transform: translate(-50%, 8px); opacity: 0; } /* Wheel scrolls further down */
-    100% { transform: translate(-50%, 8px); opacity: 0; }
+    0% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, 15px); }
 }
 
-
-/* General Animations */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(15px); } /* Softer Y transform */
-    to { opacity: 1; transform: translateY(0); }
+/* Footer */
+.footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--light-gray);
+    text-align: center;
+    margin-top: auto; /* Pushes footer to bottom if content is short */
 }
+.footer-content { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
+.footer-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-color); }
+.footer-logo span { color: var(--primary-accent); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { color: var(--gray); text-decoration: none; font-size: 0.9rem; transition: var(--transition-fast); }
+.footer-links a:hover { color: var(--primary-accent); }
+.footer-copyright { color: var(--gray); font-size: 0.85rem; }
 
-@keyframes fadeInSlow {
-    from { opacity: 0; }
-    to { opacity: 0.12; } /* Matched from previous */
-}
-
-@keyframes slideInDown {
-    from { transform: translateY(-40px); opacity: 0; } /* Softer */
-    to { transform: translateY(0); opacity: 1; }
-}
-
-/* Removed slideInLeft and slideInRight as title lines use revealText */
-/* Removed floatUpDown as subtitle has only fadeIn and scroll indicator has subtleFloat */
-/* Removed glowText as highlight uses underline */
-/* Removed spin from logo */
-/* Removed colorPulse from logo, opting for simple hover color change */
-/* Removed shakeButton from CTA */
-/* CountUp animation is primarily JS driven for numbers, CSS for entry */
-
-/* Mobile Responsiveness */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    .hero {
-        min-height: auto; /* Allow content to define height */
-        padding-top: 4rem; 
-        padding-bottom: 5rem; /* More space at bottom on mobile */
-        text-align: center; /* Center align hero content */
-        align-items: center; /* Center items for hero */
-    }
-    .title {
-        align-items: center;
-    }
-    .title-line {
-        text-align: center;
-    }
-    .subtitle {
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .stats-container {
-        flex-direction: column;
-        gap: 1.5rem; /* Adjust gap for column layout */
-        align-items: center; /* Center stats */
-    }
-    .cta-container {
-        width: 100%;
-        display: flex;
-        justify-content: center; /* Center CTA button */
-    }
-    .header {
-        flex-direction: column;
-        align-items: center; /* Center logo and nav on mobile */
-        gap: 1rem; /* Space between logo and nav */
-    }
-    .nav {
-        margin-top: 0.5rem; /* Adjust nav margin */
-        justify-content: center; /* Center nav links */
-        width: 100%;
-    }
-    .scroll-indicator {
-        bottom: 1.5rem;
-    }
+    .header { padding: 1.5rem 0; }
+    .logo { font-size: 1.8rem; }
+    .nav { gap: 1rem; }
+    .nav-link { font-size: 0.9rem; }
+    .hero { padding: 2rem 0; min-height: calc(100vh - 140px); }
+    .title { font-size: clamp(2.2rem, 6vw, 3.5rem); }
+    .subtitle { font-size: clamp(1rem, 2.5vw, 1.2rem); }
+    .stats-container { gap: 1.5rem; }
+    .counter { font-size: 2.2rem; }
+    .cta-button { padding: 0.8rem 2rem; font-size: 1rem; }
 }
 
 @media (max-width: 480px) {
-    :root { /* Adjust font sizes for very small screens */
-        --hero-title-font-size: clamp(2.2rem, 7vw, 3rem);
-        --subtitle-font-size: clamp(1rem, 3vw, 1.15rem);
-    }
-    .header {
-        padding: 1.5rem 0;
-    }
-    .nav-link {
-        padding: 0.2rem 0.3rem;
-        font-size: 0.9rem;
-    }
-     .cta-button {
-        padding: 0.8rem 1.8rem;
-    }
+    .container { padding: 0 1rem; }
+    .header { flex-direction: column; gap: 1rem; }
+    .nav { width: 100%; justify-content: space-around; }
+    .title { font-size: clamp(2rem, 8vw, 3rem); }
+    .stats-container { flex-direction: column; gap: 1rem; }
 }
