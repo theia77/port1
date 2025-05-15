@@ -132,15 +132,30 @@ body {
     line-height: 1.1;
     margin-bottom: 1.5rem;
 }
-.title-line { display: block; }
+
+.title-line { 
+    display: block;
+    opacity: 0; /* Start hidden for animation */
+    transform: translateY(20px); /* Start slightly lower for fadeInUp */
+}
+.title-line-1 { animation: fadeInUp 0.6s ease-out 0.5s forwards; }
+.title-line-2 { animation: fadeInUp 0.6s ease-out 0.8s forwards; }
+.title-line-3 { animation: fadeInUp 0.6s ease-out 1.1s forwards; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 .highlight { color: var(--primary-accent); }
 .typing-text {
     color: var(--secondary-accent);
     border-right: 3px solid var(--secondary-accent); /* Blinking cursor effect */
     padding-right: 0.2em;
     animation: blinkCursor 0.7s step-end infinite;
-    min-height: 1.1em; /* Prevent layout shift */
-    display: inline-block; /* For border-right to work well */
+    min-height: 1.1em; /* Prevent layout shift if line wraps or text is short */
+    display: inline-block; /* For border-right to work well and min-height */
+    vertical-align: bottom; /* Align with baseline of surrounding text */
 }
 @keyframes blinkCursor {
     from, to { border-color: transparent; }
@@ -152,6 +167,9 @@ body {
     color: var(--gray);
     margin-bottom: 2.5rem;
     max-width: 600px;
+    opacity: 0; /* For GSAP or JS animation */
+    transform: translateY(20px); /* For GSAP or JS animation */
+    animation: fadeInUp 0.6s ease-out 1.8s forwards; /* Simple CSS fallback if GSAP fails */
 }
 
 /* Stats Container */
@@ -166,8 +184,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    opacity: 0; /* For GSAP */
-    transform: translateY(20px); /* For GSAP */
+    opacity: 0; /* Initial state for GSAP animation */
+    transform: translateY(20px); /* Initial state for GSAP animation */
 }
 .counter {
     font-family: 'Space Grotesk', sans-serif;
@@ -182,7 +200,12 @@ body {
 }
 
 /* CTA Button */
-.cta-container { margin-top: 1rem; }
+.cta-container { 
+    margin-top: 1rem;
+    opacity: 0; /* For GSAP or JS animation */
+    transform: translateY(20px); /* For GSAP or JS animation */
+    animation: fadeInUp 0.6s ease-out 2.0s forwards; /* Simple CSS fallback if GSAP fails */
+}
 .cta-button {
     font-family: 'Space Grotesk', sans-serif;
     background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
@@ -218,7 +241,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     opacity: 0;
-    animation: fadeInScroll 1s ease 2.5s forwards;
+    animation: fadeInScroll 1s ease 2.5s forwards; /* Delay matches typical hero animation completion */
 }
 @keyframes fadeInScroll {
     to { opacity: 0.7; }
