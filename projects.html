@@ -3,242 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Quest Board/Projects Showcase">
-    <meta name="keywords" content="projects, portfolio, civil engineering, data science, showcase">
-    <title>Quest Board/Projects</title>
+    <meta name="description" content="Projects by Sumouli Pramanik - SumoVerse. Showcasing work in civil engineering and data science.">
+    <meta name="keywords" content="SumoVerse, projects, portfolio, civil engineering, data science, AI, machine learning, Sumouli Pramanik">
+    <title>Projects | SumoVerse</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="projects.css"> 
+    <link rel="stylesheet" href="projects.css"> <!-- You'll need to create projects.css -->
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
-    <div id="bridge-model"></div>
+    <div id="bridge-model-bg"></div>
     
     <div class="container">
         <header class="header">
-            <div class="logo">Sumo<span>Verse</div>
+            <div class="logo">Sumo<span>Verse</span></div>
             <nav class="nav">
-                <a href="mainpage.html" class="nav-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="mainpage.html" class="nav-link"><i class="fas fa-th-large"></i> Portfolio Hub</a>
+                <a href="experience.html" class="nav-link"><i class="fas fa-briefcase"></i> Experience</a>
+                <a href="projects.html" class="nav-link active"><i class="fas fa-project-diagram"></i> Projects</a>
+                <a href="skills.html" class="nav-link"><i class="fas fa-chart-bar"></i> Skills</a>
+                <a href="education.html" class="nav-link"><i class="fas fa-graduation-cap"></i> Education</a>
+                <a href="blog.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
+                <a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
                 <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
             </nav>
         </header>
 
-        <main class="quest-main">
+        <main class="projects-main">
             <div class="page-header">
-                <h1 id="projects-page-main-title">Quest <span class="highlight" id="projects-page-highlight-title">Board</span></h1>
-                <p class="page-description" id="projects-page-description">Explore my portfolio of projects at the intersection of civil engineering and data science.</p>
+                <h1 id="projects-page-main-title">Featured <span class="highlight" id="projects-page-highlight-title">Projects</span></h1>
+                <p class="page-description" id="projects-page-description">A selection of projects demonstrating skills in applying data science to civil engineering challenges.</p>
             </div>
 
-            <div class="quest-filter" id="quest-filter-container">
-                <!-- Static filters, will be overridden if dynamic data is loaded -->
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="ai">AI & Machine Learning</button>
-                <button class="filter-btn" data-filter="analytics">Data Analytics</button>
-                <button class="filter-btn" data-filter="engineering">Civil Engineering</button>
-            </div>
-
-            <div class="quest-grid" id="quest-grid-container">
-                <!-- Static Example Project Cards (Fallback if localStorage is empty or dynamic loading fails) -->
-                <!-- These will be replaced by projects.js if data is found in localStorage -->
-
-                <!-- Project 1: Bridge Health AI -->
-                <div class="quest-card" data-category="ai engineering" data-project-id="bridge-health-ai">
-                    <div class="quest-card-header">
-                        <span class="quest-difficulty">Advanced</span>
-                        <span class="quest-reward"><i class="fas fa-award"></i> Featured</span>
-                    </div>
-                    <div class="quest-card-image">
-                        <img src="project-bridge-ai.jpg" alt="Bridge Health AI">
-                    </div>
-                    <div class="quest-card-content">
-                        <h2 class="quest-title">Bridge Health AI</h2>
-                        <p class="quest-description">Predictive maintenance system using computer vision and sensor data to monitor structural integrity of bridges.</p>
-                        <div class="quest-tags">
-                            <span class="quest-tag">Machine Learning</span>
-                            <span class="quest-tag">Computer Vision</span>
-                            <span class="quest-tag">IoT</span>
+            <div class="projects-grid" id="projects-grid-container">
+                <!-- Static Example Project Card (Fallback) -->
+                <div class="project-card" data-project-id="static-proj-1">
+                    <div class="project-image-container">
+                        <img src="placeholder-project1.jpg" alt="Bridge Health AI Project" class="project-image">
+                        <div class="project-image-overlay">
+                            <a href="#" class="overlay-link project-details-link" aria-label="View Project Details"><i class="fas fa-search-plus"></i></a>
+                            <a href="#" class="overlay-link project-live-link" target="_blank" rel="noopener noreferrer" aria-label="View Live Project (if applicable)"><i class="fas fa-external-link-alt"></i></a>
                         </div>
-                        <div class="quest-stats">
-                            <div class="quest-stat">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>2024</span>
-                            </div>
-                            <div class="quest-stat">
-                                <i class="fas fa-code-branch"></i>
-                                <span>32 commits</span>
-                            </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Bridge Health AI Monitoring</h3>
+                        <p class="project-excerpt">Developed an AI platform using computer vision and sensor data fusion to predict structural issues in bridges, improving safety and maintenance efficiency.</p>
+                        <div class="project-tags">
+                            <span class="tag">AI</span><span class="tag">Computer Vision</span><span class="tag">Python</span><span class="tag">IoT</span><span class="tag">Structural Health</span>
                         </div>
-                        <a href="project-detail-bridge-ai.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-
-                <!-- Project 2: Smart City Analytics -->
-                <div class="quest-card" data-category="analytics" data-project-id="smart-city-analytics">
-                    <div class="quest-card-header">
-                        <span class="quest-difficulty">Intermediate</span>
-                        <span class="quest-reward"><i class="fas fa-star"></i> Client Project</span>
-                    </div>
-                    <div class="quest-card-image">
-                        <img src="project-smart-city.jpg" alt="Smart City Analytics">
-                    </div>
-                    <div class="quest-card-content">
-                        <h2 class="quest-title">Smart City Analytics</h2>
-                        <p class="quest-description">Data-driven urban planning solution that optimizes traffic flow, energy usage, and infrastructure development.</p>
-                        <div class="quest-tags">
-                            <span class="quest-tag">Data Analysis</span>
-                            <span class="quest-tag">Tableau/Python</span>
-                            <span class="quest-tag">GIS</span>
+                <div class="project-card" data-project-id="static-proj-2">
+                    <div class="project-image-container">
+                        <img src="placeholder-project2.jpg" alt="Smart City Traffic Flow Optimization" class="project-image">
+                         <div class="project-image-overlay">
+                            <a href="#" class="overlay-link project-details-link" aria-label="View Project Details"><i class="fas fa-search-plus"></i></a>
                         </div>
-                        <div class="quest-stats">
-                            <div class="quest-stat">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>2023</span>
-                            </div>
-                            <div class="quest-stat">
-                                <i class="fas fa-chart-line"></i>
-                                <span>15 dashboards</span>
-                            </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Smart City Traffic Flow Optimization</h3>
+                        <p class="project-excerpt">Utilized machine learning algorithms to analyze traffic patterns and optimize signal timings, reducing congestion in urban areas.</p>
+                        <div class="project-tags">
+                            <span class="tag">Machine Learning</span><span class="tag">Smart City</span><span class="tag">Data Analysis</span><span class="tag">Simulation</span>
                         </div>
-                        <a href="project-detail-smart-city.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
-                
-                <!-- Project 3: Govt Consultancy -->
-                <div class="quest-card" data-category="engineering analytics" data-project-id="govt-consultancy">
-                    <div class="quest-card-header">
-                        <span class="quest-difficulty">Expert</span>
-                        <span class="quest-reward"><i class="fas fa-building"></i> Government</span>
-                    </div>
-                    <div class="quest-card-image">
-                        <img src="project-govt-consultancy.jpg" alt="Government Consultancy">
-                    </div>
-                    <div class="quest-card-content">
-                        <h2 class="quest-title">Govt. Dept. Consultancy</h2>
-                        <p class="quest-description">Infrastructure optimization consultancy for government departments using data-driven methodologies and ROI calculations.</p>
-                        <div class="quest-tags">
-                            <span class="quest-tag">Consultancy</span>
-                            <span class="quest-tag">ROI Analysis</span>
-                            <span class="quest-tag">Infrastructure</span>
-                        </div>
-                        <div class="quest-stats">
-                            <div class="quest-stat">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>2024</span>
-                            </div>
-                            <div class="quest-stat">
-                                <i class="fas fa-file-alt"></i>
-                                <span>White Paper</span>
-                            </div>
-                        </div>
-                        <a href="project-detail-govt-consultancy.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Project 4: Structural ML -->
-                <div class="quest-card" data-category="ai engineering" data-project-id="structural-ml">
-                    <div class="quest-card-header">
-                        <span class="quest-difficulty">Advanced</span>
-                        <span class="quest-reward"><i class="fas fa-flask"></i> Research</span>
-                    </div>
-                    <div class="quest-card-image">
-                        <img src="project-structural-ml.jpg" alt="Structural ML">
-                    </div>
-                    <div class="quest-card-content">
-                        <h2 class="quest-title">Structural ML</h2>
-                        <p class="quest-description">Machine learning models for predicting structural behavior under various load conditions and environmental factors.</p>
-                        <div class="quest-tags">
-                            <span class="quest-tag">TensorFlow</span>
-                            <span class="quest-tag">Structural Analysis</span>
-                            <span class="quest-tag">Predictive Models</span>
-                        </div>
-                        <div class="quest-stats">
-                            <div class="quest-stat">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>2023</span>
-                            </div>
-                            <div class="quest-stat">
-                                <i class="fas fa-brain"></i>
-                                <span>3 ML Models</span>
-                            </div>
-                        </div>
-                        <a href="project-detail-structural-ml.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Project 5: Dashboard Demo -->
-                <div class="quest-card" data-category="analytics" data-project-id="dashboard-demo">
-                    <div class="quest-card-header">
-                        <span class="quest-difficulty">Intermediate</span>
-                        <span class="quest-reward"><i class="fas fa-eye"></i> Demo</span>
-                    </div>
-                    <div class="quest-card-image">
-                        <img src="project-dashboard-demo.jpg" alt="Dashboard Demo">
-                    </div>
-                    <div class="quest-card-content">
-                        <h2 class="quest-title">Dashboard Demo</h2>
-                        <p class="quest-description">Interactive data visualization dashboards built with Tableau and Python for infrastructure monitoring and analysis.</p>
-                        <div class="quest-tags">
-                            <span class="quest-tag">Tableau</span>
-                            <span class="quest-tag">Python</span>
-                            <span class="quest-tag">Data Viz</span>
-                        </div>
-                        <div class="quest-stats">
-                            <div class="quest-stat">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>2022</span>
-                            </div>
-                            <div class="quest-stat">
-                                <i class="fas fa-chart-pie"></i>
-                                <span>8 visualizations</span>
-                            </div>
-                        </div>
-                        <a href="project-detail-dashboard-demo.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
-
-                <!-- Project 6: Case Study -->
-                <div class="quest-card" data-category="engineering ai" data-project-id="case-study-ml-infra">
-                    <div class="quest-card-header">
-                        <span class="quest-difficulty">Advanced</span>
-                        <span class="quest-reward"><i class="fas fa-book"></i> Case Study</span>
-                    </div>
-                    <div class="quest-card-image">
-                        <img src="project-case-study.jpg" alt="Case Study ML in Infrastructure">
-                    </div>
-                    <div class="quest-card-content">
-                        <h2 class="quest-title">Case Study: ML Models in Infrastructure</h2>
-                        <p class="quest-description">Comprehensive analysis of how machine learning models can improve infrastructure maintenance and reduce costs.</p>
-                        <div class="quest-tags">
-                            <span class="quest-tag">Case Study</span>
-                            <span class="quest-tag">ML Models</span>
-                            <span class="quest-tag">Cost Savings</span>
-                        </div>
-                        <div class="quest-stats">
-                            <div class="quest-stat">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>2024</span>
-                            </div>
-                            <div class="quest-stat">
-                                <i class="fas fa-percentage"></i>
-                                <span>35% savings</span>
-                            </div>
-                        </div>
-                        <a href="project-detail-case-study.html" class="quest-btn">View Project <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                </div>
+                <!-- End Static Example -->
             </div>
         </main>
         
         <footer class="footer">
             <div class="footer-content">
-                <div class="footer-logo">DS<span>+</span>CE</div>
+                <div class="footer-logo">Sumo<span>Verse</span></div>
                 <div class="footer-links">
                     <a href="privacy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
                 </div>
                 <div class="footer-copyright">
-                    &copy; <span id="current-year-projects">2025</span> <span id="copyright-name">SumoVerse</span>. All rights reserved.
+                    &copy; <span class="current-year">2025</span> SumoVerse. All rights reserved.
                 </div>
             </div>
         </footer>
@@ -250,12 +94,12 @@
             <span id="notification-message"></span>
         </div>
     </div>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
-    <!-- Firebase Initialization -->
     <script type="module" src="firebase-init.js"></script>
-    <script type="module" src="projects.js"></script> {/* Ensure projects.js is treated as a module if it imports Firebase */}
+    <script type="module" src="projects.js"></script> <!-- You'll need to create projects.js -->
 </body>
 </html>
