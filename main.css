@@ -1,3 +1,4 @@
+
 /* main.css - Landing Page Styles - Architect's Study Theme */
 :root {
     --bg-color: #FCFBF8;
@@ -16,13 +17,10 @@
     --card-shadow: 0 6px 18px rgba(90, 83, 74, 0.08);
     --transition-fast: all 0.3s ease;
     --transition-med: all 0.5s ease;
+    --blueprint-grid-color: rgba(var(--primary-accent-rgb), 0.08); /* Subtle grid color */
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
     font-family: 'Inter', sans-serif;
@@ -34,26 +32,38 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.particles-background, #hero-3d-container {
+.particles-background, .blueprint-grid-background, #hero-3d-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -2; /* Behind content and potential overlays */
+    pointer-events: none; /* Allow clicks to pass through */
+}
+.particles-background { z-index: -3; } /* Furthest back */
+.blueprint-grid-background {
+    z-index: -2; /* Above particles */
+    background-image:
+        linear-gradient(var(--blueprint-grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--blueprint-grid-color) 1px, transparent 1px);
+    background-size: 40px 40px; /* Grid cell size */
+    animation: blueprintAnimate 60s linear infinite;
+}
+@keyframes blueprintAnimate {
+    0% { background-position: 0 0; }
+    100% { background-position: 1200px 1200px; } /* Animates by shifting position */
 }
 #hero-3d-container {
-    z-index: -1; /* Above particles, behind content */
-    opacity: 0.8; /* Adjust as needed */
+    z-index: -1; /* Above grid, behind content */
+    opacity: 0.7; /* Adjusted for better blend with grid */
 }
-
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
-    z-index: 1;
+    z-index: 1; /* Content above all background layers */
 }
 
 /* Header */
@@ -63,206 +73,105 @@ body {
     align-items: center;
     padding: 2rem 0;
     border-bottom: 1px solid var(--light-gray);
-    animation: slideInDown 0.8s ease-out;
+    opacity: 0; /* Initial state for GSAP */
+    transform: translateY(-30px); /* Initial state for GSAP */
 }
-@keyframes slideInDown {
-    from { transform: translateY(-100%); opacity: 0;}
-    to { transform: translateY(0); opacity: 1;}
-}
-
 .logo {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--text-color);
-    text-decoration: none;
+    font-size: 2.2rem; font-weight: 700; color: var(--text-color); text-decoration: none;
 }
 .logo span { color: var(--primary-accent); }
-
 .nav { display: flex; gap: 1.5rem; }
 .nav-link {
-    color: var(--gray);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    position: relative;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.3rem 0.5rem;
-    transition: var(--transition-fast);
-    border-bottom: 2px solid transparent;
+    color: var(--gray); text-decoration: none; font-weight: 600; font-size: 0.95rem;
+    position: relative; display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.3rem 0.5rem; transition: var(--transition-fast); border-bottom: 2px solid transparent;
 }
-.nav-link:hover, .nav-link.active { 
-    color: var(--primary-accent); 
-    border-bottom-color: var(--primary-accent);
-}
+.nav-link:hover, .nav-link.active { color: var(--primary-accent); border-bottom-color: var(--primary-accent); }
 .nav-link i { margin-right: 0.3em; }
-
 .admin-login-btn {
-    background-color: rgba(var(--tertiary-accent-rgb), 0.1);
-    border: 1px solid rgba(var(--tertiary-accent-rgb), 0.3);
-    color: var(--tertiary-accent) !important; /* Ensure override */
-    padding: 0.5rem 1rem !important;
-    border-radius: 50px !important;
-    font-weight: 600;
+    background-color: rgba(var(--tertiary-accent-rgb), 0.1); border: 1px solid rgba(var(--tertiary-accent-rgb), 0.3);
+    color: var(--tertiary-accent) !important; padding: 0.5rem 1rem !important; border-radius: 50px !important; font-weight: 600;
 }
-.admin-login-btn:hover { 
-    background-color: rgba(var(--tertiary-accent-rgb), 0.2);
-    transform: translateY(-1px);
-    border-bottom-color: transparent !important; /* Override active/hover style */
-}
-
+.admin-login-btn:hover { background-color: rgba(var(--tertiary-accent-rgb), 0.2); transform: translateY(-1px); border-bottom-color: transparent !important; }
 
 /* Hero Section */
 .hero {
-    min-height: calc(100vh - 160px); /* Adjust based on header/footer height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 4rem 0;
+    min-height: calc(100vh - 160px); display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center; padding: 4rem 0;
 }
-
 .title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(2.8rem, 7vw, 5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 1.5rem;
+    font-family: 'Space Grotesk', sans-serif; font-size: clamp(2.8rem, 7vw, 5rem);
+    font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem;
 }
-
-.title-line { 
-    display: block;
-    opacity: 0; /* Start hidden for animation */
-    transform: translateY(20px); /* Start slightly lower for fadeInUp */
-}
-.title-line-1 { animation: fadeInUp 0.6s ease-out 0.5s forwards; }
-.title-line-2 { animation: fadeInUp 0.6s ease-out 0.8s forwards; }
-.title-line-3 { animation: fadeInUp 0.6s ease-out 1.1s forwards; }
+.title-line { display: block; opacity: 0; transform: translateY(25px); } /* Initial for animation */
+.title-line-1 { animation: fadeInUp 0.7s ease-out 0.5s forwards; }
+.title-line-2 { animation: fadeInUp 0.7s ease-out 0.8s forwards; }
+.title-line-3 { animation: fadeInUp 0.7s ease-out 1.1s forwards; }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(25px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 .highlight { color: var(--primary-accent); }
 .typing-text {
-    color: var(--secondary-accent);
-    border-right: 3px solid var(--secondary-accent); /* Blinking cursor effect */
-    padding-right: 0.2em;
-    animation: blinkCursor 0.7s step-end infinite;
-    min-height: 1.1em; /* Prevent layout shift if line wraps or text is short */
-    display: inline-block; /* For border-right to work well and min-height */
-    vertical-align: bottom; /* Align with baseline of surrounding text */
+    color: var(--secondary-accent); border-right: 3px solid var(--secondary-accent);
+    padding-right: 0.2em; animation: blinkCursor 0.7s step-end infinite;
+    min-height: 1.1em; display: inline-block; vertical-align: bottom;
 }
 @keyframes blinkCursor {
     from, to { border-color: transparent; }
     50% { border-color: var(--secondary-accent); }
 }
-
 .subtitle {
-    font-size: clamp(1.1rem, 3vw, 1.5rem);
-    color: var(--gray);
-    margin-bottom: 2.5rem;
-    max-width: 600px;
-    opacity: 0; /* For GSAP or JS animation */
-    transform: translateY(20px); /* For GSAP or JS animation */
-    animation: fadeInUp 0.6s ease-out 1.8s forwards; /* Simple CSS fallback if GSAP fails */
+    font-size: clamp(1.1rem, 3vw, 1.5rem); color: var(--gray); margin-bottom: 2.5rem; max-width: 600px;
+    opacity: 0; transform: translateY(20px); /* For GSAP animation */
 }
 
 /* Stats Container */
 .stats-container {
-    display: flex;
-    gap: 2.5rem;
-    margin-bottom: 3rem;
-    justify-content: center;
-    flex-wrap: wrap;
+    display: flex; gap: 2.5rem; margin-bottom: 3rem; justify-content: center; flex-wrap: wrap;
 }
 .stat {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    opacity: 0; /* Initial state for GSAP animation */
-    transform: translateY(20px); /* Initial state for GSAP animation */
+    display: flex; flex-direction: column; align-items: center;
+    opacity: 0; transform: translateY(20px); /* For GSAP animation */
 }
 .counter {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 2.8rem;
-    font-weight: 700;
-    color: var(--tertiary-accent);
+    font-family: 'Space Grotesk', sans-serif; font-size: 2.8rem; font-weight: 700; color: var(--tertiary-accent);
 }
-.stat span:last-child {
-    font-size: 1rem;
-    color: var(--gray);
-    font-weight: 500;
-}
+.stat span:last-child { font-size: 1rem; color: var(--gray); font-weight: 500; }
 
 /* CTA Button */
 .cta-container { 
-    margin-top: 1rem;
-    opacity: 0; /* For GSAP or JS animation */
-    transform: translateY(20px); /* For GSAP or JS animation */
-    animation: fadeInUp 0.6s ease-out 2.0s forwards; /* Simple CSS fallback if GSAP fails */
+    margin-top: 1rem; opacity: 0; transform: translateY(20px); /* For GSAP animation */
 }
 .cta-button {
-    font-family: 'Space Grotesk', sans-serif;
-    background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
-    color: var(--bg-color);
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-size: 1.1rem;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.8rem;
+    font-family: 'Space Grotesk', sans-serif; background: linear-gradient(135deg, var(--primary-accent), var(--secondary-accent));
+    color: var(--bg-color); padding: 1rem 2.5rem; border-radius: 50px; text-decoration: none;
+    font-size: 1.1rem; font-weight: 600; display: inline-flex; align-items: center; gap: 0.8rem;
     transition: var(--transition-med);
     box-shadow: 0 8px 20px rgba(var(--primary-accent-rgb), 0.25), 0 5px 15px rgba(var(--secondary-accent-rgb), 0.2);
-    transform-style: preserve-3d; /* For 3D hover effect */
+    transform-style: preserve-3d;
 }
 .cta-button:hover {
     transform: translateY(-5px) scale(1.05) translateZ(10px);
     box-shadow: 0 12px 25px rgba(var(--primary-accent-rgb), 0.3), 0 8px 20px rgba(var(--secondary-accent-rgb), 0.25);
 }
-.arrow-icon {
-    width: 24px;
-    height: 24px;
-    fill: var(--bg-color);
-    transition: transform 0.3s ease;
-}
+.arrow-icon { width: 24px; height: 24px; fill: var(--bg-color); transition: transform 0.3s ease; }
 .cta-button:hover .arrow-icon { transform: translateX(5px); }
 
 /* Scroll Indicator */
 .scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 0;
-    animation: fadeInScroll 1s ease 2.5s forwards; /* Delay matches typical hero animation completion */
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    opacity: 0; animation: fadeInScroll 1s ease 2.8s forwards; /* Delayed further */
 }
-@keyframes fadeInScroll {
-    to { opacity: 0.7; }
-}
+@keyframes fadeInScroll { to { opacity: 0.7; } }
 .mouse {
-    width: 25px;
-    height: 40px;
-    border: 2px solid var(--gray);
-    border-radius: 20px;
-    position: relative;
+    width: 25px; height: 40px; border: 2px solid var(--gray); border-radius: 20px; position: relative;
 }
 .mouse::before {
-    content: '';
-    width: 5px;
-    height: 5px;
-    background-color: var(--gray);
-    border-radius: 50%;
-    position: absolute;
-    top: 8px;
-    left: 50%;
-    transform: translateX(-50%);
+    content: ''; width: 5px; height: 5px; background-color: var(--gray); border-radius: 50%;
+    position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
     animation: scrollWheel 1.5s infinite ease-in-out;
 }
 @keyframes scrollWheel {
@@ -272,10 +181,7 @@ body {
 
 /* Footer */
 .footer {
-    padding: 2rem 0;
-    border-top: 1px solid var(--light-gray);
-    text-align: center;
-    margin-top: auto; /* Pushes footer to bottom if content is short */
+    padding: 2rem 0; border-top: 1px solid var(--light-gray); text-align: center; margin-top: auto;
 }
 .footer-content { display: flex; flex-direction: column; align-items: center; gap: 1rem; }
 .footer-logo { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-color); }
@@ -287,22 +193,32 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-    .header { padding: 1.5rem 0; }
-    .logo { font-size: 1.8rem; }
-    .nav { gap: 1rem; }
-    .nav-link { font-size: 0.9rem; }
-    .hero { padding: 2rem 0; min-height: calc(100vh - 140px); }
-    .title { font-size: clamp(2.2rem, 6vw, 3.5rem); }
-    .subtitle { font-size: clamp(1rem, 2.5vw, 1.2rem); }
-    .stats-container { gap: 1.5rem; }
-    .counter { font-size: 2.2rem; }
+    .header { padding: 1.5rem 0; } .logo { font-size: 1.8rem; } .nav { gap: 1rem; }
+    .nav-link { font-size: 0.9rem; } .hero { padding: 2rem 0; min-height: calc(100vh - 140px); }
+    .title { font-size: clamp(2.2rem, 6vw, 3.5rem); } .subtitle { font-size: clamp(1rem, 2.5vw, 1.2rem); }
+    .stats-container { gap: 1.5rem; } .counter { font-size: 2.2rem; }
     .cta-button { padding: 0.8rem 2rem; font-size: 1rem; }
+    .blueprint-grid-background { background-size: 30px 30px; } /* Smaller grid on mobile */
 }
-
 @media (max-width: 480px) {
-    .container { padding: 0 1rem; }
-    .header { flex-direction: column; gap: 1rem; }
+    .container { padding: 0 1rem; } .header { flex-direction: column; gap: 1rem; }
     .nav { width: 100%; justify-content: space-around; }
     .title { font-size: clamp(2rem, 8vw, 3rem); }
     .stats-container { flex-direction: column; gap: 1rem; }
+    .blueprint-grid-background { background-size: 25px 25px; } /* Even smaller grid */
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .header, .title-line, .subtitle, .stat, .cta-container, .scroll-indicator, .blueprint-grid-background, #hero-3d-container * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+  }
+  .typing-text { animation: none; border-right: none; }
+  .mouse::before { animation: none; }
+  .cta-button:hover { transform: none; }
+  .cta-button:hover .arrow-icon { transform: none; }
+  /* Stop JS-driven animations if possible, or make them instant */
 }
