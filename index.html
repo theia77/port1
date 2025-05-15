@@ -3,22 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SumoVerse</title>
+    <meta name="description" content="SumoVerse - Building Smarter Infrastructure with Data Science, AI Models, and Civil Engineering. Portfolio of Sumouli Pramanik.">
+    <meta name="keywords" content="SumoVerse, Sumouli Pramanik, civil engineer, data scientist, infrastructure, portfolio, AI, data-driven solutions">
+    <title>SumoVerse | Welcome</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="main.css"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
-    <div id="bridge-container"></div>
+    <div id="hero-3d-container"></div>
 
     <div class="container">
         <header class="header">
             <div class="logo">SumoVerse</div>
             <nav class="nav">
-              {/* Navigation links can go here - example if needed later
-                <a href="#about" class="nav-link">About</a>
-                <a href="#services" class="nav-link">Services</a> 
-              */}
+                <a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a>
+                <a href="mainpage.html" class="nav-link"><i class="fas fa-th-large"></i> Portfolio Hub</a>
+                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
             </nav>
         </header>
 
@@ -29,19 +32,19 @@
                 <span class="title-line title-line-3 typing-text"></span>
             </h1>
             
-            <p class="subtitle">Civil Engineer | Data Scientist | Infrastructure Consultant</p>
+            <p class="subtitle" id="landing-subtitle">Civil Engineer | Data Scientist | Infrastructure Consultant</p>
             
             <div class="stats-container">
                 <div class="stat">
-                    <span class="counter" data-target="42">0</span>
+                    <span class="counter" data-target="42" id="stat-projects">0</span>
                     <span>Projects</span>
                 </div>
                 <div class="stat">
-                    <span class="counter" data-target="15">0</span>
+                    <span class="counter" data-target="15" id="stat-clients">0</span>
                     <span>Clients</span>
                 </div>
                 <div class="stat">
-                    <span class="counter" data-target="100">0</span>
+                    <span class="counter" data-target="100" id="stat-solutions">0</span>
                     <span>Solutions</span>
                 </div>
             </div>
@@ -53,7 +56,6 @@
                         <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
                     </svg>
                 </a>
-                {/* Removed .glow-effect div as it will be part of button's pseudo-element or box-shadow animation */}
             </div>
         </main>
 
@@ -61,19 +63,28 @@
             <div class="mouse"></div>
         </div>
     </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">Sumo<span>Verse</span></div>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+            </div>
+            <div class="footer-copyright">
+                &copy; <span class="current-year">2025</span> SumoVerse. All rights reserved.
+            </div>
+        </div>
+    </footer>
 
-    <!-- Three.js and GLTF Loader -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
-    <!-- Particles.js -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <!-- Confetti -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     
-    <!-- Firebase Initialization -->
     <script type="module" src="firebase-init.js"></script>
-    <!-- Main JS for this page -->
     <script type="module" src="main.js"></script>
 </body>
 </html>
