@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Academic Journey and Educational Qualifications - Sumo The Styleful">
-    <meta name="keywords" content="education, academics, degree, research, portfolio, civil engineering, data science">
-    <title>Academic Journey</title>
+    <meta name="description" content="Academic Journey and Educational Qualifications of Sumouli Pramanik - SumoVerse">
+    <meta name="keywords" content="SumoVerse, education, academics, degree, research, portfolio, civil engineering, data science, Sumouli Pramanik">
+    <title>Education | SumoVerse</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,13 +13,20 @@
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
-    <div id="bridge-model"></div>
+    <div id="bridge-model-bg"></div>
     
     <div class="container">
-        <header class="header">
-            <div class="logo">Sumo<span>Verse</div>
+         <header class="header">
+            <div class="logo">Sumo<span>Verse</span></div>
             <nav class="nav">
-                <a href="mainpage.html" class="nav-link"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+                <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
+                <a href="mainpage.html" class="nav-link"><i class="fas fa-th-large"></i> Portfolio Hub</a>
+                <a href="experience.html" class="nav-link"><i class="fas fa-briefcase"></i> Experience</a>
+                <a href="projects.html" class="nav-link"><i class="fas fa-project-diagram"></i> Projects</a>
+                <a href="skills.html" class="nav-link"><i class="fas fa-chart-bar"></i> Skills</a>
+                <a href="education.html" class="nav-link active"><i class="fas fa-graduation-cap"></i> Education</a>
+                <a href="blog.html" class="nav-link"><i class="fas fa-blog"></i> Blog</a>
+                <a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
                 <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
             </nav>
         </header>
@@ -27,15 +34,14 @@
         <main class="education-main">
             <div class="page-header">
                 <h1 id="education-page-main-title">Academic <span class="highlight" id="education-page-highlight-title">Journey</span></h1>
-                <p class="page-description" id="education-page-description">An overview of my educational qualifications, key projects, and academic contributions.</p>
+                <p class="page-description" id="education-page-description">An overview of my educational qualifications, key research, and academic contributions.</p>
             </div>
 
             <div class="education-grid" id="education-grid-container">
                 <!-- Static Example Education Entry (Fallback) -->
-                <!-- This will be replaced by education.js if data is found in localStorage -->
                 <div class="education-entry-card" data-education-id="masters-cs-static">
                     <div class="education-entry-header">
-                        <i class="fas fa-graduation-cap entry-icon"></i>
+                        <i class="fas fa-university entry-icon"></i>
                         <div class="education-title-group">
                             <h2 class="degree-title">Master of Science in Structural Engineering</h2>
                             <p class="university-name">University of Advanced Structures</p>
@@ -44,56 +50,48 @@
                     </div>
                     <div class="education-details">
                         <p class="gpa-achievements"><strong>GPA:</strong> 3.9/4.0 | <strong>Thesis:</strong> "AI applications in Bridge Health Monitoring"</p>
-                        <p class="education-description">Focused on advanced structural analysis, finite element methods, and the application of machine learning to predict material fatigue.</p>
+                        <p class="education-description">Focused on advanced structural analysis, finite element methods, and the application of machine learning to predict material fatigue and assess structural integrity.</p>
                     </div>
                     
                     <div class="related-content-section">
-                        <h3><i class="fas fa-project-diagram"></i> Related Projects</h3>
+                        <h3><i class="fas fa-flask"></i> Key Research & Projects</h3>
                         <ul class="related-items-list">
                             <li>
                                 <a href="#" class="related-item-link">AI-Powered Anomaly Detection in Bridges</a>
-                                <p class="related-item-description">Developed a CNN model using Python and TensorFlow to identify structural anomalies from drone imagery. Published results in a university journal.</p>
+                                <p class="related-item-description">Developed a Convolutional Neural Network (CNN) model using Python and TensorFlow to identify structural anomalies from drone imagery. Published results in a university journal.</p>
                                 <div class="related-item-tags">
                                     <span class="tag">AI</span><span class="tag">Computer Vision</span><span class="tag">Python</span><span class="tag">TensorFlow</span>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="#" class="related-item-link">Seismic Retrofitting Analysis</a>
-                                <p class="related-item-description">Performed non-linear dynamic analysis for seismic retrofitting of a historical building using ETABS.</p>
-                                <div class="related-item-tags">
-                                    <span class="tag">Structural Analysis</span><span class="tag">ETABS</span><span class="tag">Seismic Design</span>
                                 </div>
                             </li>
                         </ul>
                     </div>
 
                     <div class="related-content-section">
-                        <h3><i class="fas fa-feather-alt"></i> Related Publications/Blogs</h3>
+                        <h3><i class="fas fa-book-open"></i> Relevant Coursework</h3>
                         <ul class="related-items-list">
-                            <li>
-                                <a href="#" class="related-item-link" target="_blank" rel="noopener noreferrer">"The Future of Smart Bridges: An AI Perspective" - Tech Structures Blog</a>
-                                <p class="related-item-description">An article discussing the integration of IoT and AI for next-generation bridge management systems.</p>
+                             <li>
+                                <span class="related-item-link-static">Advanced Steel Design</span>
+                                <p class="related-item-description">In-depth study of complex steel structures, connection design, and stability analysis.</p>
                                 <div class="related-item-tags">
-                                    <span class="tag">Blog Post</span><span class="tag">AI</span><span class="tag">IoT</span><span class="tag">Infrastructure</span>
+                                    <span class="tag">Structural Engineering</span><span class="tag">Steel Design</span>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <!-- End Static Example -->
-
             </div>
         </main>
         
         <footer class="footer">
             <div class="footer-content">
-                <div class="footer-logo">DS<span>+</span>CE</div>
+                <div class="footer-logo">Sumo<span>Verse</span></div>
                 <div class="footer-links">
                     <a href="privacy.html">Privacy Policy</a>
                     <a href="terms.html">Terms of Service</a>
                 </div>
                 <div class="footer-copyright">
-                    &copy; <span id="current-year-education">2025</span> <span id="copyright-name">Sumo The Styleful</span>. All rights reserved.
+                    &copy; <span class="current-year">2025</span> SumoVerse. All rights reserved.
                 </div>
             </div>
         </footer>
@@ -106,11 +104,11 @@
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
-    <!-- Firebase Initialization -->
     <script type="module" src="firebase-init.js"></script>
-    <script type="module" src="education.js"></script> {/* Ensure education.js is treated as a module if it imports Firebase */}
+    <script type="module" src="education.js"></script>
 </body>
 </html>
