@@ -9,14 +9,14 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="mainpage.css">
+    <link rel="stylesheet" href="mainpage.css?v=1.0.3">
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
-    <div id="bridge-model-bg"></div> <!-- Renamed for clarity if different from landing -->
+    <div id="dynamic-background-elements"></div> 
     
     <div class="container">
-        <header class="header">
+        <header class="header" id="mainHeader">
             <div class="logo">Sumo<span>Verse</span></div>
             <nav class="nav">
                 <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a>
@@ -29,6 +29,11 @@
                 <a href="contact.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a>
                 <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
             </nav>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </header>
 
         <main class="portfolio-main">
@@ -37,7 +42,8 @@
                     <img src="placeholder-avatar.png" alt="Sumouli Pramanik" class="admin-avatar" id="profile-avatar">
                 </div>
                 <div class="admin-content">
-                    <h1><span class="highlight" id="profile-name">Sumouli Pramanik</span></h1>
+                    <!-- Name is now the first element in admin-content -->
+                    <h1 class="profile-name"><span class="highlight" id="profile-name">Sumouli Pramanik</span></h1>
                     <p class="admin-tagline" id="profile-tagline">Civil Engineer | Data Scientist | Infrastructure Consultant</p>
                     <div class="admin-description">
                         <p id="profile-description-1">I transform raw data into resilient infrastructure. With dual expertise in civil engineering and machine learning, I build bridges between physical construction and digital innovation.</p>
@@ -188,10 +194,9 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
     <script type="module" src="firebase-init.js"></script>
-    <script type="module" src="mainpage.js"></script>
+    <script type="module" src="mainpage.js?v=1.0.3"></script>
 </body>
 </html>
