@@ -12,14 +12,18 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <div class="vanta-background" id="vanta-bg"></div>
+    <!-- Background Elements -->
+    <div class="particles-background" id="particles-js"></div>
+    <div class="blueprint-grid-background"></div>
+    <div id="hero-3d-container"></div> <!-- Container for the Three.js 3D model -->
+
     <div class="container">
         <header class="header">
-            <div class="logo">SumoVerse</div>
+            <div class="logo">Sumo<span>Verse</span></div>
             <nav class="nav">
                 <a href="index.html" class="nav-link active"><i class="fas fa-home"></i> Home</a>
                 <a href="mainpage.html" class="nav-link"><i class="fas fa-th-large"></i> Portfolio Hub</a>
-                <a href="auth.html" class="nav-link admin-login-btn"><i class="fas fa-lock"></i> Admin</a>
+                <!-- Admin button removed -->
             </nav>
         </header>
 
@@ -28,7 +32,7 @@
                 <span class="title-line title-line-1">Building <span class="highlight">Smarter</span></span>
                 <span class="title-line title-line-2">Infrastructure with</span>
                 <span class="title-line title-line-3">
-                    <span class="typing-text"></span>
+                    <span class="typing-text"></span> <!-- Text will be typed here -->
                 </span>
             </h1>
             
@@ -77,16 +81,19 @@
         </div>
     </footer>
 
+    <!-- Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/loaders/GLTFLoader.js"></script> 
+    <!-- GLTFLoader is not strictly needed for the current bridge model, but good to keep if you plan to load .gltf files -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script> 
+    <!-- OrbitControls is not used in the current bridge animation, but useful for model viewers -->
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js"></script>
     
-    <script type="module" src="firebase-init.js"></script> <!-- If you use Firebase -->
-    <script type="module" src="main.js"></script>
+    <!-- Scripts -->
+    <!-- <script type="module" src="firebase-init.js"></script> If you use Firebase -->
+    <script src="main.js"></script> <!-- Changed to non-module if initBridgeModel isn't in a module -->
 </body>
 </html>
