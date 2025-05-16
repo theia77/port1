@@ -1,4 +1,3 @@
-
 /* main.css - Landing Page Styles - Architect's Study Theme */
 :root {
     --bg-color: #FCFBF8;
@@ -32,30 +31,13 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.particles-background, .blueprint-grid-background, #hero-3d-container {
+.vanta-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    pointer-events: none; /* Allow clicks to pass through */
-}
-.particles-background { z-index: -3; } /* Furthest back */
-.blueprint-grid-background {
-    z-index: -2; /* Above particles */
-    background-image:
-        linear-gradient(var(--blueprint-grid-color) 1px, transparent 1px),
-        linear-gradient(90deg, var(--blueprint-grid-color) 1px, transparent 1px);
-    background-size: 40px 40px; /* Grid cell size */
-    animation: blueprintAnimate 60s linear infinite;
-}
-@keyframes blueprintAnimate {
-    0% { background-position: 0 0; }
-    100% { background-position: 1200px 1200px; } /* Animates by shifting position */
-}
-#hero-3d-container {
-    z-index: -1; /* Above grid, behind content */
-    opacity: 0.7; /* Adjusted for better blend with grid */
+    z-index: -3;
 }
 
 .container {
@@ -198,19 +180,17 @@ body {
     .title { font-size: clamp(2.2rem, 6vw, 3.5rem); } .subtitle { font-size: clamp(1rem, 2.5vw, 1.2rem); }
     .stats-container { gap: 1.5rem; } .counter { font-size: 2.2rem; }
     .cta-button { padding: 0.8rem 2rem; font-size: 1rem; }
-    .blueprint-grid-background { background-size: 30px 30px; } /* Smaller grid on mobile */
 }
 @media (max-width: 480px) {
     .container { padding: 0 1rem; } .header { flex-direction: column; gap: 1rem; }
     .nav { width: 100%; justify-content: space-around; }
     .title { font-size: clamp(2rem, 8vw, 3rem); }
     .stats-container { flex-direction: column; gap: 1rem; }
-    .blueprint-grid-background { background-size: 25px 25px; } /* Even smaller grid */
 }
 
 /* Accessibility: Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
-  .header, .title-line, .subtitle, .stat, .cta-container, .scroll-indicator, .blueprint-grid-background, #hero-3d-container * {
+  .header, .title-line, .subtitle, .stat, .cta-container, .scroll-indicator {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
