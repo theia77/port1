@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="auth.css">
-    <!-- auth.css will contain the styles previously in <style> tags and new ones if needed -->
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
@@ -17,7 +16,6 @@
     <div class="auth-container">
         <div class="logo">Sumo<span>Verse</span> Admin</div>
 
-        <!-- Login Form -->
         <div id="login-section" class="auth-form">
             <h3>Admin Login</h3>
             <input type="email" id="login-email" placeholder="Email" required>
@@ -26,23 +24,19 @@
             <p class="form-toggle">Don't have an account? <button id="show-signup" class="link-button">Sign Up</button></p>
         </div>
 
-        <!-- Sign Up Form (Hidden by default) -->
         <div id="signup-section" class="auth-form" style="display: none;">
             <h3>Admin Sign Up</h3>
             <input type="email" id="signup-email" placeholder="Email" required>
             <input type="password" id="signup-password" placeholder="Password" required>
-            <!-- For security, you might add a "Secret Admin Key" field here for signup -->
+            <!-- IMPORTANT: For production, add an admin secret key here and validate in auth.js -->
             <!-- <input type="password" id="signup-admin-key" placeholder="Admin Secret Key" required> -->
             <button id="signup-button" class="cta-button">Sign Up</button>
             <p class="form-toggle">Already have an account? <button id="show-login" class="link-button">Login</button></p>
         </div>
 
-        <!-- User Status (Shows if already logged in, then redirects) -->
         <div id="user-status" style="display: none;">
             <p>Welcome, <span id="user-email-display"></span>!</p>
             <p>Redirecting to dashboard...</p>
-            <!-- Logout button is primarily for dashboard, but could be here if redirect fails -->
-            <button id="logout-button-authpage" class="cta-button" style="display:none;">Logout</button>
         </div>
 
         <p id="auth-error" class="error-message"></p>
@@ -52,23 +46,10 @@
     <script type="module" src="./firebase-init.js"></script>
     <script type="module" src="./auth.js"></script>
     <script>
-        // Particles.js setup (can be moved to auth.js or a shared utility)
         if (window.particlesJS) {
             particlesJS("particles-js", {
-                "particles": {
-                    "number": {"value": 80, "density": {"enable": true, "value_area": 800}},
-                    "color": {"value": "#00ff9d"}, // Theme color
-                    "shape": {"type": "circle"},
-                    "opacity": {"value": 0.5, "random": false},
-                    "size": {"value": 3, "random": true},
-                    "line_linked": {"enable": true, "distance": 150, "color": "#00ff9d", "opacity": 0.4, "width": 1},
-                    "move": {"enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false}
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {"onhover": {"enable": true, "mode": "repulse"}, "onclick": {"enable": true, "mode": "push"}, "resize": true},
-                    "modes": {"repulse": {"distance": 100, "duration": 0.4}, "push": {"particles_nb": 4}}
-                },
+                "particles": {"number": {"value": 80,"density": {"enable": true,"value_area": 800}},"color": {"value": "#00ff9d"},"shape": {"type": "circle"},"opacity": {"value": 0.5,"random": false},"size": {"value": 3,"random": true},"line_linked": {"enable": true,"distance": 150,"color": "#00ff9d","opacity": 0.4,"width": 1},"move": {"enable": true,"speed": 2,"direction": "none","random": false,"straight": false,"out_mode": "out","bounce": false}},
+                "interactivity": {"detect_on": "canvas","events": {"onhover": {"enable": true,"mode": "repulse"},"onclick": {"enable": true,"mode": "push"},"resize": true},"modes": {"repulse": {"distance": 100,"duration": 0.4},"push": {"particles_nb": 4}}},
                 "retina_detect": true
             });
         }
