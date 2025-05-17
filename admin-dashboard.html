@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SumoVerse</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="admin-dashboard.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">Sumo<span>Verse</span></div>
+                <p>Admin Panel</p>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview"><i class="fas fa-tachometer-alt"></i> Overview</a>
+                <a href="#" class="nav-item" data-section="education"><i class="fas fa-graduation-cap"></i> Education</a>
+                <a href="#" class="nav-item" data-section="experience"><i class="fas fa-briefcase"></i> Experience</a>
+                <a href="#" class="nav-item" data-section="projects"><i class="fas fa-project-diagram"></i> Projects</a>
+                <a href="#" class="nav-item" data-section="skills"><i class="fas fa-chart-bar"></i> Skills</a>
+                <a href="#" class="nav-item" data-section="blogs"><i class="fas fa-blog"></i> Blogs</a>
+                <a href="#" class="nav-item" data-section="contact-details"><i class="fas fa-address-card"></i> Contact Details</a>
+                <a href="#" class="nav-item" data-section="site-settings"><i class="fas fa-cog"></i> Site Settings</a>
+            </nav>
+            <div class="sidebar-footer">
+                <p>Logged in as: <span id="admin-user-email"></span></p>
+                <button id="logout-button" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="main-header">
+                <h1 id="section-title">Overview</h1>
+                <button id="add-new-item-button" class="cta-button" style="display:none;"><i class="fas fa-plus"></i> Add New</button>
+            </header>
+
+            <section id="overview-section" class="content-section active">
+                <h2>Welcome, Admin!</h2>
+                <p>Select a section from the sidebar to manage content.</p>
+                <div class="stats-grid">
+                    <div class="stat-card"><h3>Total Projects</h3><p id="stat-projects">0</p></div>
+                    <div class="stat-card"><h3>Blog Posts</h3><p id="stat-blogs">0</p></div>
+                    <div class="stat-card"><h3>Skills Listed</h3><p id="stat-skills">0</p></div>
+                </div>
+            </section>
+
+            <section id="education-section" class="content-section">
+                <!-- Education items will be loaded here -->
+                <div class="items-grid" id="education-items-container"></div>
+            </section>
+
+            <section id="experience-section" class="content-section">
+                <div class="items-grid" id="experience-items-container"></div>
+            </section>
+
+            <section id="projects-section" class="content-section">
+                <div class="items-grid" id="projects-items-container"></div>
+            </section>
+
+            <section id="skills-section" class="content-section">
+                <div class="items-grid" id="skills-items-container"></div>
+            </section>
+
+            <section id="blogs-section" class="content-section">
+                <div class="items-grid" id="blogs-items-container"></div>
+            </section>
+
+            <section id="contact-details-section" class="content-section">
+                <form id="contact-details-form" class="styled-form">
+                    <h3>Update Contact Information</h3>
+                    <div class="form-group">
+                        <label for="contact-email">Email</label>
+                        <input type="email" id="contact-email" name="email">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-phone">Phone</label>
+                        <input type="tel" id="contact-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-linkedin">LinkedIn URL</label>
+                        <input type="url" id="contact-linkedin" name="linkedin">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-github">GitHub URL</label>
+                        <input type="url" id="contact-github" name="github">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-twitter">Twitter URL (Optional)</label>
+                        <input type="url" id="contact-twitter" name="twitter">
+                    </div>
+                     <div class="form-group">
+                        <label for="contact-calendly">Calendly URL (Optional)</label>
+                        <input type="url" id="contact-calendly" name="calendly">
+                    </div>
+                    <button type="submit" class="cta-button">Save Contact Details</button>
+                </form>
+            </section>
+            <section id="site-settings-section" class="content-section">
+                <form id="site-settings-form" class="styled-form">
+                    <h3>General Site Settings</h3>
+                     <div class="form-group">
+                        <label for="site-title">Site Title (Browser Tab)</label>
+                        <input type="text" id="site-title" name="siteTitle">
+                    </div>
+                    <div class="form-group">
+                        <label for="footer-copyright">Footer Copyright Text</label>
+                        <input type="text" id="footer-copyright" name="footerCopyright">
+                    </div>
+                    <!-- Add more site settings as needed -->
+                    <button type="submit" class="cta-button">Save Site Settings</button>
+                </form>
+            </section>
+
+
+        </main>
+    </div>
+
+    <!-- Generic Modal for Adding/Editing Items -->
+    <div id="item-modal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close-modal-button">&times;</span>
+            <h2 id="modal-title">Add/Edit Item</h2>
+            <form id="item-form" class="styled-form">
+                <input type="hidden" id="item-id" name="itemId">
+                <div id="dynamic-form-fields">
+                    <!-- Fields will be dynamically inserted here -->
+                </div>
+                <div class="form-group file-upload-group" style="display:none;">
+                    <label for="item-attachment">Attachment</label>
+                    <input type="file" id="item-attachment" name="itemAttachment">
+                    <img id="attachment-preview" src="#" alt="Attachment Preview" style="max-width: 200px; max-height: 200px; margin-top: 10px; display:none;">
+                    <p id="current-attachment-info"></p>
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" id="save-item-button" class="cta-button">Save</button>
+                    <button type="button" id="cancel-modal-button" class="cancel-button">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="notification" id="admin-notification" style="display:none;">
+        <span id="admin-notification-message"></span>
+    </div>
+
+    <script type="module" src="./firebase-init.js"></script>
+    <script type="module" src="./admin-dashboard.js"></script>
+</body>
+</html>
