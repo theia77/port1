@@ -6,10 +6,10 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebas
 // Firebase Authentication
 import {
     getAuth,
-    GoogleAuthProvider,
+    GoogleAuthProvider, // If used elsewhere
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signInWithPopup,
+    signInWithPopup, // If used elsewhere
     signOut,
     onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js";
@@ -40,8 +40,9 @@ import {
     deleteObject
 } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-storage.js";
 
+// **ACTION: REPLACE WITH YOUR ACTUAL FIREBASE CONFIGURATION**
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY", // Replace with your actual API key
+  apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_AUTH_DOMAIN", // e.g., portfolio-sumoverse.firebaseapp.com
   projectId: "YOUR_PROJECT_ID",  // e.g., portfolio-sumoverse
   storageBucket: "YOUR_STORAGE_BUCKET", // e.g., portfolio-sumoverse.appspot.com
@@ -55,41 +56,20 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
-const googleProvider = new GoogleAuthProvider();
+const googleProvider = new GoogleAuthProvider(); // If you plan to use Google Sign-In
 
-// Helper Functions (Can be expanded or moved to utility files)
-async function getProfileData() {
-    const profileDocRef = doc(db, 'settings', 'profileInfo'); // Store profile in settings
-    try {
-        const docSnap = await getDoc(profileDocRef);
-        if (docSnap.exists()) {
-            return docSnap.data();
-        } else {
-            console.log("No 'profileInfo' document found in 'settings' collection!");
-            return { name: "Your Name", tagline: "Your Tagline", /* ...defaults */ };
-        }
-    } catch (error) {
-        console.error("Error fetching profile data:", error);
-        return { name: "Error Loading", tagline: "", /* ...error defaults */ };
-    }
-}
-
-async function getSectionPreviewData(sectionCollectionName, count = 2, orderByField = 'timestamp', orderDirection = 'desc') {
-    try {
-        const sectionColRef = collection(db, sectionCollectionName);
-        const q = query(sectionColRef, orderBy(orderByField, orderDirection), limit(count));
-        const snapshot = await getDocs(q);
-        return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-    } catch (error) {
-        console.error(`Error fetching preview data for ${sectionCollectionName}:`, error);
-        return [];
-    }
-}
+// Helper Functions (Example - keep or remove as needed)
+async function getProfileData() { /* ... your implementation ... */ }
+async function getSectionPreviewData(sectionCollectionName, count = 2, orderByField = 'timestamp', orderDirection = 'desc') { /* ... */ }
 
 export {
     app, auth, db, storage, googleProvider,
+    // Auth
     createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithPopup, signOut, onAuthStateChanged,
+    // Firestore
     collection, getDocs, getDoc, doc, query, orderBy, limit, addDoc, updateDoc, deleteDoc, serverTimestamp, setDoc,
+    // Storage
     ref, uploadBytesResumable, getDownloadURL, deleteObject,
+    // Helpers
     getProfileData, getSectionPreviewData
 };
