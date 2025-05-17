@@ -1,11 +1,11 @@
 // auth.js
-import { auth } from './firebase-init.js'; // Assuming firebase-init.js is in the same directory
+import { auth } from './firebase-init.js';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js";
+} from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js"; // Use your Firebase version
 
 // DOM Elements
 const loginSection = document.getElementById('login-section');
@@ -18,14 +18,17 @@ const loginButton = document.getElementById('login-button');
 
 const signupEmailInput = document.getElementById('signup-email');
 const signupPasswordInput = document.getElementById('signup-password');
+// const signupAdminKeyInput = document.getElementById('signup-admin-key'); // If you add a secret key
 const signupButton = document.getElementById('signup-button');
 
 const showSignupButton = document.getElementById('show-signup');
 const showLoginButton = document.getElementById('show-login');
 
 const userEmailDisplay = document.getElementById('user-email-display');
-const logoutButton = document.getElementById('logout-button');
+const logoutButtonAuthPage = document.getElementById('logout-button-authpage'); // Button on auth page
 const authErrorP = document.getElementById('auth-error');
+
+const ADMIN_SECRET_KEY = "YOUR_SUPER_SECRET_ADMIN_KEY"; // IMPORTANT: Replace or manage securely
 
 // --- Toggle Forms ---
 if (showSignupButton) {
@@ -47,26 +50,40 @@ if (showLoginButton) {
 // --- Sign Up Function ---
 if (signupButton) {
     signupButton.addEventListener('click', () => {
-        const email = signupEmailInput.value;
+        const email = signupEmailInput.value.trim();
         const password = signupPasswordInput.value;
-        authErrorP.textContent = ''; // Clear previous errors
+        // const adminKey = signupAdminKeyInput ? signupAdminKeyInput.value : ADMIN_SECRET_KEY; // Use this if implementing secret key
+        authErrorP.textContent = '';
 
         if (!email || !password) {
             authErrorP.textContent = 'Please enter both email and password.';
             return;
         }
 
+        // **Basic Admin Key Check (Example - enhance for production)**
+        // if (adminKey !== ADMIN_SECRET_KEY) {
+        //     authErrorP.textContent = 'Invalid Admin Secret Key.';
+        //     return;
+        // }
+
+        signupButton.disabled = true;
+        signupButton.textContent = 'Signing up...';
+
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const user = userCredential.user;
-                console.log("User signed up:", user.email);
-                // UI will be updated by onAuthStateChanged
-                signupEmailInput.value = ''; // Clear fields
+                // User signed up successfully.
+                // UI will be updated by onAuthStateChanged, which redirects to dashboard.
+                signupEmailInput.value = '';
                 signupPasswordInput.value = '';
+                // if (signupAdminKeyInput) signupAdminKeyInput.value = '';
             })
             .catch((error) => {
-                console.error("Signup Error:", error.code, error.message);
+                console.error("Signup Error:", error);
                 authErrorP.textContent = error.message;
+            })
+            .finally(() => {
+                signupButton.disabled = false;
+                signupButton.textContent = 'Sign Up';
             });
     });
 }
@@ -74,37 +91,39 @@ if (signupButton) {
 // --- Login Function ---
 if (loginButton) {
     loginButton.addEventListener('click', () => {
-        const email = loginEmailInput.value;
+        const email = loginEmailInput.value.trim();
         const password = loginPasswordInput.value;
-        authErrorP.textContent = ''; // Clear previous errors
+        authErrorP.textContent = '';
 
         if (!email || !password) {
             authErrorP.textContent = 'Please enter both email and password.';
             return;
         }
+        loginButton.disabled = true;
+        loginButton.textContent = 'Logging in...';
 
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                const user = userCredential.user;
-                console.log("User logged in:", user.email);
-                // UI will be updated by onAuthStateChanged
-                loginEmailInput.value = ''; // Clear fields
+                // User logged in successfully.
+                // UI will be updated by onAuthStateChanged, which redirects to dashboard.
+                loginEmailInput.value = '';
                 loginPasswordInput.value = '';
             })
             .catch((error) => {
-                console.error("Login Error:", error.code, error.message);
+                console.error("Login Error:", error);
                 authErrorP.textContent = error.message;
+            })
+            .finally(() => {
+                loginButton.disabled = false;
+                loginButton.textContent = 'Login';
             });
     });
 }
 
-// --- Logout Function ---
-if (logoutButton) {
-    logoutButton.addEventListener('click', () => {
-        signOut(auth).then(() => {
-            console.log("User logged out");
-            // UI will be updated by onAuthStateChanged
-        }).catch((error) => {
+// --- Logout Function (for the button on auth.html, primarily if redirect fails) ---
+if (logoutButtonAuthPage) {
+    logoutButtonAuthPage.addEventListener('click', () => {
+        signOut(auth).catch((error) => {
             console.error("Logout Error:", error);
             authErrorP.textContent = "Logout failed: " + error.message;
         });
@@ -116,20 +135,28 @@ onAuthStateChanged(auth, (user) => {
     if (user) {
         // User is signed in
         console.log("Auth state changed: User is signed in", user.email);
-        userEmailDisplay.textContent = user.email;
+        if (userEmailDisplay) userEmailDisplay.textContent = user.email;
 
-        loginSection.style.display = 'none';
-        signupSection.style.display = 'none';
-        userStatusDiv.style.display = 'block';
-        authErrorP.textContent = '';
+        // If on auth.html, prepare to redirect
+        if (window.location.pathname.includes('auth.html')) {
+            if(loginSection) loginSection.style.display = 'none';
+            if(signupSection) signupSection.style.display = 'none';
+            if(userStatusDiv) userStatusDiv.style.display = 'block';
+            // Redirect to admin dashboard
+            window.location.href = 'admin-dashboard.html';
+        }
     } else {
         // User is signed out
         console.log("Auth state changed: User is signed out");
-        userStatusDiv.style.display = 'none';
-        loginSection.style.display = 'block'; // Show login form by default when logged out
-        signupSection.style.display = 'none';
+        // If on a protected page (like admin-dashboard.html), redirect to login
+        if (window.location.pathname.includes('admin-dashboard.html')) {
+            window.location.href = 'auth.html';
+        } else {
+            // On auth.html, ensure login form is visible
+            if(userStatusDiv) userStatusDiv.style.display = 'none';
+            if(loginSection) loginSection.style.display = 'block';
+            if(signupSection) signupSection.style.display = 'none';
+            if(logoutButtonAuthPage) logoutButtonAuthPage.style.display = 'none';
+        }
     }
 });
-
-// Initial check in case the user is already logged in (e.g., from a previous session)
-// The onAuthStateChanged listener above will handle this automatically when it fires.
