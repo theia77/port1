@@ -9,7 +9,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="skills.css"> <!-- You'll need to create skills.css -->
+    <link rel="stylesheet" href="skills.css">
 </head>
 <body>
     <div class="particles-background" id="particles-js"></div>
@@ -38,37 +38,149 @@
             </div>
 
             <div class="skills-layout-container" id="skills-layout-container">
-                <!-- Static Example Skills (Fallback) / Dynamic from skills.js -->
+                <!-- Skills will be loaded dynamically, with fallback static content -->
                 <section class="skills-category-section">
-                    <h2 class="category-title"><i class="fas fa-cogs"></i> Civil Engineering</h2>
+                    <h2 class="category-title"><i class="fas fa-building"></i> Civil Engineering</h2>
                     <div class="skills-grid">
-                        <div class="skill-item" data-skill-id="static-skill-struct"><span>Structural Analysis & Design</span><div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div></div>
-                        <div class="skill-item" data-skill-id="static-skill-bim"><span>BIM (Revit, AutoCAD Civil 3D)</span><div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div></div>
-                        <div class="skill-item" data-skill-id="static-skill-geotech"><span>Geotechnical Engineering</span><div class="skill-bar"><div class="skill-level" style="width: 70%;"></div></div></div>
-                        <div class="skill-item" data-skill-id="static-skill-transport"><span>Transportation Engineering</span><div class="skill-bar"><div class="skill-level" style="width: 75%;"></div></div></div>
+                        <div class="skill-item expert" data-skill-id="static-skill-struct">
+                            <div class="skill-header">
+                                <span>Structural Analysis & Design</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="90%" style="width: 0%"></div>
+                            </div>
+                            <div class="skill-description">Proficient in analyzing and designing various structural systems including reinforced concrete, steel, and composite structures.</div>
+                            <div class="skill-projects">Projects: Residential high-rise, Commercial complex, Bridge design</div>
+                        </div>
+                        <div class="skill-item advanced" data-skill-id="static-skill-bim">
+                            <div class="skill-header">
+                                <span>BIM (Revit, AutoCAD Civil 3D)</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="80%" style="width: 0%"></div>
+                            </div>
+                            <div class="skill-description">Experienced in Building Information Modeling for structural and infrastructure projects.</div>
+                        </div>
+                        <div class="skill-item intermediate" data-skill-id="static-skill-geotech">
+                            <div class="skill-header">
+                                <span>Geotechnical Engineering</span>
+                                <span class="skill-percentage">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="70%" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item advanced" data-skill-id="static-skill-transport">
+                            <div class="skill-header">
+                                <span>Transportation Engineering</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="75%" style="width: 0%"></div>
+                            </div>
+                        </div>
                     </div>
                 </section>
 
                 <section class="skills-category-section">
                     <h2 class="category-title"><i class="fas fa-brain"></i> Data Science & AI</h2>
                     <div class="skills-grid">
-                        <div class="skill-item" data-skill-id="static-skill-ml"><span>Machine Learning (Scikit-learn, TensorFlow)</span><div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div></div>
-                        <div class="skill-item" data-skill-id="static-skill-dataviz"><span>Data Visualization (Matplotlib, Seaborn, PowerBI)</span><div class="skill-bar"><div class="skill-level" style="width: 88%;"></div></div></div>
-                        <div class="skill-item" data-skill-id="static-skill-nlp"><span>Natural Language Processing</span><div class="skill-bar"><div class="skill-level" style="width: 65%;"></div></div></div>
-                        <div class="skill-item" data-skill-id="static-skill-bigdata"><span>Big Data Technologies (Spark - basic)</span><div class="skill-bar"><div class="skill-level" style="width: 60%;"></div></div></div>
+                        <div class="skill-item expert" data-skill-id="static-skill-ml">
+                            <div class="skill-header">
+                                <span>Machine Learning (Scikit-learn, TensorFlow)</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="85%" style="width: 0%"></div>
+                            </div>
+                            <div class="skill-description">Experienced in developing predictive models and implementing ML algorithms for civil engineering applications.</div>
+                        </div>
+                        <div class="skill-item expert" data-skill-id="static-skill-dataviz">
+                            <div class="skill-header">
+                                <span>Data Visualization (Matplotlib, Seaborn, PowerBI)</span>
+                                <span class="skill-percentage">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="88%" style="width: 0%"></div>
+                            </div>
+                            <div class="skill-description">Skilled in creating insightful visualizations and interactive dashboards for complex engineering data.</div>
+                        </div>
+                        <div class="skill-item intermediate" data-skill-id="static-skill-nlp">
+                            <div class="skill-header">
+                                <span>Natural Language Processing</span>
+                                <span class="skill-percentage">65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="65%" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item intermediate" data-skill-id="static-skill-bigdata">
+                            <div class="skill-header">
+                                <span>Big Data Technologies (Spark - basic)</span>
+                                <span class="skill-percentage">60%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="60%" style="width: 0%"></div>
+                            </div>
+                        </div>
                     </div>
                 </section>
-                 <section class="skills-category-section">
+                
+                <section class="skills-category-section">
                     <h2 class="category-title"><i class="fas fa-code"></i> Programming & Software</h2>
                     <div class="skills-grid">
-                        <div class="skill-item" data-skill-id="static-skill-python"><span>Python</span><div class="skill-bar"><div class="skill-level" style="width: 95%;"></div></div></div>
-                        <div class="skill-item" data-skill-id="static-skill-sql"><span>SQL</span><div class="skill-bar"><div class="skill-level" style="width: 80%;"></div></div></div>
-                        <div class="skill-item" data-skill-id="static-skill-autocad"><span>AutoCAD</span><div class="skill-bar"><div class="skill-level" style="width: 90%;"></div></div></div>
-                        <div class="skill-item" data-skill-id="static-skill-etabs"><span>ETABS / STAAD.Pro</span><div class="skill-bar"><div class="skill-level" style="width: 85%;"></div></div></div>
-                         <div class="skill-item" data-skill-id="static-skill-git"><span>Git & GitHub</span><div class="skill-bar"><div class="skill-level" style="width: 75%;"></div></div></div>
+                        <div class="skill-item expert" data-skill-id="static-skill-python">
+                            <div class="skill-header">
+                                <span>Python</span>
+                                <span class="skill-percentage">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="95%" style="width: 0%"></div>
+                            </div>
+                            <div class="skill-description">Expert in Python programming for data analysis, automation, and engineering applications.</div>
+                            <div class="skill-projects">Projects: Structural optimization tool, Data analysis pipeline, ML models</div>
+                        </div>
+                        <div class="skill-item advanced" data-skill-id="static-skill-sql">
+                            <div class="skill-header">
+                                <span>SQL</span>
+                                <span class="skill-percentage">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="80%" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item expert" data-skill-id="static-skill-autocad">
+                            <div class="skill-header">
+                                <span>AutoCAD</span>
+                                <span class="skill-percentage">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="90%" style="width: 0%"></div>
+                            </div>
+                            <div class="skill-description">Proficient in 2D and 3D modeling for civil engineering projects.</div>
+                        </div>
+                        <div class="skill-item expert" data-skill-id="static-skill-etabs">
+                            <div class="skill-header">
+                                <span>ETABS / STAAD.Pro</span>
+                                <span class="skill-percentage">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="85%" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item advanced" data-skill-id="static-skill-git">
+                            <div class="skill-header">
+                                <span>Git & GitHub</span>
+                                <span class="skill-percentage">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-level" data-level="75%" style="width: 0%"></div>
+                            </div>
+                        </div>
                     </div>
                 </section>
-                <!-- End Static Example -->
             </div>
         </main>
         
@@ -98,6 +210,6 @@
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
     <script type="module" src="firebase-init.js"></script>
-    <script type="module" src="skills.js"></script> <!-- You'll need to create skills.js -->
+    <script type="module" src="skills.js"></script>
 </body>
 </html>
