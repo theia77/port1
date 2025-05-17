@@ -1,49 +1,140 @@
-// Import the initializeApp function from the Firebase SDK
-import { initializeApp } from "firebase/app";
+// firebase-init.js
 
-// If you plan to use other Firebase services, import them here.
-// For example, for Firestore:
-// import { getFirestore } from "firebase/firestore";
-// For Authentication:
-// import { getAuth } from "firebase/auth";
-// For Realtime Database:
-// import { getDatabase } from "firebase/database";
-// For Storage:
-// import { getStorage } from "firebase/storage";
-// For Analytics (if you use measurementId):
-// import { getAnalytics } from "firebase/analytics";
+// Firebase App (Core) - Using the version from your latest snippet
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-app.js";
 
-// Your web app's Firebase configuration
+// Firebase Authentication
+import {
+    getAuth,
+    GoogleAuthProvider, // Keep if you plan to use Google Sign-In for other purposes
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signInWithPopup,    // Keep if you plan to use Google Sign-In for other purposes
+    signOut,
+    onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/11.7.3/firebase-auth.js";
+
+// Firebase Firestore
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    getDoc,
+    doc,
+    query,
+    orderBy,
+    limit,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp,
+    setDoc
+} from "https://www.gstatic.com/firebasejs/11.7.3/firebase-firestore.js";
+
+// Firebase Storage
+import {
+    getStorage,
+    ref,
+    uploadBytesResumable,
+    getDownloadURL,
+    deleteObject
+} from "https://www.gstatic.com/firebasejs/11.7.3/firebase-storage.js";
+
+// Firebase Analytics (as per your provided HTML snippet from previous request)
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.3/firebase-analytics.js";
+
+// **YOUR LATEST FIREBASE CONFIGURATION**
 const firebaseConfig = {
   apiKey: "AIzaSyCG1aRMKiqK9HdytJGh0ZAdPpi15R0AELA",
   authDomain: "portfolio-sumoverse-d1834.firebaseapp.com",
   projectId: "portfolio-sumoverse-d1834",
-  storageBucket: "portfolio-sumoverse-d1834.appspot.com", // Verified common format, double-check in your Firebase console
+  // **CRITICAL VERIFICATION**: Double-check this value in your Firebase Console -> Storage.
+  // Your snippet used ".firebasestorage.app". The more traditional one is ".appspot.com".
+  // Use the EXACT value shown in your Firebase project's Storage section (usually starts with gs://).
+  // If "portfolio-sumoverse-d1834.firebasestorage.app" IS correct from your console, use that.
+  // Otherwise, the common format is: "portfolio-sumoverse-d1834.appspot.com"
+  storageBucket: "portfolio-sumoverse-d1834.firebasestorage.app", // Using the one from your snippet, but verify!
   messagingSenderId: "274868857687",
   appId: "1:274868857687:web:37ee07365edb445ddcec12",
-  measurementId: "G-VNXL4PZYSZ" // Optional for SDK v7.20.0+ but good to include if you use Analytics
+  measurementId: "G-VNXL4PZYSZ"
 };
 
-// Initialize Firebase
+// Initialize Firebase App
 const app = initializeApp(firebaseConfig);
 
-// Initialize and export Firebase services you want to use.
-// Example for Firestore:
-// export const db = getFirestore(app);
+// Initialize Firebase Services
+const auth = getAuth(app);
+const db = getFirestore(app);
+const storage = getStorage(app);
+const analytics = getAnalytics(app); // Initialize Analytics
 
-// Example for Authentication:
-// export const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider(); // For potential future Google Sign-In
 
-// Example for Realtime Database (if you added databaseURL to firebaseConfig):
-// Make sure to add `databaseURL: "https://portfolio-sumoverse-d1834.firebaseio.com"` (or your specific region) to firebaseConfig
-// export const database = getDatabase(app);
+// --- Helper Functions (Can be expanded or moved to utility files later) ---
 
-// Example for Storage:
-// export const storage = getStorage(app);
+// Example: Fetch general site settings or user profile information
+async function getSiteSettings(docId = "generalSite") { // e.g., "generalSite", "profileInfo", "contactInfo"
+    const settingsDocRef = doc(db, 'settings', docId);
+    try {
+        const docSnap = await getDoc(settingsDocRef);
+        if (docSnap.exists()) {
+            return docSnap.data();
+        } else {
+            console.warn(`No settings document found for ID: ${docId} in 'settings' collection.`);
+            return {}; // Return empty object or defaults
+        }
+    } catch (error) {
+        console.error(`Error fetching settings for ${docId}:`, error);
+        return {}; // Return empty object on error
+    }
+}
 
-// Example for Analytics:
-// const analytics = getAnalytics(app); // Only if you are using it
+// Example: Fetch a limited number of items from a collection for previews
+async function getSectionPreviewData(sectionCollectionName, count = 3, orderByField = 'timestamp', orderDirection = 'desc') {
+    try {
+        const sectionColRef = collection(db, sectionCollectionName);
+        const q = query(sectionColRef, orderBy(orderByField, orderDirection), limit(count));
+        const snapshot = await getDocs(q);
+        return snapshot.docs.map(d => ({ id: d.id, ...d.data() }));
+    } catch (error) {
+        console.error(`Error fetching preview data for ${sectionCollectionName}:`, error);
+        return []; // Return empty array on error
+    }
+}
 
-// Export the initialized Firebase app instance.
-// You might not always need to export the app itself if you export the services.
-export default app;
+// Export the initialized services and any helper functions
+export {
+    app,
+    auth,
+    db,
+    storage,
+    analytics,
+    googleProvider,
+    // Auth functions (re-exporting for convenience in other modules)
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    signOut,
+    onAuthStateChanged,
+    // Firestore functions (re-exporting for convenience)
+    collection,
+    getDocs,
+    getDoc,
+    doc,
+    query,
+    orderBy,
+    limit,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp,
+    setDoc,
+    // Storage functions (re-exporting for convenience)
+    ref,
+    uploadBytesResumable,
+    getDownloadURL,
+    deleteObject,
+    // Your helper functions
+    getSiteSettings,
+    getSectionPreviewData
+};
