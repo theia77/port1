@@ -4,29 +4,42 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-app.js";
 
 // Firebase Authentication
-import { 
-    getAuth, 
-    GoogleAuthProvider, 
-    signInWithPopup, 
-    signOut, 
-    onAuthStateChanged 
+import {
+    getAuth,
+    GoogleAuthProvider, // Kept if you plan to use Google Sign-In elsewhere, not used by current auth.js
+    createUserWithEmailAndPassword, // Added as it's used in auth.js
+    signInWithEmailAndPassword,     // Added as it's used in auth.js
+    signInWithPopup,                // Kept, though not currently used by auth.js
+    signOut,
+    onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-auth.js";
 
 // Firebase Firestore
-import { 
-    getFirestore, 
-    collection, 
-    getDocs, 
-    getDoc, 
-    doc, 
-    query, 
-    orderBy, 
-    limit, 
-    addDoc, 
-    updateDoc, 
-    deleteDoc, 
-    serverTimestamp 
+import {
+    getFirestore,
+    collection,
+    getDocs,
+    getDoc,
+    doc,
+    query,
+    orderBy,
+    limit,
+    addDoc,
+    updateDoc,
+    deleteDoc,
+    serverTimestamp,
+    setDoc // Added as it's used in admin-dashboard.js for settings
 } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-firestore.js";
+
+// Firebase Storage
+import {
+    getStorage,
+    ref,
+    uploadBytesResumable,
+    getDownloadURL,
+    deleteObject
+} from "https://www.gstatic.com/firebasejs/11.7.1/firebase-storage.js";
+
 
 // Firebase Analytics (Optional, uncomment if you plan to use it)
 // import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.7.1/firebase-analytics.js";
@@ -50,8 +63,11 @@ const auth = getAuth(app);
 // Initialize Cloud Firestore and get a reference to the service
 const db = getFirestore(app);
 
-// Initialize Google Auth Provider
-const provider = new GoogleAuthProvider();
+// Initialize Firebase Storage and get a reference to the service
+const storage = getStorage(app);
+
+// Initialize Google Auth Provider (if you plan to use it elsewhere)
+const googleProvider = new GoogleAuthProvider(); // Renamed to avoid conflict if 'provider' is used locally
 
 // Initialize Analytics (Optional)
 // const analytics = getAnalytics(app);
@@ -62,7 +78,7 @@ const provider = new GoogleAuthProvider();
 // Example function to fetch general profile data
 async function getProfileData() {
     // Assuming your profile data is in a document named 'mainInfo' within a 'profile' collection
-    const profileDocRef = doc(db, 'profile', 'mainInfo'); 
+    const profileDocRef = doc(db, 'profile', 'mainInfo');
     try {
         const docSnap = await getDoc(profileDocRef);
         if (docSnap.exists()) {
@@ -97,7 +113,7 @@ async function getSectionPreviewData(sectionCollectionName, count = 2, orderByFi
     try {
         const sectionColRef = collection(db, sectionCollectionName);
         // Ensure the orderByField exists in your documents for this to work correctly
-        const q = query(sectionColRef, orderBy(orderByField, orderDirection), limit(count)); 
+        const q = query(sectionColRef, orderBy(orderByField, orderDirection), limit(count));
         const snapshot = await getDocs(q);
         return snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     } catch (error) {
@@ -108,27 +124,36 @@ async function getSectionPreviewData(sectionCollectionName, count = 2, orderByFi
 
 
 // Export the instances and functions for use in other scripts
-export { 
-    app, 
-    auth, 
-    db, 
-    provider, 
+export {
+    app,
+    auth,
+    db,
+    storage, // Export Storage instance
+    googleProvider, // Export Google Auth Provider
     // Auth functions
-    signInWithPopup, 
-    signOut, 
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    signOut,
     onAuthStateChanged,
     // Firestore functions
-    collection, 
-    getDocs, 
-    getDoc, 
-    doc, 
-    query, 
-    orderBy, 
-    limit, 
-    addDoc, 
-    updateDoc, 
-    deleteDoc, 
+    collection,
+    getDocs,
+    getDoc,
+    doc,
+    query,
+    orderBy,
+    limit,
+    addDoc,
+    updateDoc,
+    deleteDoc,
     serverTimestamp,
+    setDoc, // Export setDoc
+    // Storage functions
+    ref,
+    uploadBytesResumable,
+    getDownloadURL,
+    deleteObject,
     // Helper functions
     getProfileData,
     getSectionPreviewData
